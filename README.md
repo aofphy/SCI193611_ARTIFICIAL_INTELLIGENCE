@@ -89,7 +89,7 @@ By the end of this course, you will be able to:
 
 ---
 
-## 📂 Course Materials Map (จับคู่สื่อกับสัปดาห์)
+## 📂 Course Materials Map 
 
 ตารางจับคู่กิจกรรม (Tutorial / Project / Exercise / Lab) กับเนื้อหารายสัปดาห์และไฟล์จริงในรีโพ. ช่อง "—" หมายถึงสื่อที่ยังต้องจัดทำเพิ่มสำหรับเนื้อหาสมัยใหม่.
 
