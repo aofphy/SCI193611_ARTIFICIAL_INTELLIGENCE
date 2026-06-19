@@ -1,5 +1,8 @@
 # SCI19 3611 ARTIFICIAL INTELLIGENCE and SCI19 3631 Workshop AI
 
+> **ฉบับปรับปรุงให้ทันสมัย พ.ศ. 2569 (Modernized Syllabus)** — อ้างอิงตำรา AIMA ฉบับที่ 4 (2020) และเพิ่มเนื้อหา Deep Learning, Transformers, LLMs, RAG, LLM Agents, Generative AI และ AI Ethics & Safety.
+> รายละเอียดฉบับเต็มอยู่ใน [`TQF3_AI_Modernized.docx`](./TQF3_AI_Modernized.docx) (มคอ.3). เวอร์ชันเดิมเก็บไว้ที่ [`README_OLD_AIMA3.md`](./README_OLD_AIMA3.md).
+
 **Instructor:** Asst. Prof. Dr. Ittipon Fongkaew  
 **Email:** ittipon@g.sut.ac.th
 
@@ -13,11 +16,12 @@
 
 ## 📘 Course Overview
 
-This course introduces fundamental concepts and techniques in Artificial Intelligence, combining theoretical foundations and practical applications using Python.  
+This course introduces fundamental concepts and techniques in Artificial Intelligence, combining theoretical foundations with practical applications in Python. Content spans **Classical AI** — Search, Logic & Planning, and Probabilistic Reasoning — through to **Modern AI** — Deep Learning, the Transformer architecture, Large Language Models (LLMs), RAG, LLM Agents, and Generative AI — along with **AI Ethics & Safety**.
+
+The course is designed to complement the parallel Machine Learning course, deliberately avoiding overlapping Classical ML content (regression, classification, decision trees) and reinvesting that time into Classical AI (Logic & Planning) and the modern LLM/Agent/Generative AI track.
 
 **Textbook:**  
-Stuart Russell, Peter Norvig – *Artificial Intelligence: A Modern Approach* (3rd Edition)  
-[Download PDF](https://raw.githubusercontent.com/yanshengjia/ml-road/47cadb02faa756f85fd2f058e31221cc8223b97a/resources/Artificial%20Intelligence%20-%20A%20Modern%20Approach%20(3rd%20Edition).pdf)
+Stuart Russell, Peter Norvig – *Artificial Intelligence: A Modern Approach* (**4th Edition, 2020**)
 
 ---
 
@@ -25,74 +29,88 @@ Stuart Russell, Peter Norvig – *Artificial Intelligence: A Modern Approach* (3
 
 By the end of this course, you will be able to:
 
-1. Understand **Agent-Based AI** principles.
-2. Apply **Search & Adversarial techniques**.
-3. Analyze **Probabilistic & Bayesian models**.
-4. Build **Machine Learning and Neural Network models**.
-5. Implement **Reinforcement Learning** algorithms.
-6. Evaluate AI capabilities and emerging issues like AGI.
+1. Understand **Agent-Based AI** and design **Rational Agents**.
+2. Apply **Search & Adversarial Search** techniques, including **MCTS**.
+3. Use **Logic & Automated Planning** for knowledge representation and problem solving.
+4. Analyze **Probabilistic & Bayesian models**.
+5. Build and train **Neural Networks & Deep Learning** models with **PyTorch**.
+6. Explain the **Transformer architecture** and how **Large Language Models** work.
+7. Develop **RAG** applications and **LLM Agents** using tools / function calling.
+8. Apply **Generative AI** (Diffusion, Multimodal) and understand **RLHF**.
+9. Evaluate AI capabilities, limitations, and **ethics/safety** issues, including **AGI**.
 
 ---
 
-## 🗓️ Schedule & Topics
+## 🗓️ Schedule & Topics (15 Weeks)
 
-| Week | Main Topics | Activities |
+| Week | Main Topics | Activities / Lab / Assessment |
 | --- | --- | --- |
-| 1 | Introduction to AI – Concepts & Agents | — |
-| 2 | Intelligent Agents – Architecture & Planning | — |
-| 3 | Problem Solving by Search – BFS, DFS, A* | Tutorial & Project 0 |
-| 4 | Games & Adversarial Search – Minimax, Alpha-Beta Pruning | Exercises |
-| 5 | Quantifying Uncertainty – Handling Uncertainty | Exercises 2 |
-| 6 | Probabilistic Reasoning – Bayesian Networks | Exercises 3 |
-| 7 | Reasoning Over Time – Markov Models, HMMs | — |
-| 8 | Machine Learning & Neural Networks | Exercises 4 |
-| 9 | Machine Learning & Neural Networks (continued) | Exercises 5 |
-| 10 | Making Decisions – Decision Theory, Utility | Exercises 6 |
-| 11 | Reinforcement Learning – Q-Learning, Policy Iteration | Exercises 7 |
-| 12 | Course Summary, Future of AGI | — |
+| 1 | Introduction to AI – history, evolution, and the modern Generative AI landscape | Orientation, tooling setup (Python / Google Colab) |
+| 2 | Intelligent Agents – architecture, Rational Agents, LLM-based Agents | Tutorial: Agent design |
+| 3 | Problem Solving by Search – BFS, DFS, UCS, A* | Project 0: Search Algorithms |
+| 4 | Adversarial Search – Minimax, Alpha-Beta Pruning, MCTS | Exercise 1 (HexaPawn) |
+| 5 | Logic & Automated Planning – Propositional/First-Order Logic, Knowledge Representation | Project 1: Search & Planning |
+| 6 | Quantifying Uncertainty & Probabilistic Reasoning – Bayes Rule, Bayesian Networks | Exercise 2 |
+| 7 | Reasoning Over Time – Markov Models, HMMs | Exercise 3 |
+| — | **Midterm Examination** (covers Weeks 1–7) | — |
+| 8 | Neural Networks – Perceptron, Backpropagation, training (PyTorch) | Lab: PyTorch basics |
+| 9 | Deep Learning – CNNs, Computer Vision, Transfer Learning | Lab: Image Classifier |
+| 10 | Sequence Models & The Transformer Architecture – Attention | Exercise 4 |
+| 11 | Large Language Models – Pre-training, Fine-tuning, Prompting | Lab: Fine-tune & Prompt |
+| 12 | Retrieval-Augmented Generation (RAG) & LLM Agents – Tool Use, Function Calling | Lab: Build an LLM Agent |
+| 13 | Generative AI – Diffusion, Multimodal, Image/Audio Generation + RLHF | Exercise 5 |
+| 14 | AI Ethics, Safety & Alignment – Bias, Governance, AGI | Discussion / Debate |
+| 15 | Project Presentations & the Future of AI | Final Project Presentation |
+| — | **Final Examination** (covers Weeks 8–15) | — |
 
 ---
 
-## 💻 Projects & Assessments
+## 💻 Projects & Assignments
 
-- **Python Projects**
-  - Part 0: Implement Search Algorithms
-  - Part 1: Adversarial Search
-  - Part 2: Bayes Filter
-- **Exercises:** Weekly exercises aligned with each topic
-- **Exams:** Midterm and Final Evaluation
+- **Project 0 — Search Algorithms:** implement BFS, DFS, UCS, and A* on maze/game problems.
+- **Project 1 — Search & Planning:** solve problems with automated planning and logical knowledge representation.
+- **Lab — LLM Agent:** build an agent using RAG and tool/function calling with Hugging Face / an LLM API.
+- **Final Project:** build a real AI application (RAG Chatbot, LLM Agent, Image Classifier, or Generative AI app) and present it.
+- **Weekly Exercises:** aligned with each week's topic.
 
 **Grading:**
 
-| Activities | Weight |
+| Assessment Component | Weight |
 | --- | --- |
-| Homework | 30% |
-| Midterm | 30% |
-| Project / Presentation | 30% |
-| Attendance | 10% |
+| Homework & Exercises | 20% |
+| Projects (Search, Planning, LLM Agent Lab) | 30% |
+| Midterm Examination | 20% |
+| Final Project + Presentation | 20% |
+| Attendance & Participation | 10% |
+| **Total** | **100%** |
+
+**Grading Scale:** A: 80–100 · B+: 75–79 · B: 70–74 · C+: 65–69 · C: 60–64 · D+: 55–59 · D: 50–54 · F: 0–49  
+*(เกณฑ์อาจปรับตามดุลยพินิจของอาจารย์และระเบียบของสถาบัน)*
 
 ---
 
 ## 🛠️ Prerequisites & Setup
 
-Before starting, make sure you have:
+**Prerequisites:**
+- Python programming (basic NumPy, pandas, matplotlib)
+- Basic math: Linear Algebra, Calculus, and Probability
 
-- **Python knowledge** (basic NumPy, pandas, matplotlib)
+**Tools & Software:**
 - **Anaconda Platform** – [Download](https://www.anaconda.com/)
 - **Visual Studio Code** – [Download](https://code.visualstudio.com/)
+- **Google Colab** (for GPU work: Deep Learning and LLMs)
+- Core libraries: **PyTorch**, **Hugging Face Transformers**, TensorFlow/Keras
+- LLM tooling: **LangChain** or **LlamaIndex**, Vector DB (FAISS / Chroma) for RAG
+- Support libraries: NumPy, pandas, matplotlib, seaborn
 
 ### Recommended Resources
 
-- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook)
-- [scikit-learn](https://scikit-learn.org/stable/)
-- TensorFlow
-- PyTorch
-- [pandas](https://pandas.pydata.org/)
-- pandas-gui
-- [numpy](https://numpy.org/)
-- [matplotlib](https://matplotlib.org/)
-- [seaborn](https://seaborn.pydata.org/)
-- keras
+- Russell & Norvig — *Artificial Intelligence: A Modern Approach* (4th Ed., 2020) — *primary textbook*
+- Goodfellow, Bengio & Courville — *Deep Learning* (MIT Press)
+- Hugging Face — NLP/LLM Course and Transformers documentation (online)
+- Jurafsky & Martin — *Speech and Language Processing* (3rd Ed. draft, online)
+- Official docs for [PyTorch](https://pytorch.org/), [Hugging Face Transformers](https://huggingface.co/docs/transformers), and LangChain/LlamaIndex
+- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook), [scikit-learn](https://scikit-learn.org/stable/)
 
 ---
 
@@ -104,7 +122,6 @@ This course material is for educational purposes. The core textbook content belo
 
 > **Note:** For detailed instructions and the latest updates, refer to the [GitHub Repository](https://github.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE.git).
 
-> **tool:** 
-# HexaPawn random Tools [link](https://script.google.com/macros/s/AKfycbwZbR1ANc-vn_shok9lHtHCWOogzCt8fbsJabfxN0IAkB5QhFY1-8nPxMPzaNa7donrrg/exec)
-
-# HexaPawn gameplay [link](https://script.google.com/macros/s/AKfycbzA75-egsQ1B7hNQA7vaXnQy_IvOtgeVkrtk9KCqRFYk3NU7PXdwcsbR2hVyk1proBwfw/exec)
+> **tool:**
+> - HexaPawn random Tools — [link](https://script.google.com/macros/s/AKfycbwZbR1ANc-vn_shok9lHtHCWOogzCt8fbsJabfxN0IAkB5QhFY1-8nPxMPzaNa7donrrg/exec)
+> - HexaPawn gameplay — [link](https://script.google.com/macros/s/AKfycbzA75-egsQ1B7hNQA7vaXnQy_IvOtgeVkrtk9KCqRFYk3NU7PXdwcsbR2hVyk1proBwfw/exec)
