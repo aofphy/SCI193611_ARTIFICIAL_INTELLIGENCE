@@ -89,6 +89,32 @@ By the end of this course, you will be able to:
 
 ---
 
+## 📂 Course Materials Map (จับคู่สื่อกับสัปดาห์)
+
+ตารางจับคู่กิจกรรม (Tutorial / Project / Exercise / Lab) กับเนื้อหารายสัปดาห์และไฟล์จริงในรีโพ. ช่อง "—" หมายถึงสื่อที่ยังต้องจัดทำเพิ่มสำหรับเนื้อหาสมัยใหม่.
+
+| Week | Topic | Activity | Material in repo |
+| --- | --- | --- | --- |
+| 1 | Introduction to AI | **Tutorial:** Python / Colab setup | [`python-tutorial/`](./python-tutorial) · [`slide/lec0.pdf`](./slide/lec0.pdf), [`slide/lecture1.pdf`](./slide/lecture1.pdf) |
+| 2 | Intelligent Agents | **Tutorial:** Agent design | [`python-tutorial/tutorial_code/exercises/`](./python-tutorial/tutorial_code/exercises) · [`slide/lecture2.pdf`](./slide/lecture2.pdf) |
+| 3 | Search – BFS/DFS/UCS/A* | **Project 0:** Search Algorithms | [`projects/project0/`](./projects/project0) · [`slide/lecture3_th.pdf`](./slide/lecture3_th.pdf) |
+| 4 | Adversarial Search – Minimax, MCTS | **Exercise 1 (HexaPawn)** + Minimax agent | [`slide/hexapawact.pdf`](./slide/hexapawact.pdf), [`hexapaw.html`](./hexapaw.html), [`gameHexaPawn.html`](./gameHexaPawn.html), [`projects/project1/`](./projects/project1) (Minimax) · [`slide/lecture4_th.pdf`](./slide/lecture4_th.pdf) |
+| 5 | Logic & Automated Planning | **Project 1:** Search & Planning | — *(ต้องจัดทำใหม่: Logic/Planning)* |
+| 6 | Probabilistic Reasoning – Bayes Nets | **Exercise 2** | [`code/lecture5-cherries.ipynb`](./code/lecture5-cherries.ipynb) · [`slide/lecture5_th.pdf`](./slide/lecture5_th.pdf) |
+| 7 | Reasoning Over Time – Markov, HMM | **Exercise 3** + Bayes Filter | [`exercises/e3_nosol.pdf`](./exercises/e3_nosol.pdf), [`code/lecture6-forward-backward.ipynb`](./code/lecture6-forward-backward.ipynb), [`code/particle-filtering/`](./code/particle-filtering), [`code/exercises-4-kalman.ipynb`](./code/exercises-4-kalman.ipynb), [`projects/project2/`](./projects/project2) (Bayes Filter) · [`slide/lecture6_th.pdf`](./slide/lecture6_th.pdf) |
+| 8 | Neural Networks (PyTorch) | **Lab:** PyTorch basics | [`code/lecture7-spiral.ipynb`](./code/lecture7-spiral.ipynb) · [`slide/lecture7_thai.pdf`](./slide/lecture7_thai.pdf) |
+| 9 | Deep Learning – CNNs | **Lab:** Image Classifier | [`code/lecture7-convnet.ipynb`](./code/lecture7-convnet.ipynb) · [`slide/lecture8_thai.pdf`](./slide/lecture8_thai.pdf) |
+| 10 | Transformer Architecture | **Exercise 4** | — *(ต้องจัดทำใหม่: Attention/Transformer)* |
+| 11 | Large Language Models | **Lab:** Fine-tune & Prompt | — *(ต้องจัดทำใหม่: HF Transformers)* |
+| 12 | RAG & LLM Agents | **Lab:** Build an LLM Agent | — *(ต้องจัดทำใหม่: RAG + tool calling)* |
+| 13 | Generative AI + RLHF | **Exercise 5** | — *(ต้องจัดทำใหม่: Diffusion/Multimodal)* |
+| 14 | AI Ethics, Safety & Alignment | **Discussion / Debate** | — *(ต้องจัดทำใหม่: หัวข้ออภิปราย)* |
+| 15 | Project Presentations | **Final Project** | [`projects/`](./projects) (ต่อยอดเป็น final project) |
+
+**สื่อเสริม / legacy (นอกแกนหลัก 15 สัปดาห์):** [`code/lecture8-mdp.ipynb`](./code/lecture8-mdp.ipynb) และ [`code/q-learning-demo/`](./code/q-learning-demo) (MDP & Reinforcement Learning) — ใช้ประกอบหัวข้อ Decision/RLHF ได้ตามความเหมาะสม.
+
+---
+
 ## 🛠️ Prerequisites & Setup
 
 **Prerequisites:**
