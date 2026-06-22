@@ -129,6 +129,37 @@ By the end of this course, you will be able to:
 - LLM tooling: **LangChain** or **LlamaIndex**, Vector DB (FAISS / Chroma) for RAG
 - Support libraries: NumPy, pandas, matplotlib, seaborn
 
+### 🪟 A Unix-like terminal on Windows (Git-Bash / MSYS2)
+
+คำสั่งและสคริปต์ในรายวิชาเขียนแบบ Unix shell. นักศึกษา Windows แนะนำให้ใช้ bash environment เพื่อให้ทำตามได้ตรง ๆ — เลือกอย่างใดอย่างหนึ่ง:
+
+**ตัวเลือก A — Git-Bash (ง่าย, แนะนำสำหรับเริ่มต้น)**  
+มาพร้อม [Git for Windows](https://gitforwindows.org/) — ได้ `bash` + `git` ที่ตั้งค่าพร้อมใช้ เหมาะกับงานทั่วไปในวิชานี้ (clone repo, รันสคริปต์, ใช้ git). ข้อจำกัด: ไม่มี `tmux` และติดตั้งแพ็กเกจเพิ่มไม่ได้ง่าย.
+
+**ตัวเลือก B — MSYS2 (เต็มรูปแบบ, มี package manager)**  
+ให้สภาพแวดล้อมคล้าย Linux เกือบเต็มรูปแบบ พร้อมตัวจัดการแพ็กเกจ `pacman`:
+
+```bash
+# 1) ติดตั้งจาก https://www.msys2.org/ แล้วเปิด MSYS2 จาก Start menu
+# 2) อัปเดตแพ็กเกจ (รันซ้ำ + ปิด-เปิด terminal ใหม่ตามที่ระบบแจ้ง)
+pacman -Syu
+pacman -Su
+# 3) ติดตั้งเครื่องมือที่ใช้บ่อย
+pacman -S git vim tmux tig man-db
+```
+
+**ตั้งค่าที่ควรทำหลังติดตั้ง (ทั้งสองตัวเลือก):**
+
+```bash
+# line endings: เช็คเอาท์แบบ Windows, เช็คอินแบบ Unix
+git config --global core.autocrlf true
+
+# ให้ Python พิมพ์ output ต่อเนื่องใน MSYS2/Git-Bash (กัน buffering)
+alias python='winpty python.exe'
+```
+
+> ติดตั้ง Python จาก [python.org](https://www.python.org/) หรือใช้ Anaconda. ทางเลือกสมัยใหม่อีกทางคือ **WSL2** (Ubuntu บน Windows) ซึ่งให้ Linux จริง ๆ และเข้ากันได้ดีกับ GPU/CUDA.
+
 ### Recommended Resources
 
 - Russell & Norvig — *Artificial Intelligence: A Modern Approach* (4th Ed., 2020) — *primary textbook*
