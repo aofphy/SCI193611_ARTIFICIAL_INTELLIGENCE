@@ -93,23 +93,23 @@ By the end of this course, you will be able to:
 
 ตารางจับคู่กิจกรรม (Tutorial / Project / Exercise / Lab) กับเนื้อหารายสัปดาห์และไฟล์จริงในรีโพ. ช่อง "—" หมายถึงสื่อที่ยังต้องจัดทำเพิ่มสำหรับเนื้อหาสมัยใหม่.
 
-| Week | Topic | Activity | Material in repo |
-| --- | --- | --- | --- |
-| 1 | Introduction to AI | **Tutorial:** Python / Colab setup | [`python-tutorial/`](./python-tutorial) · [`slide/lec0.pdf`](./slide/lec0.pdf), [`slide/lecture1.pdf`](./slide/lecture1.pdf) |
-| 2 | Intelligent Agents | **Tutorial:** Agent design | [`python-tutorial/tutorial_code/exercises/`](./python-tutorial/tutorial_code/exercises) · [`slide/lecture2.pdf`](./slide/lecture2.pdf) · [`aima/slide_workshop/intelligent_agents_slides2.pdf`](./aima/slide_workshop/intelligent_agents_slides2.pdf) + [`aima/agents.ipynb`](./aima/agents.ipynb) *(workshop + runnable, BlindDog/Wumpus demo)* |
-| 3 | Search – BFS/DFS/UCS/A* | **Project 0:** Search Algorithms | [`projects/project0/`](./projects/project0) · [`slide/lecture3_th.pdf`](./slide/lecture3_th.pdf) |
-| 4 | Adversarial Search – Minimax, MCTS | **Exercise 1 (HexaPawn)** + Minimax agent | [`slide/hexapawact.pdf`](./slide/hexapawact.pdf), [`hexapaw.html`](./hexapaw.html), [`gameHexaPawn.html`](./gameHexaPawn.html), [`projects/project1/`](./projects/project1) (Minimax) · [`slide/lecture4_th.pdf`](./slide/lecture4_th.pdf) · [`aima/slide_workshop/Game-Playing.pdf`](./aima/slide_workshop/Game-Playing.pdf) + [`aima/games.ipynb`](./aima/games.ipynb) *(workshop + runnable, Minimax/Alpha-Beta)* |
-| 5 | Logic & Automated Planning | **Project 1:** Search & Planning | [`labs/w05_logic_planning.ipynb`](./labs/w05_logic_planning.ipynb) *(runnable)* · [`aima/slide_workshop/10-Knowledge-Base.pdf`](./aima/slide_workshop/10-Knowledge-Base.pdf) + [`aima/logic.ipynb`](./aima/logic.ipynb), [`aima/slide_workshop/CSP_proposition.pdf`](./aima/slide_workshop/CSP_proposition.pdf) (CSP + Propositional Logic) + [`aima/csp.ipynb`](./aima/csp.ipynb), [`aima/slide_workshop/12-Basic-Planning.pdf`](./aima/slide_workshop/12-Basic-Planning.pdf) + [`aima/planning.ipynb`](./aima/planning.ipynb) *(workshop + runnable)* |
-| 6 | Probabilistic Reasoning – Bayes Nets | **Exercise 2** | [`code/lecture5-cherries.ipynb`](./code/lecture5-cherries.ipynb) · [`slide/lecture5_th.pdf`](./slide/lecture5_th.pdf) |
-| 7 | Reasoning Over Time – Markov, HMM | **Exercise 3** + Bayes Filter | [`exercises/e3_nosol.pdf`](./exercises/e3_nosol.pdf), [`code/lecture6-forward-backward.ipynb`](./code/lecture6-forward-backward.ipynb), [`code/particle-filtering/`](./code/particle-filtering), [`code/exercises-4-kalman.ipynb`](./code/exercises-4-kalman.ipynb), [`projects/project2/`](./projects/project2) (Bayes Filter) · [`slide/lecture6_th.pdf`](./slide/lecture6_th.pdf) |
-| 8 | Neural Networks (PyTorch) | **Lab:** PyTorch basics | [`code/lecture7-spiral.ipynb`](./code/lecture7-spiral.ipynb) · [`slide/lecture7_thai.pdf`](./slide/lecture7_thai.pdf) |
-| 9 | Deep Learning – CNNs | **Lab:** Image Classifier | [`code/lecture7-convnet.ipynb`](./code/lecture7-convnet.ipynb) · [`slide/lecture8_thai.pdf`](./slide/lecture8_thai.pdf) |
-| 10 | Transformer Architecture | **Exercise 4** | [`labs/w10_transformer.ipynb`](./labs/w10_transformer.ipynb) *(runnable)* |
-| 11 | Large Language Models | **Lab:** Fine-tune & Prompt | [`labs/w11_llm_finetune_prompt.ipynb`](./labs/w11_llm_finetune_prompt.ipynb) *(Colab GPU)* |
-| 12 | RAG & LLM Agents | **Lab:** Build an LLM Agent | [`labs/w12_rag_agent.ipynb`](./labs/w12_rag_agent.ipynb) *(runnable)* |
-| 13 | Generative AI + RLHF | **Exercise 5** | [`labs/w13_generative_ai.ipynb`](./labs/w13_generative_ai.ipynb) *(Colab GPU)* |
-| 14 | AI Ethics, Safety & Alignment | **Discussion / Debate** | — *(ต้องจัดทำใหม่: หัวข้ออภิปราย)* |
-| 15 | Project Presentations | **Final Project** | [`projects/`](./projects) (ต่อยอดเป็น final project) |
+| Week | Topic | Activity | Material in repo | AIMA (`aima/`) |
+| --- | --- | --- | --- | --- |
+| 1 | Introduction to AI | **Tutorial:** Python / Colab setup | [`python-tutorial/`](./python-tutorial) · [`slide/lec0.pdf`](./slide/lec0.pdf), [`slide/lecture1.pdf`](./slide/lecture1.pdf) | [`intro.ipynb`](./aima/intro.ipynb) |
+| 2 | Intelligent Agents | **Tutorial:** Agent design | [`python-tutorial/tutorial_code/exercises/`](./python-tutorial/tutorial_code/exercises) · [`slide/lecture2.pdf`](./slide/lecture2.pdf) | [`slide_workshop/intelligent_agents_slides2.pdf`](./aima/slide_workshop/intelligent_agents_slides2.pdf) + [`agents.ipynb`](./aima/agents.ipynb) *(BlindDog/Wumpus demo)* |
+| 3 | Search – BFS/DFS/UCS/A* | **Project 0:** Search Algorithms | [`projects/project0/`](./projects/project0) · [`slide/lecture3_th.pdf`](./slide/lecture3_th.pdf) | [`search.ipynb`](./aima/search.ipynb) |
+| 4 | Adversarial Search – Minimax, MCTS | **Exercise 1 (HexaPawn)** + Minimax agent | [`slide/hexapawact.pdf`](./slide/hexapawact.pdf), [`hexapaw.html`](./hexapaw.html), [`gameHexaPawn.html`](./gameHexaPawn.html), [`projects/project1/`](./projects/project1) (Minimax) · [`slide/lecture4_th.pdf`](./slide/lecture4_th.pdf) | [`slide_workshop/Game-Playing.pdf`](./aima/slide_workshop/Game-Playing.pdf) + [`games.ipynb`](./aima/games.ipynb) *(Minimax/Alpha-Beta)* |
+| 5 | Logic & Automated Planning | **Project 1:** Search & Planning | [`labs/w05_logic_planning.ipynb`](./labs/w05_logic_planning.ipynb) *(runnable)* | [`slide_workshop/10-Knowledge-Base.pdf`](./aima/slide_workshop/10-Knowledge-Base.pdf) + [`logic.ipynb`](./aima/logic.ipynb), [`slide_workshop/CSP_proposition.pdf`](./aima/slide_workshop/CSP_proposition.pdf) + [`csp.ipynb`](./aima/csp.ipynb) (CSP + Prop. Logic), [`slide_workshop/12-Basic-Planning.pdf`](./aima/slide_workshop/12-Basic-Planning.pdf) + [`planning.ipynb`](./aima/planning.ipynb) |
+| 6 | Probabilistic Reasoning – Bayes Nets | **Exercise 2** | [`code/lecture5-cherries.ipynb`](./code/lecture5-cherries.ipynb) · [`slide/lecture5_th.pdf`](./slide/lecture5_th.pdf) | — |
+| 7 | Reasoning Over Time – Markov, HMM | **Exercise 3** + Bayes Filter | [`exercises/e3_nosol.pdf`](./exercises/e3_nosol.pdf), [`code/lecture6-forward-backward.ipynb`](./code/lecture6-forward-backward.ipynb), [`code/particle-filtering/`](./code/particle-filtering), [`code/exercises-4-kalman.ipynb`](./code/exercises-4-kalman.ipynb), [`projects/project2/`](./projects/project2) (Bayes Filter) · [`slide/lecture6_th.pdf`](./slide/lecture6_th.pdf) | — |
+| 8 | Neural Networks (PyTorch) | **Lab:** PyTorch basics | [`code/lecture7-spiral.ipynb`](./code/lecture7-spiral.ipynb) · [`slide/lecture7_thai.pdf`](./slide/lecture7_thai.pdf) | — |
+| 9 | Deep Learning – CNNs | **Lab:** Image Classifier | [`code/lecture7-convnet.ipynb`](./code/lecture7-convnet.ipynb) · [`slide/lecture8_thai.pdf`](./slide/lecture8_thai.pdf) | — |
+| 10 | Transformer Architecture | **Exercise 4** | [`labs/w10_transformer.ipynb`](./labs/w10_transformer.ipynb) *(runnable)* | — |
+| 11 | Large Language Models | **Lab:** Fine-tune & Prompt | [`labs/w11_llm_finetune_prompt.ipynb`](./labs/w11_llm_finetune_prompt.ipynb) *(Colab GPU)* | — |
+| 12 | RAG & LLM Agents | **Lab:** Build an LLM Agent | [`labs/w12_rag_agent.ipynb`](./labs/w12_rag_agent.ipynb) *(runnable)* | — |
+| 13 | Generative AI + RLHF | **Exercise 5** | [`labs/w13_generative_ai.ipynb`](./labs/w13_generative_ai.ipynb) *(Colab GPU)* | — |
+| 14 | AI Ethics, Safety & Alignment | **Discussion / Debate** | — *(ต้องจัดทำใหม่: หัวข้ออภิปราย)* | — |
+| 15 | Project Presentations | **Final Project** | [`projects/`](./projects) (ต่อยอดเป็น final project) | — |
 
 **สื่อเสริม / legacy (นอกแกนหลัก 15 สัปดาห์):** [`code/lecture8-mdp.ipynb`](./code/lecture8-mdp.ipynb) และ [`code/q-learning-demo/`](./code/q-learning-demo) (MDP & Reinforcement Learning) — ใช้ประกอบหัวข้อ Decision/RLHF ได้ตามความเหมาะสม.
 
