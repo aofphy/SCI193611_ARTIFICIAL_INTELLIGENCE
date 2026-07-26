@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Slide Presentation</title>
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="assets/auto-render.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Sarabun', Lato, sans-serif;
+        }
+
+        .remark-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .remark-slide-content {
+            font-size: 1.3em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.4em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 15pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-100 * {
+            width: 100%;
+        }
+        
+        .width-80 * {
+            width: 80%;
+        }
+
+        .width-50 * {
+            width: 50%;
+        }
+
+        .width-30 * {
+            width: 30%;
+        }
+
+        .width-40 * {
+            width: 40%;
+        }
+
+        .width-60 * {
+            width: 60%;
+        }
+
+        .width-70 * {
+            width: 70%;
+        }
+
+        .width-20 * {
+            width: 20%;
+        }
+
+        .title-slide:after {
+            content: '';
+            background: url("assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{
+            color: #0288d1;
+        }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child {
+            padding-right: 0px;
+        }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .kol-1-1 {
+            width: 100%;
+        }
+
+        .kol-1-2 {
+            width: 50%;
+        }
+
+        .kol-1-3 {
+            width: 33.33%;
+        }
+
+        .kol-2-3 {
+            width: 66.66%;
+        }
+        
+        .kol-1-5 {
+            width: 20%;
+        }
+        
+        .kol-4-5 {
+            width: 80%;
+        }
+
+        .kol-1-4 {
+            width: 25%;
+        }
+
+        .kol-3-4 {
+            width: 75%;
+        }
+
+    </style>
+</head>
+<body>
+    <textarea id="source">
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์เบื้องต้น
+
+บทบรรยายที่ 7: การเรียนรู้ของเครื่องและโครงข่ายประสาทเทียม
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th]
+
+---
+
+# เนื้อหาวันนี้
+
+.center.width-40[![](figures/lec7/sl-cartoon.png)]
+
+การเรียนรู้จากข้อมูลเป็นองค์ประกอบสำคัญของปัญญาประดิษฐ์ ในบทบรรยายนี้ เราจะแนะนำหลักการของ:
+- การเรียนรู้ของเครื่อง (Machine learning)
+- โครงข่ายประสาทเทียม (Neural networks)
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# เอเจนต์ที่เรียนรู้ได้ (Learning agents)
+
+จะเกิดอะไรขึ้นถ้าสภาพแวดล้อม**ไม่เป็นที่รู้จัก**?
+- การเรียนรู้เป็นวิธีการอัตโนมัติในการปรับเปลี่ยนกลไกการตัดสินใจภายในของเอเจนต์เพื่อปรับปรุงประสิทธิภาพของตัวเอง
+- เป็นการให้เอเจนต์ได้สัมผัสกับความเป็นจริงแทนที่จะพยายามเขียนโค้ดความเป็นจริงลงในโปรแกรมของเอเจนต์
+
+โดยทั่วไปแล้ว การเรียนรู้มีประโยชน์สำหรับงานใดๆ ที่ยากต่อการเขียนโปรแกรมเพื่อทำงานนั้น แต่สามารถหาตัวอย่างของพฤติกรรมที่ต้องการได้ง่าย
+
+---
+
+# การเรียนรู้ของเครื่อง (Machine learning)
+
+---
+
+.center[
+.width-30[![](figures/lec7/cat.jpg)] &nbsp; &nbsp;
+.width-30[![](figures/lec7/dog.jpg)]
+]
+
+.question[คุณจะเขียนโปรแกรมคอมพิวเตอร์ที่จำแนกแมวออกจากสุนัขได้อย่างไร?]
+
+---
+
+.center.width-30[![](figures/lec7/cat1.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-40[![](figures/lec7/cat2.png)]
+
+
+---
+
+count: false
+class: black-slide, middle
+background-image: url(./figures/lec7/cat3.png)
+background-size: cover
+
+---
+
+count: false
+class: black-slide, middle
+
+background-image: url(./figures/lec7/cat4.png)
+background-size: cover
+
+---
+
+# นิยามปัญหา (Problem statement)
+
+.grid[
+.kol-2-3[
+
+ให้ $\mathbf{d} \sim p(\mathbf{x}, y)$ เป็นชุดข้อมูลของคู่ตัวอย่างอินพุต-เอาต์พุต $N$ คู่
+    $$\mathbf{d} = \{ (\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), ..., (\mathbf{x}_N, y_N) \},$$
+โดยที่ $\mathbf{x}_i \in \mathbb{R}^d$ คือเวกเตอร์ $d$ มิติที่แสดงค่าอินพุต และ $y_i \in \mathcal{Y}$ คือค่าเอาต์พุตที่สอดคล้องกัน
+
+จากข้อมูลนี้ เราต้องการระบุแบบจำลองความน่าจะเป็น $$p_{\theta}(y|\mathbf{x})$$ ที่อธิบายข้อมูลได้ดีที่สุด
+
+]
+.kol-1-3[<br><br>.center.width-50[![](figures/lec7/latent.svg)]]
+]
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec7/IntroModels.svg)]
+
+.center[ปัญหาการถดถอย (Regression) ($y \in \mathbb{R}$) และการจำแนกประเภท (classification) ($y \in \{0, 1, ..., C-1\}$)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec7/IntroModels2a.svg)]
+
+.center[การเรียนรู้แบบมีผู้สอนพร้อมผลลัพธ์ที่มีโครงสร้าง (structured outputs) ($y \in \mathcal{Y}$)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+# Linear Regression
+
+สมมติว่า $y \in \mathbb{R}$ ก่อน
+
+<br>
+.center.width-60[![](figures/lec7/lr-cartoon.png)]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.grid[
+.kol-1-5[<br>.center.width-70[![](figures/lec7/latent.svg)]]
+.kol-4-5[.center.width-30[![](figures/lec7/lr-gaussian.svg)]]
+]
+
+Linear regression พิจารณาแบบจำลองเชิงเส้นแบบเกาส์เซียน (linear Gaussian model) ที่มีพารามิเตอร์สำหรับแบบจำลองพาราเมตริกของ $p(y|\mathbf{x})$ นั่นคือ
+$$p(y|\mathbf{x}) = \mathcal{N}(y | \mathbf{w}^T \mathbf{x} + b, \sigma^2),$$
+โดยที่ $\mathbf{w}$ และ $b$ เป็นพารามิเตอร์ที่ต้องหาค่า
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+<br><br>
+
+เพื่อเรียนรู้การแจกแจงแบบมีเงื่อนไข $p(y|\mathbf{x})$ เราจะทำการหาค่าสูงสุดของ
+$$p(y|\mathbf{x}) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{1}{2}\frac{(y-(\mathbf{w}^T \mathbf{x} + b))^2}{\sigma^2}\right)$$
+เทียบกับ $\mathbf{w}$ และ $b$ บนข้อมูล $\mathbf{d} = \{ (\mathbf{x}_j, y_j) \}$
+
+--
+
+count: false
+
+โดยการบังคับให้อนุพันธ์ของ log-likelihood เป็น $0$ เราจะไปถึงปัญหาของการหาค่าต่ำสุดของ
+$$\mathcal{L}(\mathbf{w},b) = \sum_{j=1}^N (y_j - (\mathbf{w}^T \mathbf{x}_j + b))^2.$$
+ดังนั้น การหาค่าต่ำสุดของผลรวมของกำลังสองของความคลาดเคลื่อน (sum of squared errors) จะสอดคล้องกับการแก้ปัญหา MLE สำหรับการประมาณเชิงเส้น โดยสมมติว่ามีสัญญาณรบกวนแบบเกาส์เซียนที่มีความแปรปรวนคงที่
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec7/lr-sum-squares.svg)]
+
+.center[
+  
+การหาค่าต่ำสุดของ negative log-likelihood ของแบบจำลอง linear Gaussian model ลดรูปลงเป็นการหาค่าต่ำสุดของผลรวมของกำลังสองของส่วนที่เหลือ (sum of squared residuals)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+ถ้าเรารวมพจน์ไบแอส $b$ เข้าไปในเวกเตอร์น้ำหนัก $\mathbf{w}$ โดยการเพิ่มคุณลักษณะคงที่ $x_0=1$ เข้าไปในเวกเตอร์อินพุต $\mathbf{x}$ 
+
+ผลเฉลย $\mathbf{w}^*$ จะสามารถหาได้ในรูปแบบวิเคราะห์ (analytically) ดังนี้:
+
+$$\mathbf{w}^* = \left(\mathbf{X}^T \mathbf{X}\right)^{-1} \mathbf{X}^T \mathbf{y}$$
+
+โดยที่:
+- $\mathbf{X}$ คือเมทริกซ์อินพุตที่ประกอบด้วยเวกเตอร์อินพุต $\mathbf{x}_j$ (รวมถึงคุณลักษณะคงที่)
+- $\mathbf{y}$ คือเวกเตอร์เอาต์พุตที่ประกอบด้วยค่าเอาต์พุต $y_j$
+
+---
+
+# Logistic Regression
+
+ตอนนี้ให้เราสมมติว่า $y \in \{0,1\}$
+
+<br>
+.center.width-30[![](figures/lec7/classif-cartoon.png)]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec7/activation-sigmoid.png)]
+
+ฟังก์ชัน sigmoid $\sigma(z) = \frac{1}{1+e^{-z}}$ จะจับคู่ค่าใดๆ บนเส้นจำนวนจริงกับช่วง $(0,1)$
+---
+class: middle
+
+A minimizer of the approximation $\hat{\mathcal{L}}(\epsilon; \theta\_0)$ is given for
+$$\begin{aligned}
+\nabla\_\epsilon \hat{\mathcal{L}}(\epsilon; \theta\_0) &= 0 \\\\
+ &= \nabla\_\theta \mathcal{L}(\theta\_0) + \frac{1}{\gamma} \epsilon,
+\end{aligned}$$
+which results in the best improvement for the step $\epsilon = -\gamma \nabla\_\theta \mathcal{L}(\theta\_0)$.
+
+Therefore, model parameters can be updated iteratively using the update rule
+$$\theta\_{t+1} = \theta\_t -\gamma \nabla\_\theta \mathcal{L}(\theta\_t),$$
+where
+- $\theta_0$ are the initial parameters of the model,
+- $\gamma$ is the learning rate.
+
+---
+
+class: middle
+
+ตามหลักการของ maximum likelihood estimation เราจะได้:
+
+$$\arg \max_{\mathbf{w},b} P(\mathbf{d}|\mathbf{w},b)$$
+
+$$= \arg \max_{\mathbf{w},b} \prod_{(\mathbf{x}_i, y_i) \in \mathbf{d}} P(Y=y_i|\mathbf{x}_i, \mathbf{w},b)$$
+
+$$= \arg \max_{\mathbf{w},b} \prod_{(\mathbf{x}_i, y_i) \in \mathbf{d}} \sigma(\mathbf{w}^T \mathbf{x}_i + b)^{y_i} (1-\sigma(\mathbf{w}^T \mathbf{x}_i + b))^{1-y_i}$$
+
+การหา log และเปลี่ยนจาก max เป็น min ของ negative log-likelihood:
+
+$$= \arg \min_{\mathbf{w},b} \sum_{(\mathbf{x}_i, y_i) \in \mathbf{d}} \ell_i$$
+
+โดยที่:
+
+$$\ell_i = -y_i \log\sigma(\mathbf{w}^T \mathbf{x}_i + b) - (1-y_i) \log (1-\sigma(\mathbf{w}^T \mathbf{x}_i + b))$$
+
+สมการนี้คือฟังก์ชัน loss $\mathcal{L}(\mathbf{w}, b) = \sum_i \ell(y_i, \hat{y}(\mathbf{x}_i; \mathbf{w}, b))$
+
+Loss นี้เป็นตัวประมาณค่าของ **cross-entropy**: 
+$$H(p,q) = \mathbb{E}_p[-\log q]$$ 
+สำหรับ $p=Y|\mathbf{x}_i$ และ $q=\hat{Y}|\mathbf{x}_i$
+
+น่าเสียดายที่ไม่มีผลเฉลยในรูปแบบปิด (closed-form solution) สำหรับ MLE ของ $\mathbf{w}$ และ $b$
+
+---
+
+class: middle
+
+# Gradient Descent
+
+---
+
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-0.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-1.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-2.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-3.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-4.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-30[![](figures/lec7/gd-good-5.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-6.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-7.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-8.png)]
+
+---
+
+count: false
+class: middle
+
+.center.width-50[![](figures/lec7/gd-good-9.png)]
+
+---
+
+class: middle
+
+## Example: imitation learning in Pacman
+
+Can we learn to play Pacman only from observations?
+- Feature vectors $\mathbf{x} = g(s)$ are extracted from the game states $s$. Output values $y$ corresponds to actions $a$ .
+- State-action pairs $(\mathbf{x}, y)$ are collected by observing an expert playing.
+- We want to learn the actions that the expert would take in a given situation. That is, learn the mapping $f:\mathbb{R}^d \to \mathcal{A}$.
+- This is a multiclass classification problem that can be solved by combining binary classifers.
+
+.center.width-70[![](figures/lec7/pacman.png)]
+
+.footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls muted preload="auto" height="400" width="640">
+  <source src="./figures/lec7/training1.mp4" type="video/mp4">
+</video>
+
+The agent observes a very good Minimax-based agent for two games and updates its weight vectors as data are collected.
+]
+
+.footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls muted preload="auto" height="400" width="640">
+  <source src="./figures/lec7/training2.mp4" type="video/mp4">
+</video>
+
+<br><br>]
+
+.footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls muted preload="auto" height="400" width="640">
+  <source src="./figures/lec7/apprentice.mp4" type="video/mp4">
+</video>
+
+After two training episodes, the ML-based agents plays.<br>
+No more Minimax!
+]
+
+.footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+สำหรับ $\theta\_0$ การประมาณอันดับหนึ่งรอบ $\theta\_0$ สามารถกำหนดได้เป็น
+$$\hat{\mathcal{L}}(\epsilon; \theta\_0) = \mathcal{L}(\theta\_0) + \epsilon^T\nabla_\theta \mathcal{L}(\theta\_0) + \frac{1}{2\gamma}||\epsilon||^2.$$
+
+---
+
+class: middle
+
+ตัวหาค่าต่ำสุดของการประมาณ $\hat{\mathcal{L}}(\epsilon; \theta\_0)$ จะได้เมื่อ
+$$\begin{aligned}
+\nabla_\epsilon \hat{\mathcal{L}}(\epsilon; \theta\_0) &= 0 \\
+ &= \nabla_\theta \mathcal{L}(\theta\_0) + \frac{1}{\gamma} \epsilon,
+\end{aligned}$$
+ซึ่งส่งผลให้เกิดการปรับปรุงที่ดีที่สุดสำหรับขั้นตอน $\epsilon = -\gamma \nabla_\theta \mathcal{L}(\theta\_0)$
+
+ดังนั้น พารามิเตอร์ของโมเดลสามารถอัปเดตซ้ำๆ ได้โดยใช้กฎการอัปเดต
+$$\theta_{t+1} = \theta_t -\gamma \nabla_\theta \mathcal{L}(\theta_t),$$
+โดยที่
+- $\theta_0$ คือพารามิเตอร์เริ่มต้นของโมเดล,
+- $\gamma$ คืออัตราการเรียนรู้ (learning rate)
+
+---
+
+# โครงข่ายประสาทเทียม (Neural networks)
+
+---
+
+# Shallow networks
+
+A shallow network is a function $$f : \mathbb{R}^{d\_\text{in}} \to \mathbb{R}^{d\_\text{out}}$$ that maps multi-dimensional inputs $\mathbf{x}$ to multi-dimensional outputs $\mathbf{y}$ through a hidden layer $\mathbf{h} = [h\_0, h\_1, ..., h\_{q-1}] \in \mathbb{R}^q $, such that
+$$\begin{aligned}
+h\_j &= \sigma\left(\sum\_{i=0}^{d\_\text{in} - 1} w\_{ji} x\_i + b\_j  \right) \\\\
+y\_k &= \sum\_{j=0}^{q-1} v\_{kj} h\_j + c\_k,
+\end{aligned}$$
+where $w\_{ji}$, $b\_j$, $v\_{kj}$ and $c\_k$ ($i=0, ..., d\_\text{in}-1$, $j=0, ..., q-1$, $k=0, ..., d\_\text{out}-1$) are the model parameters and $\sigma$ is an activation function.
+
+???
+
+Draw the (generic) architecture of a shallow network.
+---
+
+class: middle
+
+.center.width-30[![](figures/lec7/ShallowReLU.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+## โครงข่ายแบบอินพุตเดียว-เอาต์พุตเดียว
+
+
+## Single-input single-output networks
+
+We first consider the case where $d\_\text{in} = 1$ and $d\_\text{out} = 1$ for the single-input single-output network
+$$y = v\_{0} \sigma(w\_{0} x + b\_0) + v\_{1} \sigma(w\_{1} x + b\_1) + v\_{2} \sigma(w\_{2} x + b\_2) + c$$
+where $w\_{0}$, $w\_{1}$, $w\_{2}$, $b\_0$, $b\_1$, $b\_2$, $v\_{0}$, $v\_{1}$, $v\_{2}$ and $c$ are the model parameters and where the activation function $\sigma$ is $\text{ReLU}(\cdot) = \max(0, \cdot)$.
+
+.center.width-20[![](figures/lec7/ShallowReLU.svg)]
+
+.footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+โครงข่ายนี้กำหนดตระกูลของฟังก์ชันเชิงเส้นเป็นช่วง (piecewise linear functions) ซึ่งตำแหน่งของข้อต่อ, ความชัน และความสูงของฟังก์ชันถูกกำหนดโดยพารามิเตอร์ 10 ตัว $w\_{0}$, $w\_{1}$, $w\_{2}$, $b\_0$, $b\_1$, $b\_2$, $v\_{0}$, $v\_{1}$, $v\_{2}$ และ $c$
+
+.center.width-30[![](figures/lec7/ShallowBuildUp.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+จำนวน $q$ ของหน่วยซ่อน $h\_j$ เป็นตัววัด .italic[ความจุ (capacity)] ของโครงข่ายตื้น ด้วยฟังก์ชันกระตุ้น $\text{ReLU}$ หน่วยซ่อนจะกำหนดข้อต่อได้ถึง $q$ ข้อในปริภูมิอินพุต ซึ่งจะกำหนดขอบเขตเชิงเส้น $q+1$ ขอบเขตในปริภูมิเอาต์พุต
+
+---
+
+## เอาต์พุตหลายตัวแปร (Multivariate outputs)
+
+เพื่อขยายโครงข่ายไปยังเอาต์พุตหลายตัวแปร $\mathbf{y} = [y\_0, y\_1, .., y\_{d\_\text{out} - 1}]$ เราเพียงแค่เพิ่มหน่วยเอาต์พุตมากขึ้นเป็นการรวมกันเชิงเส้นของหน่วยที่ซ่อนอยู่
+
+ตัวอย่างเช่น โครงข่ายที่มีหน่วยเอาต์พุตสองหน่วย $y\_0$ และ $y\_1$ อาจมีโครงสร้างดังต่อไปนี้:
+$$\begin{aligned}
+h\_0 &= \sigma\left( w\_0 x + b\_0 \right) \\\\
+h\_1 &= \sigma\left( w\_1 x + b\_1 \right) \\\\
+h\_2 &= \sigma\left( w\_2 x + b\_2 \right) \\\\
+h\_3 &= \sigma\left( w\_3 x + b\_3 \right) \\\\
+y\_0 &= v\_{00} h\_0 + v\_{01} h\_1 + v\_{02} h\_2 + v\_{03} h\_3 + c\_0 \\\\
+y\_1 &= v\_{10} h\_0 + v\_{11} h\_1 + v\_{12} h\_2 + v\_{13} h\_3 + c\_1
+\end{aligned}$$
+
+---
+
+## อินพุตหลายตัวแปร (Multivariate inputs)
+
+เพื่อขยายโครงข่ายไปยังอินพุตหลายตัวแปร $\mathbf{x} = [x\_0, x\_1, ..., x\_{d\_{\text{in}}-1}]$ เราขยายความสัมพันธ์เชิงเส้นระหว่างอินพุตและหน่วยที่ซ่อนอยู่
+
+ตัวอย่างเช่น โครงข่ายที่มีอินพุตสองตัว $\mathbf{x} = [x\_0, x\_1]$ อาจมีหน่วยที่ซ่อนอยู่สามหน่วย $h\_0$, $h\_1$ และ $h\_2$ กำหนดเป็น
+$$\begin{aligned}
+h\_0 &= \sigma\left( w\_{00} x\_0 + w\_{01} x\_1 + b\_0 \right) \\\\
+h\_1 &= \sigma\left( w\_{10} x\_0 + w\_{11} x\_1 + b\_1 \right) \\\\
+h\_2 &= \sigma\left( w\_{20} x\_0 + w\_{21} x\_1 + b\_2 \right).
+\end{aligned}$$
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec7/ShallowBuildUp2D.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+# โครงข่ายลึก (Deep networks)
+
+เราจะพิจารณาการประกอบกันของโครงข่ายตื้นสองโครงข่ายก่อน โดยที่เอาต์พุตของโครงข่ายแรกจะถูกป้อนเป็นอินพุตให้กับโครงข่ายที่สองดังนี้
+$$\begin{aligned}
+h\_0 &= \sigma\left( w\_{0} x + b\_0 \right) \\\\
+h\_1 &= \sigma\left( w\_{1} x + b\_1 \right) \\\\
+h\_2 &= \sigma\left( w\_{2} x + b\_2 \right) \\\\
+y &= v\_{0} h\_0 + v\_{1} h\_1 + v\_{2} h\_2 + c \\\\
+h\_0' &= \sigma\left( w'\_0 y + b'\_0 \right) \\\\
+h\_1' &= \sigma\left( w'\_1 y + b'\_1 \right) \\\\
+h\_2' &= \sigma\left( w'\_2 y + b'\_2 \right) \\\\
+y' &= v'\_0 h\_0' + v'\_1 h\_1' + v'\_2 h\_2' + c'.
+\end{aligned}$$
+
+---
+
+class: middle
+
+.center.width-60[![](figures/lec7/DeepConcat1.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+.center.width-50[![](figures/lec7/DeepConcat2.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+เนื่องจากการดำเนินการจาก $[h\_0, h\_1, h\_2]$ ไปยัง $y$ เป็นเชิงเส้น และการดำเนินการจาก $y$ ไปยัง $[h'\_0, h'\_1, h'\_2]$ ก็เป็นเชิงเส้นเช่นกัน การประกอบอนุกรมจึงเป็นเชิงเส้น
+
+ดังนั้น การประกอบโครงข่ายตื้นสองโครงข่ายจึงเป็นกรณีพิเศษของโครงข่ายลึกที่มีสองชั้นซ่อน โดยที่ชั้นแรกถูกกำหนดเป็น
+$$\begin{aligned}
+h\_0 &= \sigma\left( w\_{0} x + b\_0 \right) \\\\
+h\_1 &= \sigma\left( w\_{1} x + b\_1 \right) \\\\
+h\_2 &= \sigma\left( w\_{2} x + b\_2 \right),
+\end{aligned}$$
+ชั้นที่สองถูกกำหนดจากเอาต์พุตของชั้นแรกเป็น
+$$\begin{aligned}
+h\_0' &= \sigma\left( w'\_00 h\_0 + w'\_01 h\_1 + w'\_02 h\_2 + b'\_0 \right) \\\\
+h\_1' &= \sigma\left( w'\_10 h\_0 + w'\_11 h\_1 + w'\_12 h\_2 + b'\_1 \right) \\\\
+h\_2' &= \sigma\left( w'\_20 h\_0 + w'\_21 h\_1 + w'\_22 j\_2 + b'\_2 \right),
+\end{aligned}$$
+และเอาต์พุตถูกกำหนดเป็น
+$$y = v\_0 h\_0' + v\_1 h\_1' + v\_2 h\_2' + c.$$
+
+---
+
+class: middle
+
+.center.width-35[![](figures/lec7/DeepBuildUp.svg)]
+
+.footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+การคำนวณของชั้นซ่อนสามารถเขียนในรูปแบบเมทริกซ์ได้ดังนี้
+$$\begin{aligned}
+\mathbf{h} &= \begin{bmatrix} h\_0 \\\\ h\_1 \\\\ \vdots \\\\ h\_{q-1} \end{bmatrix} = \sigma\left( \begin{bmatrix} w\_{00} & w\_{01} & \cdots & w\_{0(d\_\text{in}-1)} \\\\ w\_{10} & w\_{11} & \cdots & w\_{1(d\_\text{in}-1)} \\\\ \vdots & \vdots & \ddots & \vdots \\\\ w\_{(q-1)0} & w\_{(q-1)1} & \cdots & w\_{(q-1)(d\_\text{in}-1)} \end{bmatrix} \begin{bmatrix} x\_0 \\\\ x\_1 \\\\ \vdots \\\\ x\_{d\_\text{in}-1} \end{bmatrix} + \begin{bmatrix} b\_0 \\\\ b\_1 \\\\ \vdots \\\\ b\_{q-1} \end{bmatrix} \right) \\\\
+&= \sigma(\mathbf{W}^T \mathbf{x} + \mathbf{b})
+\end{aligned}$$
+โดยที่ $\mathbf{x} \in \mathbb{R}^{d\_\text{in}}$ คือเวกเตอร์อินพุต, $\mathbf{W} \in \mathbb{R}^{d\_\text{in} \times q}$ คือเมทริกซ์น้ำหนักของชั้นซ่อน และ $\mathbf{b} \in \mathbb{R}^{q}$ คือเวกเตอร์ไบแอส
+
+---
+
+class: middle
+
+ชั้นซ่อนสามารถประกอบกันเป็นอนุกรมเพื่อสร้างโครงข่ายลึกที่มี $L$ ชั้นได้ดังนี้
+$$\begin{aligned}
+\mathbf{h}\_0 &= \mathbf{x} \\\\
+\mathbf{h}\_1 &= \sigma(\mathbf{W}^T\_1 \mathbf{h}\_0 + \mathbf{b}\_1) \\\\
+\mathbf{h}\_2 &= \sigma(\mathbf{W}^T\_2 \mathbf{h}\_1 + \mathbf{b}\_2) \\\\
+\vdots \\\\
+\mathbf{h}\_L &= \sigma(\mathbf{W}^T\_L \mathbf{h}\_{L-1} + \mathbf{b}\_L) \\\\
+\mathbf{y} &= \mathbf{h}\_L,
+\end{aligned}$$
+โดยที่ $\mathbf{W}\_\ell \in \mathbb{R}^{q\_{l-1} \times q\_\ell}$ คือเมทริกซ์น้ำหนักของชั้นที่ $\ell$, $\mathbf{b}\_\ell \in \mathbb{R}^{q\_\ell}$ คือเวกเตอร์ไบแอสของชั้นที่ $\ell$, และ $\mathbf{h}\_\ell \in \mathbb{R}^{q\_\ell}$ คือเวกเตอร์ซ่อนของชั้นที่ $\ell$
+
+---
+
+class: middle
+
+- สำหรับการถดถอย (regression) ความกว้าง $q$ ของชั้นสุดท้าย $L$ จะถูกตั้งค่าเป็นมิติของเอาต์พุต $d\_\text{out}$ และฟังก์ชันกระตุ้นคือฟังก์ชันเอกลักษณ์ $\sigma(\cdot) = \cdot$ ซึ่งส่งผลให้ได้เวกเตอร์ $\mathbf{h}\_L \in \mathbb{R}^{d\_\text{out}}$
+- สำหรับการจำแนกประเภทแบบไบนารี (binary classification) ความกว้าง $q$ ของชั้นสุดท้าย $L$ จะถูกตั้งค่าเป็น $1$ และฟังก์ชันกระตุ้นคือ sigmoid $\sigma(\cdot) = \frac{1}{1 + \exp(-\cdot)}$ ซึ่งส่งผลให้ได้เอาต์พุตเดียว $h\_L \in [0,1]$ ที่สร้างแบบจำลองความน่าจะเป็น $p(y=1|\mathbf{x})$
+- สำหรับการจำแนกประเภทหลายคลาส (multi-class classification) ฟังก์ชันกระตุ้น sigmoid $\sigma$ ในชั้นสุดท้ายสามารถทำให้เป็นกรณีทั่วไปเพื่อสร้างเวกเตอร์ $\mathbf{h}\_L \in \bigtriangleup^C$ ของการประมาณค่าความน่าจะเป็น $p(y=i|\mathbf{x})$
+ฟังก์ชันกระตุ้นนี้คือฟังก์ชัน $\text{Softmax}$ ซึ่งเอาต์พุตที่ $i$ ของมันถูกกำหนดเป็น
+$$\text{Softmax}(\mathbf{z})\_i = \frac{\exp(z\_i)}{\sum\_{j=1}^C \exp(z\_j)},$$
+สำหรับ $i=1, ..., C$
+
+---
+
+class: middle
+
+พารามิเตอร์ (เช่น $\mathbf{W}\_\ell$ และ $\mathbf{b}\_\ell$ สำหรับแต่ละชั้น $\ell$) ของโครงข่ายลึก $f(\mathbf{x}; \theta)$ จะถูกเรียนรู้โดยการหาค่าต่ำสุดของฟังก์ชันการสูญเสีย $\mathcal{L}(\theta)$ บนชุดข้อมูล $\mathbf{d} = \{ (\mathbf{x}\_j, \mathbf{y}\_j) \}$ ของคู่ อินพุต-เอาต์พุต
+
+ฟังก์ชันการสูญเสียได้มาจาก likelihood: 
+- สำหรับการถดถอย โดยสมมติว่าเป็น Gaussian likelihood การสูญเสียคือค่าเฉลี่ยของความคลาดเคลื่อนกำลังสอง (mean squared error) $\mathcal{L}(\theta) = \frac{1}{N} \sum\_{(\mathbf{x}\_j, \mathbf{y}\_j) \in \mathbf{d}} (\mathbf{y}\_j - f(\mathbf{x}\_j; \theta))^2$
+- สำหรับการจำแนกประเภท โดยสมมติว่าเป็น categorical likelihood การสูญเสียคือ cross-entropy $\mathcal{L}(\theta) = -\frac{1}{N} \sum\_{(\mathbf{x}\_j, \mathbf{y}\_j) \in \mathbf{d}} \sum\_{i=1}^C y\_{ij} \log f\_{i}(\mathbf{x}\_j; \theta)$
+
+---
+
+class: middle
+
+## MLPs on images?
+
+The MLP architecture is appropriate for tabular data, but not for images.
+- Each pixel of an image is an input feature, leading to a high-dimensional input vector.
+- Each hidden unit is connected to all input units, leading to a high-dimensional weight matrix.
+
+---
+
+class: middle
+
+We want to design a neural architecture such that:
+- in the earliest layers, the network responds similarly to similar patches of the image, regardless of their location;
+- the earliest layers focus on local regions of the image, without regard for the contents of the image in distant regions;
+- in the later layers, the network combines the information from the earlier layers to focus on larger and larger regions of the image, eventually combining all the information from the image to classify the image into a category.
+
+---
+
+# Convolutional networks
+
+Convolutional neural networks extend fully connected architectures with
+- convolutional layers acting as local feature detectors;
+- pooling layers acting as spatial down-samplers.
+
+<br>
+.center.width-60[![](figures/lec7/convnet-pattern.png)]
+
+---
+
+class: middle
+
+## 1d convolution
+
+For the one-dimensional input $\mathbf{x} \in \mathbb{R}^W$ and the convolutional kernel $\mathbf{u} \in \mathbb{R}^w$, the discrete **convolution** $\mathbf{x} \circledast \mathbf{u}$ is a vector of size $W - w + 1$ such that
+$$\begin{aligned}
+(\mathbf{x} \circledast \mathbf{u})[i] &= \sum\_{m=0}^{w-1} \mathbf{x}\_{m+i}  \mathbf{u}\_m .
+\end{aligned}
+$$
+
+---
+
+class: middle 
+
+Convolutions can implement differential operators:
+$$(0,0,0,0,1,2,3,4,4,4,4) \circledast (-1,1) = (0,0,0,1,1,1,1,0,0,0) $$
+.center.width-100[![](figures/lec7/conv-op1.png)]
+or crude template matchers:
+$$(0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0) \circledast (1, 0, 1) = (3, 0, 3, 0, 0, 0, 3, 0, 6, 0, 3, 0)$$
+.center.width-70[![](figures/lec7/conv-op2.png)]
+
+.footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
+
+---
+
+class: middle
+
+## Convolutional layers
+
+A convolutional layer is defined by a set of $K$ kernels $\mathbf{u}$ of size $c\times h \times w$, where $h$ and $w$ are the height and width of the kernel, and $c$ is the number of channels of the input.
+
+Assuming as input a 3D tensor $\mathbf{x} \in \mathbb{R}^{C \times H \times W}$, the output of the convolutional layer is a set of $K$ feature maps of size $H' \times W'$, where $H' = H - h + 1$ and $W' = W - w + 1$. Each feature map $\mathbf{o}$ is the result of convolving the input with a kernel, that is
+$$\mathbf{o}\_{j,i} = (\mathbf{x} \circledast \mathbf{u})[j,i] = \sum\_{c=0}^{C-1}  \sum\_{n=0}^{h-1} \sum\_{m=0}^{w-1}    \mathbf{x}\_{c,n+j,m+i} \mathbf{u}\_{c,n,m}$$
+
+---
+
+class: middle
+
+.center[![](figures/lec7/3d-conv.gif)]
+
+.footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
+
+???
+
+Give some intuition about the interpretation of the convolution in terms of similarity between the input and the kernel.
+
+---
+
+class: middle
+
+.center.width-90[![](figures/lec7/Conv2a.svg)]
+
+Convolutional layers (c-f) are a special case of fully connected layers (a-b) where hidden units are connected to local regions of the input through shared weights (the kernels).
+- The connectivity allows the network to learn local patterns in the input.
+- Weight sharing allows the network to learn the same patterns at different locations in the input.
+
+.footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+## Pooling layers
+
+Pooling layers are used to progressively reduce the spatial size of the representation, hence capturing longer-range dependencies between features.
+
+Considering a pooling area of size $h \times w$ and a 3D input tensor $\mathbf{x} \in \mathbb{R}^{C\times(rh)\times(sw)}$, max-pooling produces a tensor $\mathbf{o} \in \mathbb{R}^{C \times r \times s}$ such that
+$$\mathbf{o}\_{c,j,i} = \max\_{n < h, m < w} \mathbf{x}_{c,rj+n,si+m}.$$
+
+---
+
+class: middle
+
+.center[![](figures/lec7/3d-pooling.gif)]
+
+.footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
+
+---
+
+class: middle, center
+
+(Step-by-step code example)
+
+???
+
+See also https://poloclub.github.io/cnn-explainer/
+
+---
+
+# Recurrent networks
+
+When the input is a sequence $\mathbf{x}\_{1:T}$, the feedforward network can be made **recurrent** by computing a sequence $\mathbf{h}\_{1:T}$ of hidden states, where $\mathbf{h}\_{t}$ is a function of both $\mathbf{x}\_{t}$ and the previous hidden states in the sequence.
+
+For example,
+$$\mathbf{h}\_{t} = \sigma(\mathbf{W}\_{xh}^T \mathbf{x}\_t + \mathbf{W}\_{hh}^T \mathbf{h}\_{t-1} + \mathbf{b}),$$
+where $\mathbf{h}\_{t-1}$ is the previous hidden state in the sequence.
+
+???
+
+Skip or go fast.
+
+---
+
+class: middle
+
+Notice how this is similar to filtering and dynamic decision networks:
+- $\mathbf{h}\_t$ can be viewed as some current belief state;
+- $\mathbf{x}\_{1:T}$ is a sequence of observations;
+- $\mathbf{h}\_{t+1}$ is computed from the current belief state $\mathbf{h}\_t$ and the latest evidence $\mathbf{x}\_t$ through some fixed computation (in this case a neural network, instead of being inferred from the assumed dynamics).
+- $\mathbf{h}\_t$ can also be used to decide on some action, through another network $f$ such that $a\_t = f(\mathbf{h}\_t;\theta)$.
+
+---
+
+class: middle, black-slide
+
+.center[
+<iframe width="640" height="400" src="https://www.youtube.com/embed/Ipi40cb_RsI?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+A recurrent network playing Mario Kart.
+]
+
+---
+
+# Transformers
+
+Transformers are deep neural networks at the core of large-scale language models.
+
+<br>
+
+.center.width-70[![](figures/lec7/transformer-next.png)]
+
+.footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+For language modeling, transformers define an .bold[autoregressive model] that predicts the next word in a sequence given the previous words. 
+
+Formally,
+$$p(w\_{1:t})= p(w\_1) \prod\_{t=2}^T p(w\_t|w\_{1:t-1}),$$
+where $w\_t$ is the next word in the sequence and $w\_{1:t-1}$ are the previous words.
+
+---
+
+class: middle
+
+.center.width-100[![](figures/lec7/TransformerDecoder.svg)]
+
+The decoder-only transformer is a stack of $K$ transformer blocks that process the input sequence in parallel using (masked) self-attention.
+
+The output of the last block is used to predict the next word in the sequence, as in a regular classifier.
+
+.footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
+
+---
+
+class: middle
+
+.width-100[![](./figures/lec0/scaling-power-law.png)]
+
+## Scaling laws
+
+- The more data, the better the model.
+- The more parameters, the better the model.
+- The more compute, the better the model.
+
+---
+
+class: middle
+
+# AI beyond Pacman
+
+---
+
+class: black-slide, middle
+
+.center[
+<iframe width="640" height="400" src="https://www.youtube.com/embed/HS1wV9NMLr8?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+How AI Helps Autonomous Vehicles See Outside the Box<br>
+(See also [other episodes](https://www.youtube.com/playlist?list=PLZHnYvH1qtOYkElUMqYiHDMrGTPnqRhSr) from NVIDIA DRIVE Labs)
+]
+
+---
+
+class: black-slide, middle, center
+
+.width-100[![](figures/lec7/hydranet.png)]
+
+Hydranet (Tesla, 2021)
+
+???
+
+70 networks
+
+---
+
+class: middle, black-slide, center
+
+<iframe width="600" height="450" src="https://www.youtube.com/embed/AbdVsi1VjQY" frameborder="0" allowfullscreen></iframe>
+
+How machine learning is advancing medicine (Google, 2018)
+
+---
+
+
+# สรุป
+
+- Deep learning เป็นเครื่องมือที่ทรงพลังสำหรับการเรียนรู้จากข้อมูล
+- โครงข่ายประสาทเทียมประกอบด้วยชั้นของเซลล์ประสาทที่เชื่อมต่อถึงกัน
+- น้ำหนักของการเชื่อมต่อจะถูกเรียนรู้โดยการหาค่าต่ำสุดของฟังก์ชันการสูญเสีย
+- โครงข่ายสังวัตนาการ (Convolutional networks) ใช้สำหรับการประมวลผลภาพ
+- Transformers ใช้สำหรับการประมวลผลภาษา
+
+---
+
+class: middle
+
+.center.circle.width-20[![](figures/lec7/bishop.jpg)]
+
+.center[
+"วิธีการเรียนรู้ของเครื่องแบบดั้งเดิมจำเป็นต้องมีผู้ออกแบบที่เป็นมนุษย์ที่มีความชำนาญในการออกแบบตัวแยกคุณลักษณะ (feature extractor) ที่เหมาะสม...
+<br><br>
+การเรียนรู้เชิงลึก (deep learning) เป็นเทคนิคการเรียนรู้ของเครื่องที่ช่วยให้คอมพิวเตอร์สามารถเรียนรู้จากประสบการณ์และเข้าใจโลกในแง่ของลำดับชั้นของแนวคิด โดยที่แต่ละแนวคิดถูกกำหนดขึ้นโดยสัมพันธ์กับแนวคิดที่ง่ายกว่า"
+]
+
+.footnote[Christopher Bishop, 2023]
+
+---
+
+class: end-slide, center
+
+# จบการบรรยาย
+
+</textarea>
+    
+    <script src="../assets/remark.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

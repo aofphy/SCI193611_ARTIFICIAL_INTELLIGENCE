@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Slide Presentation</title>
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="../assets/auto-render.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        .remark-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .remark-slide-content {
+            font-size: 1.3em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.4em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 15pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-100 * { width: 100%; }
+        .width-90 * { width: 90%; }
+        .width-80 * { width: 80%; }
+        .width-70 * { width: 70%; }
+        .width-60 * { width: 60%; }
+        .width-50 * { width: 50%; }
+        .width-40 * { width: 40%; }
+        .width-30 * { width: 30%; }
+        .width-25 * { width: 25%; }
+
+        .title-slide:after {
+            content: '';
+            background: url("../assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .center { text-align: center; }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{ color: #0288d1; }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child { padding-right: 0px; }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .kol-1-1 { width: 100%; }
+        .kol-1-2 { width: 50%; }
+        .kol-1-3 { width: 33.33%; }
+        .kol-2-3 { width: 66.66%; }
+        .kol-1-4 { width: 25%; }
+        .kol-3-4 { width: 75%; }
+
+    </style>
+</head>
+<body>
+    <textarea id="source">
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์ (Artificial Intelligence)
+
+บทบรรยายที่ 8: การตัดสินใจ (Making decisions)
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th]
+
+---
+
+class: middle, center
+
+.width-30[![](figures/lec0/map.png)]
+
+---
+
+# เนื้อหาวันนี้
+
+.center.width-50[![](figures/lec8/intro.png)]
+
+การให้เหตุผลภายใต้ความไม่แน่นอน และการ "ตัดสินใจ" (Reasoning under uncertainty and taking decisions):
+- Markov decision processes
+    - MDPs
+    - สมการของ Bellman (Bellman equation)
+    - Value iteration
+    - Policy iteration
+- Partially observable Markov decision processes (POMDPs)
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# โลกแบบกริด (Grid world)
+
+.grid[
+.kol-2-3[
+สมมติว่าเอเยนต์ของเราอาศัยอยู่ในสภาพแวดล้อมกริดขนาด $3 \times 4$.
+- การเคลื่อนที่มีสัญญาณรบกวน: การกระทำไม่เป็นไปตามที่วางแผนเสมอไป
+    - แต่ละการกระทำบรรลุผลตามที่ตั้งใจด้วยความน่าจะเป็น $0.8$.
+    - ที่เหลือ $0.2$ การกระทำจะพาเอเยนต์ไปในทิศตั้งฉากกับทิศที่ตั้งใจ (ขวาหรือซ้ายของทิศที่ตั้งใจ)
+    - หากมีผนังในทิศทางที่จะถูกพาไป เอเยนต์จะอยู่นิ่ง
+- เอเยนต์ได้รับรางวัล (reward) ในแต่ละช่วงเวลา
+    - รางวัลเล็กน้อยสำหรับการมีชีวิต (living reward) ในแต่ละก้าว (อาจเป็นลบ)
+    - รางวัลใหญ่จะเกิดขึ้นเมื่อจบตอน (ดีหรือไม่ดี)
+
+เป้าหมาย: ทำให้ผลรวมของรางวัลสูงสุด
+]
+.kol-1-3[<br><br><br><br><br>.width-100[![](figures/lec8/grid-world.png)]]
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.grid.center[
+.kol-1-4.center[
+การกระทำเชิงกำหนด (Deterministic actions)
+
+.width-100[![](figures/lec8/grid-world-deterministic.png)]
+]
+.kol-3-4.center[
+การกระทำเชิงสุ่ม (Stochastic actions)<br><br>
+
+.width-90[![](figures/lec8/grid-world-stochastic.png)]
+]
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+# Markov decision processes
+
+---
+
+# Markov decision processes
+
+MDP หรือ **Markov decision process** คือพจน์ $(\mathcal{S}, \mathcal{A}, P, R)$ ดังนี้:
+- $\mathcal{S}$ คือเซตของสถานะ $s$;
+- $\mathcal{A}$ คือเซตของการกระทำ $a$;
+- $P$ คือแบบจำลองการเปลี่ยนผ่าน (stationary transition model) โดยที่ $P(s'|s,a)$ แทนความน่าจะเป็นที่จะไปถึงสถานะ $s'$ เมื่อทำการกระทำ $a$ ในสถานะ $s$;
+- $R$ คือฟังก์ชันรางวัลที่แมปไปยังรางวัลทันที (finite) $R(s)$ ที่ได้รับในสถานะ $s$.
+
+---
+
+class: middle
+
+.grid[
+.kol-1-5.center[
+<br><br><br><br>
+$$s'$$
+$$r' = R(s')$$
+]
+.kol-3-5.center[
+$$s$$
+.width-90[![](figures/lec8/loop.png)]
+$$s' \sim P(s'|s,a)$$
+]
+.kol-1-5[
+<br><br><br><br><br>
+$$a$$
+]
+]
+
+---
+
+class: middle
+
+.grid.center[
+.kol-1-2[.center.width-70[![](figures/lec8/grid-world.png)]]
+.kol-1-2[.center.width-70[![](figures/lec8/grid-world-transition.png)]]
+]
+<br>
+
+## ตัวอย่าง
+
+- $\mathcal{S}$: ตำแหน่ง $(i,j)$ บนกริด
+- $\mathcal{A}$: $[\text{Up}, \text{Down}, \text{Right}, \text{Left}]$
+- แบบจำลองการเปลี่ยนผ่าน: $P(s'|s,a)$
+- รางวัล:
+$$
+R(s) = \begin{cases}
+-0.3 & \text{สำหรับสถานะที่ไม่ใช่ปลายทาง (non-terminal states)} \\\\
+\pm 1  & \text{สำหรับสถานะปลายทาง (terminal states)}
+\end{cases}
+$$
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.grid[
+.kol-3-4[
+## อะไรคือ "Markovian" ของ MDPs?
+
+ให้สถานะปัจจุบันกำหนด อนาคตและอดีตจะเป็นอิสระต่อกัน:
+$$P(s\_{t+1} | s\_t, a\_t, s\_{t-1}, a\_{t-1}, ..., s\_0) = P(s\_{t+1} | s\_t, a\_t)$$
+คล้ายกับปัญหาการค้นหา ที่ฟังก์ชันผู้สืบทอด (successor) ขึ้นอยู่แค่สถานะปัจจุบัน
+]
+.kol-1-4.center[.circle.width-100[![](figures/lec8/markov.jpg)]
+.caption[Andrey Markov]]
+]
+
+---
+
+# นโยบาย (Policies)
+
+.grid[
+.kol-2-3[
+- ในปัญหาการค้นหาแบบกำหนดค่า (deterministic single-agent search) เป้าหมายของเราคือหาแผนที่เหมาะสมที่สุด หรือชุดของการกระทำตั้งแต่เริ่มจนจบ
+- สำหรับ MDPs เราต้องการหา **policy** ที่เหมาะสมที่สุด $\pi^* : \mathcal{S} \to \mathcal{A}$
+    - นโยบาย $\pi$ คือการแมปจากสถานะไปยังการกระทำ
+    - นโยบายที่เหมาะสมที่สุดคืออันที่ทำให้คาดหมายอรรถประโยชน์ (expected utility) สูงสุด เช่น ผลรวมของรางวัลที่คาดหมาย
+    - นโยบายแบบชัดแจ้ง (explicit policy) นิยามเอเยนต์เชิงปฏิกิริยา (reflex agent)
+- Expectiminimax ไม่ได้คำนวณนโยบายทั้งชุด แต่ให้เพียงการกระทำที่สถานะเดียว
+
+]
+.kol-1-3[
+<br>
+.width-100[![](figures/lec8/optimal-policy.png)]
+.center[นโยบายที่เหมาะสม เมื่อ $R(s)=-0.3$ สำหรับสถานะที่ไม่ใช่ปลายทางทั้งหมด $s$.]
+]
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.width-70.center[![](figures/lec8/sequential-decision-policies.svg)]
+
+(a) นโยบายที่เหมาะสม เมื่อ $R(s)=-0.04$ สำหรับสถานะที่ไม่ใช่ปลายทางทั้งหมด $s$.
+(b) นโยบายที่เหมาะสมสำหรับช่วงของ $R(s)$ สี่ค่า
+
+ขึ้นกับ $R(s)$ ดุลยภาพระหว่างความเสี่ยงและรางวัลจะเปลี่ยน จากกล้าเสี่ยงไปจนถึงระมัดระวังมาก
+
+???
+
+อภิปรายดุลยภาพระหว่างความเสี่ยงและรางวัล
+
+---
+
+# อรรถประโยชน์ตามเวลา (Utilities over time)
+
+.center.width-50[![](figures/lec8/preferences.png)]
+
+เอเยนต์ควรมีความชอบ (preferences) เหนือลำดับสถานะหรือรางวัลอย่างไร?
+- มากหรือน้อย? $[2,3,4]$ หรือ $[1, 2, 2]$?
+- ตอนนี้หรือต่อไป? $[1,0,0]$ หรือ $[0,0,1]$?
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ทฤษฎีบท
+
+ถ้าเราสมมติความชอบที่เป็น **stationary** เหนือลำดับของรางวัล คือ
+$$[r\_0, r\_1, r\_2, ...] \succ [r\_0, r\_1', r\_2', ...] \Rightarrow [r\_1, r\_2, ...] \succ [r\_1', r\_2', ...],$$
+จะมีเพียงสองวิธีที่สอดคล้องกันในการกำหนดอรรถประโยชน์ให้กับลำดับ:
+
+.grid[
+.kol-1-3.center[
+อรรถประโยชน์แบบบวกต่อกัน (Additive utility):
+
+อรรถประโยชน์แบบมีส่วนลด (Discounted utility):<br>
+($0<\gamma<1$)
+]
+.kol-2-3[
+$V([r\_0, r\_1, r\_2, ...]) = r\_0 + r\_1 + r\_2 + ...$
+
+$V([r\_0, r\_1, r\_2, ...]) = r\_0 + \gamma r\_1 + \gamma^2 r\_2 + ...$
+]
+]
+
+???
+
+อธิบายความหมายของ "coherent" (สอดคล้องตามเหตุผล)
+
+---
+
+class: middle
+
+.grid[
+.kol-1-2[
+
+## การลดค่า (Discounting)
+
+- ทุกครั้งที่เราเปลี่ยนไปสถานะถัดไป เราคูณส่วนลดหนึ่งครั้ง
+- ทำไมต้องลด?
+    - รางวัลที่ได้เร็วกว่าโดยมากมีอรรถประโยชน์สูงกว่ารางวัลที่ได้ช้า
+    - ช่วยให้อัลกอริทึมของเราลู่เข้า (converge)
+]
+.kol-1-2[.width-70[![](figures/lec8/discounting.png)]]
+]
+
+ตัวอย่าง: ส่วนลด $\gamma=0.5$<br>
+- $V([1,2,3]) = 1 + 0.5\times 2 + 0.25 \times 3$<br>
+- $V([1,2,3]) < V([3,2,1])$
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ลำดับอนันต์ (Infinite sequences)
+
+ถ้าเอเยนต์มีชีวิตตลอดไป? เราจะได้รางวัลเป็นอนันต์หรือไม่? การเปรียบเทียบลำดับรางวัลที่มีอรรถประโยชน์เป็น $+\infty$ เป็นปัญหา
+
+วิธีแก้:
+- ขอบเขตเวลา (Finite horizon): (คล้าย depth-limited search)
+    - จบตอนหลังจากจำนวนก้าวคงที่ $T$.
+    - ทำให้ได้นโยบายที่ไม่ stationary ($\pi$ ขึ้นกับเวลาที่เหลือ)
+- ส่วนลด (เมื่อ $0 < \gamma < 1$ และรางวัลมีขอบเขตโดย $\pm R\_\text{max}$):
+    $$V([r\_0, r\_1, ..., r\_\infty]) = \sum\_{t=0}^{\infty} \gamma^t r\_t \leq \frac{R\_\text{max}}{1-\gamma}$$
+  $\gamma$ เล็กลง ทำให้ขอบเขตเวลาสั้นลง
+- สถานะดูดซับ (Absorbing state): รับประกันว่า สำหรับทุกนโยบาย จะไปถึงสถานะปลายทางในที่สุด
+
+---
+
+class: middle
+
+.center.width-25[![](figures/lec8/fixed-policy.png)]
+
+## การประเมินนโยบาย (Policy evaluation)
+
+อรรถประโยชน์คาดหมายที่ได้จากการทำตาม $\pi$ โดยเริ่มจาก $s$ ให้โดย
+$$V^\pi(s) = \mathbb{E}\left[\sum\_{t=0}^\infty \gamma^t R(s\_t) \right]\Biggr\rvert\_{s\_0=s}$$
+โดยความคาดหมายคือเหนือการแจกแจงความน่าจะเป็นของลำดับสถานะซึ่งกำหนดโดย $s$ และ $\pi$.
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## นโยบายที่เหมาะสม (Optimal policies)
+
+ในบรรดานโยบายทั้งหมดที่เอเยนต์สามารถทำได้ นโยบายที่เหมาะสมที่สุดคือ $\pi\_s$ ที่ทำให้คาดหมายอรรถประโยชน์สูงสุด:
+$$\pi\_s = \arg \max\_\pi V^\pi(s)$$
+
+เนื่องจากมีการลดค่า อรรถประโยชน์ นโยบายที่เหมาะสมจะ "ไม่ขึ้นกับ" สถานะเริ่มต้น $s$ (ดูภายหลัง) ดังนั้นเราจึงเขียนเพียง $\pi^*$
+
+---
+
+# ค่าอรรถประโยชน์ของสถานะ (Values of states)
+
+อรรถประโยชน์ หรือค่า $V(s)$ ของสถานะ นิยามเป็น $V^{\pi^*}(s)$
+- คือ รางวัล (แบบลดค่า) ที่คาดหวัง หากเอเยนต์ทำตามนโยบายที่เหมาะสมโดยเริ่มจาก $s$
+- สังเกตว่า $R(s)$ และ $V(s)$ เป็นปริมาณที่ต่างกันมาก:
+    - $R(s)$ คือรางวัลระยะสั้นสำหรับการไปถึง $s$
+    - $V(s)$ คือรางวัลรวมระยะยาวจาก $s$ เป็นต้นไป
+
+---
+
+class: middle
+
+.center.width-50[![](figures/lec8/sequential-decision-values.svg)]
+
+อรรถประโยชน์ของสถานะใน Grid World คำนวณด้วย $\gamma=1$ และ $R(s)=-0.04$ สำหรับสถานะที่ไม่ใช่ปลายทาง
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec8/policy-extraction.png)]
+
+## การสกัดนโยบาย (Policy extraction)
+
+ใช้หลักการ Maximum Expected Utility การกระทำที่เหมาะสมจะทำให้คาดหมายอรรถประโยชน์ของสถานะถัดไปสูงสุด ดังนั้น
+$$\pi^*(s) = \arg \max\_{a} \sum\_{s'} P(s'|s,a) V(s').$$
+
+ดังนั้น เราสามารถสกัดนโยบายที่เหมาะสมได้ หากเราประมาณอรรถประโยชน์ของสถานะได้
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+???
+
+ชี้ให้เห็นถึงความเป็นวงกลมของเหตุผลนี้! (เราต้องรู้ V เพื่อหานโยบาย แต่ก็ใช้นโยบายเพื่อได้ V)
+
+---
+
+class: middle
+
+$$\pi^*(s) = \arg \max\_{a} \sum\_{s'} P(s'|s,a) V(s')$$
+
+.center.width-80[![](figures/lec8/how-to.png)]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# สมการของ Bellman (The Bellman equation)
+
+อรรถประโยชน์ของสถานะเท่ากับรางวัลทันทีของสถานะนั้น บวกกับอรรถประโยชน์ที่ถูกลดค่าคาดหมายของสถานะถัดไป โดยสมมติว่าเอเยนต์เลือกการกระทำที่เหมาะสม:
+$$V(s) = R(s) + \gamma  \max\_{a} \sum\_{s'} P(s'|s,a) V(s').$$
+- สมการเหล่านี้เรียกว่า **Bellman equations** เป็นระบบสมการไม่เชิงเส้น $n=|\mathcal{S}|$ สมการกับตัวแปรเท่ากัน
+- อรรถประโยชน์ของสถานะ ซึ่งนิยามเป็นอรรถประโยชน์คาดหมายของลำดับสถานะถัดไป คือคำตอบของชุดสมการ Bellman
+
+???
+
+มีความสัมพันธ์โดยตรงระหว่างอรรถประโยชน์ของสถานะกับของเพื่อนบ้าน
+
+สมการ Bellman รวม Expected utility (สไลด์ก่อนหน้า) กับสมการสกัดนโยบาย
+
+---
+
+class: middle
+
+## ตัวอย่าง
+
+$$
+\begin{aligned}
+V(1,1) = -0.04 + \gamma \max  [& 0.8 V(1,2) + 0.1 V(2,1) + 0.1 V(1,1), \\\\
+    & 0.9 V(1,1) + 0.1 V(1,2), \\\\
+    & 0.9 V(1,1) + 0.1 V(2,1), \\\\
+    & 0.8 V(2,1) + 0.1 V(1,2) + 0.1 V(1,1)]
+\end{aligned}
+$$
+
+---
+
+# Value iteration
+
+เนื่องจากตัวดำเนินการ $\max$ ทำให้สมการ Bellman เป็นไม่เชิงเส้น การแก้ระบบสมการโดยตรงจึงเป็นปัญหา
+
+อัลกอริทึม **value iteration** ให้กระบวนการเวียนกลับสู่จุดตรึง (fixed-point iteration) เพื่อคำนวณค่าอรรถประโยชน์ของสถานะ $V(s)$:
+- ให้ $V\_i(s)$ เป็นค่าประมาณอรรถประโยชน์ของ $s$ ที่ขั้นตอนที่ $i$
+- **Bellman update** คือการอัปเดตค่าประมาณทั้งหมดพร้อมกันให้ "สอดคล้องในเชิงเฉพาะที่" กับสมการ Bellman:
+$$V\_{i+1}(s) := R(s) + \gamma \max\_a \sum\_{s'} P(s'|s,a) V\_i(s') $$
+- ทำซ้ำจนลู่เข้า
+
+---
+
+class: middle
+
+.center.width-50[![](figures/lec8/value-iteration.png)]
+
+
+
+เกณฑ์หยุดอิงกับข้อเท็จจริงว่า ถ้าการอัปเดตมีค่าน้อย แปลว่าความคลาดเคลื่อนก็เล็กด้วย คือถ้า
+$$||V\_{i+1} - V\_i|| < \epsilon (1-\gamma)/\gamma$$
+แล้วจะมี $$||V\_{i+1}-V||<\epsilon$$
+
+---
+
+class: middle, center
+
+(ตัวอย่างโค้ดทีละขั้น)
+
+---
+
+class: middle
+
+## การลู่เข้า (Convergence)
+
+ให้ $V\_i$ และ $V\_{i+1}$ เป็นค่าประมาณต่อเนื่องของค่าแท้จริง $V$.
+
+.bold[ทฤษฎีบท.] สำหรับค่าประมาณสองตัว $V\_i$ และ $V'\_i$ ใดๆ,
+$$||V\_{i+1} - V'\_{i+1}||\_\infty \leq \gamma ||V\_i - V'\_i||\_\infty.$$
+- กล่าวคือ Bellman update เป็นการหด (contraction) ด้วยแฟกเตอร์ $\gamma$ บนปริภูมิเวกเตอร์อรรถประโยชน์
+- ดังนั้นค่าประมาณใดๆ จะต้องเข้าใกล้กันเรื่อยๆ และโดยเฉพาะจะเข้าใกล้ $V$ จริง
+
+$\Rightarrow$ Value iteration ลู่เข้าสู่คำตอบเอกลักษณ์ของสมการ Bellman เสมอเมื่อ $\gamma < 1$
+
+---
+
+class: middle
+
+## สมรรถนะ (Performance)
+
+เพราะว่า $||V\_{i+1} - V||\_\infty \leq \gamma ||V\_i - V||\_\infty$ ความคลาดเคลื่อนลดลงอย่างน้อยแฟกเตอร์ $\gamma$ ในแต่ละรอบ
+
+ดังนั้น value iteration ลู่เข้าเร็วแบบเอ็กซ์โปเนนเชียล:
+- คลาดเคลื่อนเริ่มต้นสูงสุด $||V\_0 - V||\_\infty \leq 2R\_\text{max} / (1-\gamma)$
+- เพื่อให้คลาดเคลื่อนไม่เกิน $\epsilon$ หลัง $N$ รอบ ต้องมี $\gamma^N 2R\_\text{max}/(1-\gamma) \leq \epsilon$
+
+.center.width-100[![](figures/lec8/vi-performance.png)]
+
+???
+
+รูปด้านขวา: $\gamma$ ช่วยให้ลู่เข้า
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec8/policy-evaluation-tree.png)]
+
+## ปัญหาของ value iteration
+
+Value iteration ทำ Bellman updates ซ้ำๆ:
+$$V\_{i+1}(s) = R(s) + \gamma \max\_a \sum\_{s'} P(s'|s,a) V\_i(s') $$
+- ปัญหา 1: ช้า – $O(|\mathcal{S}|^2 |\mathcal{A}|)$ ต่อรอบ
+- ปัญหา 2: ค่า $\max$ ที่แต่ละสถานะ เปลี่ยนไม่บ่อย
+- ปัญหา 3: นโยบาย $\pi\_i$ ที่สกัดจาก $V\_i$ อาจเหมาะสมแล้ว แม้ $V\_i$ ยังไม่แม่นยำ!
+
+---
+
+# Policy iteration
+
+อัลกอริทึม **policy iteration** คำนวณนโยบายโดยตรง (แทนที่จะคำนวณค่าอรรถประโยชน์ของสถานะ) โดยสลับสองขั้นตอนนี้:
+- การประเมินนโยบาย: เมื่อกำหนด $\pi\_i$ คำนวณ $V\_i = V^{\pi\_i}$ คืออรรถประโยชน์ของแต่ละสถานะหากทำตาม $\pi\_i$
+- การปรับปรุงนโยบาย: คำนวณนโยบายใหม่ $\pi\_{i+1}$ ด้วยการมองไปข้างหน้า 1 ก้าว บนพื้นฐาน $V\_i$:
+$$\pi\_{i+1}(s) = \arg\max\_a \sum\_{s'} P(s'|s,a)V\_i(s')$$
+
+อัลกอริทึมนี้ยังคงให้คำตอบเหมาะสม และอาจลู่เข้าเร็วกว่าอย่างมากในบางกรณี
+
+---
+
+class: middle
+
+.center.width-10[![](figures/lec8/fixed-policy.png)]
+
+## การประเมินนโยบาย (Policy evaluation)
+
+ที่รอบที่ $i$ เราได้เวอร์ชันง่ายของสมการ Bellman ที่เชื่อมค่าอรรถประโยชน์ของ $s$ กับของเพื่อนบ้าน:
+$$V\_i(s)  = R(s) + \gamma \sum\_{s'} P(s'|s,\pi\_i(s)) V\_i(s')$$
+สมการเหล่านี้ตอนนี้เป็น **เชิงเส้น** เพราะไม่มีตัวดำเนินการ $\max$ แล้ว
+- สำหรับ $n$ สถานะ เรามี $n$ สมการ $n$ ตัวไม่ทราบค่า
+- แก้ได้พอดีใน $O(n^3)$ ด้วยพีชคณิตเชิงเส้นมาตรฐาน
+(*สังเกตว่าเราแทนที่ $a$ ด้วย $\pi\_i(s)$*)
+
+---
+
+class: middle
+
+บางครั้ง $O(n^3)$ ก็แพงเกินไป โชคดีที่ไม่จำเป็นต้องประเมินนโยบายอย่างแม่นยำเสมอไป วิธีประมาณก็เพียงพอ
+
+วิธีหนึ่งคือรันสมการ Bellman แบบง่าย $k$ รอบ:
+$$V\_{i+1}(s) = R(s) + \gamma \sum\_{s'} P(s'|s,\pi\_i(s))V\_i(s') $$
+
+อัลกอริทึมผสมนี้เรียกว่า **modified policy iteration**
+
+---
+
+class: middle
+
+.center.width-100[![](figures/lec8/policy-iteration.png)]
+
+---
+
+class: middle, center
+
+(ตัวอย่างโค้ดทีละขั้น)
+
+---
+
+# ตัวอย่างสรุป: 2048
+
+.grid[
+.kol-2-3[
+
+เกม 2048 เป็น Markov decision process!
+
+- $\mathcal{S}$: คอนฟิกูเรชันทั้งหมดของกระดาน (มหาศาล!)
+- $\mathcal{A}$: ปัดซ้าย ขวา ขึ้น ลง
+- $P(s'|s,a)$: เข้ารหัสพลวัตของเกม
+    - รวมช่องตัวเลขที่เท่ากัน
+    - วางตัวเลขแบบสุ่มบนกระดาน
+- $R(s)=1$ ถ้า $s$ เป็นสถานะชนะ มิฉะนั้น $0$
+]
+.kol-1-3[
+.width-100[![](figures/lec8/2048.gif)]
+]
+]
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec8/mdp_2x2_3_with_no_canonicalization.svg)]
+
+.center[แบบจำลองการเปลี่ยนผ่านสำหรับกระดาน $2\times 2$ และสถานะชนะที่ $8$]
+
+.footnote[เครดิต: [jdlm.info](https://jdlm.info/articles/2018/03/18/markov-decision-process-2048.html), The Mathematics of 2048.]
+
+---
+
+class: middle, center
+
+การเล่นที่เหมาะสมสำหรับกริด $3\times 3$ และสถานะชนะที่ $1024$.
+
+ดู [jdlm.info: The Mathematics of 2048](https://jdlm.info/articles/2018/03/18/markov-decision-process-2048.html).
+
+---
+
+class: middle
+
+# Partially observable Markov decision processes
+
+---
+
+# POMDPs
+
+ถ้าสภาพแวดล้อม "สังเกตได้บางส่วน" (partially observable) ล่ะ?
+- เอเยนต์ไม่รู้ว่าตนเองอยู่ในสถานะ $s$ ไหน
+    - เพราะฉะนั้น ประเมิน $R(s)$ ของสถานะที่ไม่รู้ไม่ได้
+    - และการพูดถึงนโยบาย $\pi(s)$ ก็ไม่มีความหมาย
+- แทนที่จะเป็นเช่นนั้น เอเยนต์รับรู้สัญญาณ $e$ ผ่านแบบจำลองเซ็นเซอร์ $P(e|s)$ เพื่อใช้ให้เหตุผลเกี่ยวกับสถานะที่ไม่รู้ $s$
+
+.center.width-60[![](figures/lec8/pomdp.png)]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+เราจะสมมติว่าเอเยนต์คงไว้ซึ่งสถานะความเชื่อ (belief state) $b$.
+- $b$ แทนการแจกแจงความน่าจะเป็น ${\bf P}(S)$ ของความเชื่อของเอเยนต์ ณ ตอนนี้เหนือสถานะของมัน
+- $b(s)$ แทนความน่าจะเป็น $P(S=s)$ ภายใต้ belief ปัจจุบัน
+- belief state $b$ ถูกอัปเดตเมื่อมีหลักฐาน $e$ ใหม่เข้ามา
+
+นี่คือการกรอง (Filtering)!
+
+---
+
+class: middle
+
+.grid[
+.kol-1-5.center[
+<br><br><br><br><br>
+$$e'$$
+]
+.kol-3-5.center[
+$$b$$
+.width-90[![](figures/lec8/loop.png)]
+$$s' \sim P(s'|s,a)$$
+$$e' \sim P(e' | s')$$
+]
+.kol-1-5[
+<br><br><br><br><br>
+$$a$$
+]
+]
+
+---
+
+# Belief MDP
+
+.bold[ทฤษฎีบท (Åström, 1965).] การกระทำที่เหมาะสมขึ้นกับ belief state ปัจจุบันของเอเยนต์เท่านั้น
+- นโยบายที่เหมาะสมสามารถบรรยายได้ด้วยแมป $\pi^*(b)$ จาก belief ไปยังการกระทำ
+- ไม่ขึ้นกับสถานะจริงที่เอเยนต์อยู่
+
+กล่าวคือ POMDPs สามารถลดรูปเป็น MDP บนปริภูมิ belief-state ได้ โดยกำหนดแบบจำลองการเปลี่ยนผ่าน $P(b'|b,a)$ และฟังก์ชันรางวัล $\rho$ บน belief states
+
+---
+
+class: middle
+
+ถ้า $b$ เป็น belief ก่อนหน้า และเอเยนต์ทำการกระทำ $a$ และรับรู้ $e$ แล้ว belief ใหม่เหนือ $S'$ คือ
+$$b' = \alpha {\bf P}(e|S') \sum\_{s} {\bf P}(S'|s,a)b(s) = \alpha\, \text{forward}(b,a,e).$$
+
+ดังนั้น
+$$
+\begin{aligned}
+P(b'|b,a) &= \sum\_e P(b',e|b,a)\\\\
+&= \sum\_e P(b'|b,a,e) P(e|b,a) \\\\
+&= \sum\_e P(b'|b,a,e) \sum\_{s'} P(e|b,a,s') P(s'|b,a) \\\\
+&= \sum\_e P(b'|b,a,e) \sum\_{s'} P(e|s') \sum\_{s} P(s'|s,a) b(s)
+\end{aligned}
+$$
+
+โดยที่ $P(b'|b,a,e)=1$ ถ้า $b'=\text{forward}(b,a,e)$ และเป็น $0$ มิฉะนั้น
+
+---
+
+class: middle
+
+เรายังกำหนดฟังก์ชันรางวัลสำหรับ belief state ได้เป็นรางวัลคาดหมายเหนือสถานะจริงที่เอเยนต์อาจอยู่:
+$$\rho(b) = \sum\_{s} b(s) R(s)$$
+
+---
+
+class: middle
+
+.grid[
+.kol-1-5.center[
+<br><br><br><br>
+$$b'$$
+
+$$\rho(b')$$
+]
+.kol-3-5.center[
+$$b$$
+.width-90[![](figures/lec8/loop.png)]
+$$b' \sim P(b'|b,a)$$
+]
+.kol-1-5[
+<br><br><br><br><br>
+$$a$$
+]
+]
+
+---
+
+class: middle
+
+แม้ว่าเราจะลด POMDPs เป็น MDPs ได้ แต่ Belief MDP ที่ได้มีปริภูมิสถานะเป็น **ต่อเนื่อง** (และโดยมากมิติมาก)
+- อัลกอริทึมก่อนหน้าทั้งหมดใช้ตรงๆ ไม่ได้
+- ที่จริง การแก้ POMDPs เป็นปัญหายากที่ยังไม่มีอัลกอริทึม exact ที่มีประสิทธิภาพ
+- แต่ธรรมชาติก็เป็น POMDP
+
+---
+
+# เอเยนต์แบบออนไลน์ (Online agents)
+
+แม้จะยากที่จะหา $\pi^*$ โดยตรง เอเยนต์เชิงทฤษฎีการตัดสินใจ (decision-theoretic agent) สำหรับ POMDPs สร้างได้ดังนี้:
+- แบบจำลองการเปลี่ยนผ่านและเซ็นเซอร์แทนด้วย *dynamic Bayesian network*
+- ขยายเครือข่ายด้วยโหนดการตัดสินใจ ($A$) และอรรถประโยชน์/รางวัล ($R$, $U$) ให้เป็น dynamic decision network
+- ใช้อัลกอริทึม **filtering** รวมหลักฐานและการกระทำใหม่เพื่ออัปเดต belief state
+- ตัดสินใจโดยจำลองไปข้างหน้าสำหรับลำดับการกระทำที่เป็นไปได้และเลือกอันที่ดีที่สุด (โดยประมาณ) คล้าย *Expectiminimax* แบบตัดความลึก
+
+---
+
+class: middle
+
+.width-100[![](figures/lec8/generic-ddn.svg)]
+
+ที่เวลา $t$ เอเยนต์ต้องตัดสินใจว่าจะทำอะไร
+- โหนดทึบหมายถึงตัวแปรที่รู้ค่าแล้ว
+- คลี่เครือข่ายออกสำหรับขอบเขตเวลาจำกัด
+- รวมโหนดรางวัลของ $\mathbf{X}\_{t+1}$ และ $\mathbf{X}\_{t+2}$ แต่ใช้ (ค่าประมาณ) อรรถประโยชน์ของ $\mathbf{X}\_{t+3}$
+
+---
+
+class: middle
+
+.center.width-40[![](figures/lec8/pomdp-tree.svg)]
+
+ส่วนหนึ่งของคำตอบแบบมองไปข้างหน้าของเครือข่ายการตัดสินใจก่อนหน้า:
+- โหนดสามเหลี่ยมแต่ละอันคือ belief state ที่เอเยนต์ตัดสินใจ
+    - belief state ที่แต่ละโหนดคำนวณได้โดยใช้การกรอง (filtering) กับลำดับของการรับรู้และการกระทำที่นำไปถึงโหนดนั้น
+- โหนดวงกลมคือการสุ่มเลือกโดยสภาพแวดล้อม
+
+การตัดสินใจสกัดได้จากต้นไม้ค้นหาโดยแบ็คอัปอรรถประโยชน์ (ประมาณ) จากใบ ขณะที่โหนดโอกาสใช้ค่าเฉลี่ย และโหนดตัดสินใจใช้ค่าสูงสุด
+
+???
+
+สังเกตว่าไม่มีโหนดโอกาสที่สอดคล้องกับผลของการกระทำ; เนื่องจากการอัปเดต belief-state สำหรับการกระทำเป็นดีเทอร์มินิสติกไม่ว่าเอาต์คัมจริงจะเป็นอย่างไร
+
+คือเราเปลี่ยนจาก $b$ ไป $b'$ แทนที่จะเป็น $s$ ไป $s'$
+
+---
+
+# สรุป (Summary)
+
+- ปัญหาการตัดสินใจตามลำดับในสภาพแวดล้อมที่ไม่แน่นอน (MDPs) นิยามด้วยแบบจำลองการเปลี่ยนผ่านและฟังก์ชันรางวัล
+- อรรถประโยชน์ของลำดับสถานะคือผลรวมของรางวัลทั้งหมดในลำดับ อาจมีการลดค่าตามเวลา
+    - คำตอบของ MDP คือ นโยบายที่กำหนดการตัดสินใจสำหรับทุกสถานะที่เอเยนต์อาจเจอ
+    - นโยบายที่เหมาะสมทำให้อรรถประโยชน์ของลำดับสถานะที่พบเมื่อทำตามนโยบายสูงสุด
+- Value iteration และ Policy iteration ใช้แก้ MDP ได้ทั้งคู่
+- POMDPs ยากกว่า MDPs มาก อย่างไรก็ดี เราสร้างเอเยนต์เชิงทฤษฎีการตัดสินใจสำหรับสภาพแวดล้อมเหล่านี้ได้
+
+---
+
+class: end-slide, center
+count: false
+
+จบการนำเสนอ
+
+    </textarea>
+    
+    <script src="../assets/remark.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>บทบรรยายที่ 2: การแก้ปัญหาด้วยการค้นหา</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Lato:300,400,900);
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,900);
+        @import url(https://fonts.googleapis.com/css?family=Sarabun:300,400,600,700);
+
+        body {
+            font-family: 'Sarabun', 'Roboto', 'Segoe UI', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-weight: 300;
+            line-height: 1.5; 
+            color: #354046;
+            font-size: 11pt;
+            word-wrap: break-word;
+        }
+
+        /*.remark-container {
+            background: #eee;
+        }*/
+        .remark-container {
+            background: #eee !important;
+            margin: 20;
+            padding: 20;
+            width: 50vw;
+            height: 50vh;
+        }
+
+
+        .remark-slide-content {
+            font-size: 1.5em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 2em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+   
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.6em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 24pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        table {
+            border-spacing: 0;
+            border: 1px solid #e2e2e2;
+            font-size: .8em;
+            margin: auto;
+            padding: 0;
+        }
+
+        thead {
+            border: 0;
+            margin: 0;
+        }
+
+        th {
+            background: #e2e2e2;
+            border: 0;
+            font-weight: bold;
+            margin: 0;
+            padding: 7px 0;
+            text-align: center;
+        }
+
+        tbody {
+            background: white;
+            font-size: .8em;
+            margin: 0;
+        }
+
+        tr {
+            margin: 0;
+            padding: 0;
+        }
+
+        tr:nth-child(odd) {
+            background: #fcfcfc;
+        }
+
+        td {
+            margin: 0;
+            padding: 5px 8px;
+        }
+
+        .caption {
+            display: block;
+            text-align: center;
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        .circle img {
+            border-radius: 50%;
+        }
+
+        .stretch img {
+            width: 100%;
+            height: auto;
+        }
+
+        .solid {
+          border-style: solid;
+        }
+
+        .dashed {
+          border-style: dashed;
+        }
+
+        .avatars {
+            position: absolute;
+            right: 1em;
+            top: 1em;
+        }
+
+        .avatars img {
+            width: 2.5em;
+            border-radius: 50%;
+        }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{
+            color: #0288d1;
+        }
+
+        .inactive {
+            color: lightgray;
+        }
+
+        .exercise {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .exercise:before {
+            content: "คำถาม";
+            font-weight: bold;
+            display: block;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-5 * {
+            width: 5%;
+        }
+
+        .width-10 * {
+            width: 10%;
+        }
+
+        .width-15 * {
+            width: 15%;
+        }
+
+        .width-20 * {
+            width: 20%;
+        }
+
+        .width-25 * {
+            width: 25%;
+        }
+
+        .width-30 * {
+            width: 30%;
+        }
+
+        .width-35 * {
+            width: 35%;
+        }
+
+        .width-40 * {
+            width: 40%;
+        }
+
+        .width-45 * {
+            width: 45%;
+        }
+
+        .width-50 * {
+            width: 50%;
+        }
+
+        .width-55 * {
+            width: 55%;
+        }
+
+        .width-60 * {
+            width: 60%;
+        }
+
+        .width-65 * {
+            width: 65%;
+        }
+
+        .width-70 * {
+            width: 70%;
+        }
+
+        .width-75 * {
+            width: 75%;
+        }
+
+        .width-80 * {
+            width: 80%;
+        }
+
+        .width-85 * {
+            width: 85%;
+        }
+
+        .width-90 * {
+            width: 90%;
+        }
+
+        .width-93 * {
+            width: 93.7%;
+        }
+
+        .width-95 * {
+            width: 95%;
+        }
+
+        .width-100 * {
+            width: 100%;
+        }
+
+        .width-105 * {
+            width: 105%;
+        }
+
+        .width-110 * {
+            width: 110%;
+        }
+
+        .width-115 * {
+            width: 115%;
+        }
+
+        .width-120 * {
+            width: 120%;
+        }
+
+        .width-125 * {
+            width: 125%;
+        }
+
+        .width-130 * {
+            width: 130%;
+        }
+
+        .width-135 * {
+            width: 135%;
+        }
+
+        .width-140 * {
+            width: 140%;
+        }
+
+        .width-145 * {
+            width: 145%;
+        }
+
+        .width-150 * {
+            width: 150%;
+        }
+
+        .width-155 * {
+            width: 155%;
+        }
+
+        .width-160 * {
+            width: 160%;
+        }
+
+        .width-165 * {
+            width: 165%;
+        }
+
+        .width-170 * {
+            width: 170%;
+        }
+
+        .width-175 * {
+            width: 175%;
+        }
+
+        .width-180 * {
+            width: 180%;
+        }
+
+        .width-185 * {
+            width: 185%;
+        }
+
+        .width-190 * {
+            width: 190%;
+        }
+
+        .width-195 * {
+            width: 195%;
+        }
+
+        .width-200 * {
+            width: 200%;
+        }
+
+        .title-slide:after {
+            content: '';
+            background: url("../assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .red-slide {
+            background-color: red;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .shadow {
+            background-color: rgba(0,0,0,0.75);
+            padding: 10px;
+        }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child {
+            padding-right: 0px;
+        }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid-half {
+            width: 50%;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .grid-pad {
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 0;
+        }
+
+        .push-left {
+            float: left;
+        }
+
+        .push-right {
+            float: right;
+        }
+
+        .kol-1-1 {
+            width: 100%;
+        }
+        .kol-2-3, .kol-8-12 {
+            width: 66.66%;
+        }
+
+        .kol-1-2, .kol-6-12 {
+            width: 50%;
+        }
+
+        .kol-1-3, .kol-4-12 {
+            width: 33.33%;
+        }
+
+        .kol-1-4, .kol-3-12 {
+            width: 25%;
+        }
+
+        .kol-1-5 {
+            width: 20%;
+        }
+
+        .kol-1-6, .kol-2-12 {
+            width: 16.667%;
+        }
+
+        .kol-1-7 {
+            width: 14.28%;
+        }
+
+        .kol-1-8 {
+            width: 12.5%;
+        }
+
+        .kol-1-9 {
+            width: 11.1%;
+        }
+
+        .kol-1-10 {
+            width: 10%;
+        }
+
+        .kol-1-11 {
+            width: 9.09%;
+        }
+
+        .kol-1-12 {
+            width: 8.33%
+        }
+
+        .kol-3-8 {
+            width: 37.5%;
+        }
+
+        .kol-5-8 {
+            width: 62.5%;
+        }
+
+        .kol-11-12 {
+            width: 91.66%
+        }
+
+        .kol-10-12 {
+            width: 83.333%;
+        }
+
+        .kol-9-12, .kol-3-4 {
+            width: 75%;
+        }
+
+        .kol-5-12 {
+            width: 41.66%;
+        }
+
+        .kol-7-12 {
+            width: 58.33%;
+        }
+
+        .kol-2-5 {
+            width: 40%;
+        }
+
+        .kol-3-5 {
+            width: 60%;
+        }
+
+        .kol-4-5 {
+            width: 80%;
+        }
+
+        /* Pushing blocks */
+
+        .push-2-3, .push-8-12 {
+            margin-left: 66.66%;
+        }
+
+        .push-1-2, .push-6-12 {
+            margin-left: 50%;
+        }
+
+        .push-1-3, .push-4-12 {
+            margin-left: 33.33%;
+        }
+
+        .push-1-4, .push-3-12 {
+            margin-left: 25%;
+        }
+
+        .push-1-5 {
+            margin-left: 20%;
+        }
+
+        .push-1-6, .push-2-12 {
+            margin-left: 16.667%;
+        }
+
+        .push-1-7 {
+            margin-left: 14.28%;
+        }
+
+        .push-1-8 {
+            margin-left: 12.5%;
+        }
+
+        .push-1-9 {
+            margin-left: 11.1%;
+        }
+
+        .push-1-10 {
+            margin-left: 10%;
+        }
+
+        .push-1-11 {
+            margin-left: 9.09%;
+        }
+
+        .push-1-12 {
+            margin-left: 8.33%
+        }
+
+        /* KaTeX styles are included here for mathematical expressions */
+        @font-face{font-family:KaTeX_AMS;src:url(fonts/KaTeX_AMS-Regular.eot);src:url(fonts/KaTeX_AMS-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_AMS-Regular.woff2) format('woff2'),url(fonts/KaTeX_AMS-Regular.woff) format('woff'),url(fonts/KaTeX_AMS-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Bold.eot);src:url(fonts/KaTeX_Caligraphic-Bold.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Caligraphic-Bold.woff2) format('woff2'),url(fonts/KaTeX_Caligraphic-Bold.woff) format('woff'),url(fonts/KaTeX_Caligraphic-Bold.ttf) format('truetype');font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Regular.eot);src:url(fonts/KaTeX_Caligraphic-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Caligraphic-Regular.woff2) format('woff2'),url(fonts/KaTeX_Caligraphic-Regular.woff) format('woff'),url(fonts/KaTeX_Caligraphic-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Bold.eot);src:url(fonts/KaTeX_Fraktur-Bold.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Fraktur-Bold.woff2) format('woff2'),url(fonts/KaTeX_Fraktur-Bold.woff) format('woff'),url(fonts/KaTeX_Fraktur-Bold.ttf) format('truetype');font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Regular.eot);src:url(fonts/KaTeX_Fraktur-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Fraktur-Regular.woff2) format('woff2'),url(fonts/KaTeX_Fraktur-Regular.woff) format('woff'),url(fonts/KaTeX_Fraktur-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Bold.eot);src:url(fonts/KaTeX_Main-Bold.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Main-Bold.woff2) format('woff2'),url(fonts/KaTeX_Main-Bold.woff) format('woff'),url(fonts/KaTeX_Main-Bold.ttf) format('truetype');font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Italic.eot);src:url(fonts/KaTeX_Main-Italic.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Main-Italic.woff2) format('woff2'),url(fonts/KaTeX_Main-Italic.woff) format('woff'),url(fonts/KaTeX_Main-Italic.ttf) format('truetype');font-weight:400;font-style:italic}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Regular.eot);src:url(fonts/KaTeX_Main-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Main-Regular.woff2) format('woff2'),url(fonts/KaTeX_Main-Regular.woff) format('woff'),url(fonts/KaTeX_Main-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Math;src:url(fonts/KaTeX_Math-Italic.eot);src:url(fonts/KaTeX_Math-Italic.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Math-Italic.woff2) format('woff2'),url(fonts/KaTeX_Math-Italic.woff) format('woff'),url(fonts/KaTeX_Math-Italic.ttf) format('truetype');font-weight:400;font-style:italic}@font-face{font-family:KaTeX_SansSerif;src:url(fonts/KaTeX_SansSerif-Regular.eot);src:url(fonts/KaTeX_SansSerif-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_SansSerif-Regular.woff2) format('woff2'),url(fonts/KaTeX_SansSerif-Regular.woff) format('woff'),url(fonts/KaTeX_SansSerif-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Script;src:url(fonts/KaTeX_Script-Regular.eot);src:url(fonts/KaTeX_Script-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Script-Regular.woff2) format('woff2'),url(fonts/KaTeX_Script-Regular.woff) format('woff'),url(fonts/KaTeX_Script-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size1;src:url(fonts/KaTeX_Size1-Regular.eot);src:url(fonts/KaTeX_Size1-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Size1-Regular.woff2) format('woff2'),url(fonts/KaTeX_Size1-Regular.woff) format('woff'),url(fonts/KaTeX_Size1-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size2;src:url(fonts/KaTeX_Size2-Regular.eot);src:url(fonts/KaTeX_Size2-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Size2-Regular.woff2) format('woff2'),url(fonts/KaTeX_Size2-Regular.woff) format('woff'),url(fonts/KaTeX_Size2-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size3;src:url(fonts/KaTeX_Size3-Regular.eot);src:url(fonts/KaTeX_Size3-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Size3-Regular.woff2) format('woff2'),url(fonts/KaTeX_Size3-Regular.woff) format('woff'),url(fonts/KaTeX_Size3-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size4;src:url(fonts/KaTeX_Size4-Regular.eot);src:url(fonts/KaTeX_Size4-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Size4-Regular.woff2) format('woff2'),url(fonts/KaTeX_Size4-Regular.woff) format('woff'),url(fonts/KaTeX_Size4-Regular.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Typewriter;src:url(fonts/KaTeX_Typewriter-Regular.eot);src:url(fonts/KaTeX_Typewriter-Regular.eot#iefix) format('embedded-opentype'),url(fonts/KaTeX_Typewriter-Regular.woff2) format('woff2'),url(fonts/KaTeX_Typewriter-Regular.woff) format('woff'),url(fonts/KaTeX_Typewriter-Regular.ttf) format('truetype');font-weight:400;font-style:normal}.katex-display{display:block;margin:1em 0;text-align:center}.katex .base,.katex .katex-html,.katex .strut{display:inline-block}.katex-display>.katex{display:inline-block;text-align:initial}.katex{font:400 1.21em KaTeX_Main,Times New Roman,serif;line-height:1.2;white-space:nowrap;text-indent:0;text-rendering:auto}.katex *{-ms-high-contrast-adjust:none!important}.katex .katex-mathml{position:absolute;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}.katex .base{position:relative}.katex .mathrm{font-style:normal}.katex .mainit,.katex .mathit,.katex .textit{font-style:italic}.katex .mathit{font-family:KaTeX_Math}.katex .mathbf{font-family:KaTeX_Main;font-weight:700}.katex .amsrm,.katex .mathbb{font-family:KaTeX_AMS}.katex .mathcal{font-family:KaTeX_Caligraphic}.katex .mathfrak{font-family:KaTeX_Fraktur}.katex .mathtt{font-family:KaTeX_Typewriter}.katex .mathscr{font-family:KaTeX_Script}.katex .mathsf{font-family:KaTeX_SansSerif}.katex .mainit{font-family:KaTeX_Main}.katex .mainrm{font-family:KaTeX_Main;font-style:normal}.katex .mord+.mop{margin-left:.16667em}.katex .mord+.mbin{margin-left:.22222em}.katex .mord+.mrel{margin-left:.27778em}.katex .mop+.mop,.katex .mop+.mord,.katex .mord+.minner{margin-left:.16667em}.katex .mop+.mrel{margin-left:.27778em}.katex .mop+.minner{margin-left:.16667em}.katex .mbin+.minner,.katex .mbin+.mop,.katex .mbin+.mopen,.katex .mbin+.mord{margin-left:.22222em}.katex .mrel+.minner,.katex .mrel+.mop,.katex .mrel+.mopen,.katex .mrel+.mord{margin-left:.27778em}.katex .mclose+.mop{margin-left:.16667em}.katex .mclose+.mbin{margin-left:.22222em}.katex .mclose+.mrel{margin-left:.27778em}.katex .mclose+.minner,.katex .minner+.mop,.katex .minner+.mord,.katex .mpunct+.mclose,.katex .mpunct+.minner,.katex .mpunct+.mop,.katex .mpunct+.mopen,.katex .mpunct+.mord,.katex .mpunct+.mpunct,.katex .mpunct+.mrel{margin-left:.16667em}.katex .minner+.mbin{margin-left:.22222em}.katex .minner+.mrel{margin-left:.27778em}.katex .minner+.minner,.katex .minner+.mopen,.katex .minner+.mpunct{margin-left:.16667em}.katex .mbin.mtight,.katex .mclose.mtight,.katex .minner.mtight,.katex .mop.mtight,.katex .mopen.mtight,.katex .mord.mtight,.katex .mpunct.mtight,.katex .mrel.mtight{margin-left:0}.katex .mclose+.mop.mtight,.katex .minner+.mop.mtight,.katex .mop+.mop.mtight,.katex .mop+.mord.mtight,.katex .mord+.mop.mtight{margin-left:.16667em}.katex .vlist-t{display:inline-table;table-layout:fixed}.katex .vlist-r{display:table-row}.katex .vlist{display:table-cell;vertical-align:bottom;position:relative}.katex .vlist>span{display:block;height:0;position:relative}.katex .vlist>span>span{display:inline-block}.katex .vlist>span>.pstrut{overflow:hidden;width:0}.katex .vlist-t2{margin-right:-2px}.katex .vlist-s{display:table-cell;vertical-align:bottom;font-size:1px;width:2px}.katex .fontsize-ensurer,.katex .llap>.fix,.katex .mfrac .frac-line,.katex .mspace,.katex .mtable .arraycolsep,.katex .mtable .vertical-separator,.katex .nulldelimiter,.katex .rlap>.fix,.katex .rule,.katex .sizing{display:inline-block}.katex .msupsub{text-align:left}.katex .accent>.vlist-t,.katex .mfrac>span>span,.katex .mtable .col-align-c>.vlist-t,.katex .op-limits>.vlist-t{text-align:center}.katex .mfrac .frac-line{width:100%;border-bottom-style:solid}.katex .mspace.negativethinspace{margin-left:-.16667em}.katex .mspace.thinspace{width:.16667em}.katex .mspace.negativemediumspace{margin-left:-.22222em}.katex .mspace.mediumspace{width:.22222em}.katex .mspace.thickspace{width:.27778em}.katex .mspace.sixmuspace{width:.333333em}.katex .mspace.eightmuspace{width:.444444em}.katex .mspace.enspace{width:.5em}.katex .mspace.twelvemuspace{width:.666667em}.katex .mspace.quad{width:1em}.katex .mspace.qquad{width:2em}.katex .llap,.katex .rlap{width:0;position:relative}.katex .llap>.inner,.katex .rlap>.inner{position:absolute}        .katex .llap>.inner{right:0}.katex .rlap>.inner{left:0}.katex .katex-logo .a{font-size:.75em;margin-left:-.32em;position:relative;top:-.2em}.katex .katex-logo .t{margin-left:-.23em}.katex .katex-logo .e{margin-left:-.1667em;position:relative;top:.2155em}.katex .katex-logo .x{margin-left:-.125em}.katex .rule{border:0 solid;position:relative}.katex .overline .overline-line,.katex .underline .underline-line{display:inline-block;width:100%;border-bottom-style:solid}.katex .sqrt>.root{margin-left:.27777778em;margin-right:-.55555556em}
+        .katex-display {
+         display: inline-block;
+         margin: 0;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../assets/katex.min.css">
+    <script defer src="../assets/katex.min.js"></script>
+</head>
+<body>
+    <textarea id="source">
+
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์เบื้องต้น
+
+บรรยาย 4: การวัดปริมาณความไม่แน่นอน (Quantifying uncertainty)
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th]
+
+---
+
+class: middle, center
+
+.width-40[![](figures/lec0/map.png)]
+
+???
+
+สร้างแรงจูงใจว่าทำไมหัวข้อนี้ถึงสำคัญใน AI (และนี่ไม่ใช่แค่คลาสทฤษฎีความน่าจะเป็นอีกคลาสหนึ่ง)
+
+---
+
+# วันนี้เราจะเรียนเรื่อง
+
+.grid[
+.kol-1-2[
+
+- Random variables (ตัวแปรสุ่ม)
+- Probability distributions (การแจกแจงความน่าจะเป็น)
+- Inference (การอนุมาน)
+- Independence (ความเป็นอิสระ)
+- The Bayes' rule (กฎของเบย์)
+
+]
+.kol-1-2[
+.width-60[![](figures/lec4/proba-cartoon.png)]
+]
+]
+
+.alert[อย่ามองข้ามการบรรยายนี้!]
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+# การวัดปริมาณความไม่แน่นอน (Quantifying uncertainty)
+
+---
+
+class: middle
+
+.grid[
+.kol-1-2[
+มีผี *ซ่อน* อยู่ที่ไหนสักแห่งในตาราง
+
+ค่าที่อ่านได้จากเซ็นเซอร์บอกว่าช่องสี่เหลี่ยมอยู่ใกล้กับผีแค่ไหน:
+- ตรงตำแหน่งผี: สีแดง
+- ห่าง 1 หรือ 2 ช่อง: สีส้ม
+- ห่าง 3 ช่อง: สีเหลือง
+- ห่าง 4+ ช่อง: สีเขียว
+]
+.kol-1-2[.width-100[![](figures/lec4/gb-grid.png)]]
+]
+เซ็นเซอร์มี **สัญญาณรบกวน (noisy)** แต่เรารู้ค่าความน่าจะเป็น $P(\text{color}|\text{distance})$ สำหรับทุกสีและทุกระยะทาง
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec4/gb-noprob.mp4" type="video/mp4">
+</video>]
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.center.width-45[![](figures/lec0/max-utility.png)]
+
+## หลักการของอรรถประโยชน์คาดหวังสูงสุด (Principle of maximum expected utility)
+
+เอเจนต์จะถูกเรียกว่ามีเหตุผล (rational) ถ้าหากเลือกกระทำที่ให้ **อรรถประโยชน์คาดหวัง (expected utility) สูงสุด** โดยเฉลี่ยจากผลลัพธ์ที่เป็นไปได้ทั้งหมดของการกระทำนั้น
+
+.question[คำว่า "คาดหวัง" (expected) หมายถึงอะไรกันแน่?]
+
+---
+
+# ความไม่แน่นอน (Uncertainty)
+
+สถานการณ์ทั่วไป:
+- ตัวแปรที่*สังเกตได้*หรือหลักฐาน (Observed variables or evidence): เอเจนต์รู้ข้อมูลบางอย่างเกี่ยวกับสถานะของโลก (เช่น ค่าที่อ่านได้จากเซ็นเซอร์)
+- **ตัวแปรที่สังเกตไม่ได้** (Unobserved variables): เอเจนต์ต้องให้เหตุผลเกี่ยวกับแง่มุมอื่นๆ ที่ไม่แน่นอน (เช่น ผีอยู่ที่ไหน)
+- *แบบจำลอง* (เชิงความน่าจะเป็น) (Probabilistic model): เอเจนต์รู้หรือเชื่อบางอย่างเกี่ยวกับความสัมพันธ์ระหว่างตัวแปรที่สังเกตได้กับตัวแปรที่สังเกตไม่ได้
+
+**การให้เหตุผลเชิงความน่าจะเป็น (Probabilistic reasoning)** เป็นกรอบการทำงานสำหรับจัดการความรู้และความเชื่อของเรา
+
+---
+
+# การยืนยันเชิงความน่าจะเป็น (Probabilistic assertions)
+
+การยืนยันเชิงความน่าจะเป็นแสดงถึงการที่เอเจนต์ไม่สามารถตัดสินใจได้อย่างชัดเจนเกี่ยวกับความจริงของข้อเสนอหนึ่งๆ
+- ค่าความน่าจะเป็น **สรุป** ผลกระทบของ
+    - *ความไม่รู้* (ignorance) (ทางทฤษฎี, ทางปฏิบัติ)
+    - *ความขี้เกียจ* (laziness) (ขาดเวลา, ทรัพยากร)
+- ความน่าจะเป็นเชื่อมโยงข้อเสนอกับสถานะความรู้ (หรือการขาดความรู้) ของตนเอง
+    - เช่น $P(\text{ผีในช่อง } [3,2]) = 0.02$
+
+---
+
+class: middle
+
+## Frequentism vs. Bayesianism
+
+ค่าความน่าจะเป็นแสดงถึงอะไร?
+- มุมมองของ *frequentist* ที่เป็นรูปธรรมคือ ความน่าจะเป็นเป็นแง่มุมที่แท้จริงของจักรวาล
+    - กล่าวคือ แนวโน้มของวัตถุที่จะมีพฤติกรรมในลักษณะบางอย่าง
+    - เช่น การที่เหรียญเที่ยงตรงจะออกหัวด้วยความน่าจะเป็น $0.5$ เป็นแนวโน้มของเหรียญเอง
+- มุมมองของ **Bayesian** ที่เป็นอัตวิสัยคือ ความน่าจะเป็นเป็นวิธีบ่งบอกความเชื่อหรือความไม่แน่นอนของเอเจนต์
+    - กล่าวคือ ความน่าจะเป็นไม่มีนัยสำคัญทางกายภาพภายนอก
+    - นี่คือการตีความความน่าจะเป็นที่เราจะใช้!
+
+.question[เราจะกำหนดค่าตัวเลขให้กับความเชื่อได้อย่างไร?]
+
+---
+
+# สัจพจน์ของคอลโมโกรอฟ (Kolmogorov's axioms)
+
+เริ่มต้นด้วยเซต $\Omega$ ซึ่งคือ **ปริภูมิตัวอย่าง (sample space)**
+
+$\omega \in \Omega$ คือ *จุดตัวอย่าง (sample point)* หรือโลกที่เป็นไปได้
+
+**ปริภูมิความน่าจะเป็น (probability space)** คือปริภูมิตัวอย่างที่มีฟังก์ชันความน่าจะเป็นติดตั้งอยู่ด้วย กล่าวคือ การกำหนดค่า $P : \mathcal{P}(\Omega) \to \mathbb{R}$ โดยที่:
+- สัจพจน์ข้อที่ 1: $P(\omega) \in \mathbb{R}$, $0 \leq P(\omega)$ สำหรับทุก $\omega \in \Omega$
+- สัจพจน์ข้อที่ 2: $P(\Omega) = 1$
+- สัจพจน์ข้อที่ 3: $P(\\{ \omega\_1, ..., \omega\_n \\}) = \sum\_{i=1}^n P(\omega\_i)$ สำหรับเซตของตัวอย่างใดๆ
+
+โดยที่ $\mathcal{P}(\Omega)$ คือเพาเวอร์เซตของ $\Omega$
+
+???
+
+สัจพจน์เหล่านี้จำกัดระดับความเชื่อที่เอเจนต์สามารถมีเกี่ยวกับข้อเสนอที่มีความสัมพันธ์กันในเชิงตรรกะ
+
+ทฤษฎีบทของ De Finetti บอกเป็นนัยว่า ไม่มีเอเจนต์ที่มีเหตุผลใดสามารถมีความเชื่อที่ขัดต่อสัจพจน์ของความน่าจะเป็นได้ หรือพูดอีกอย่างก็คือ ความเชื่อที่มีเหตุผลต้องปฏิบัติตามสัจพจน์ของความน่าจะเป็น
+
+$P$ สามารถเป็นสากล (Frequentist) หรือเป็นอัตวิสัย (Bayesian) ก็ได้ มันเป็นทางเลือกที่เราต้องตัดสินใจ และยังสามารถกำหนดพารามิเตอร์แล้วเรียนรู้จากข้อมูลได้อีกด้วย (บรรยาย 5 และ 7)
+
+---
+
+class: middle
+
+## ตัวอย่าง
+
+- $\Omega$ = ผลลัพธ์ที่เป็นไปได้ 6 อย่างจากการทอยลูกเต๋า
+- $\omega\_i$ (สำหรับ $i=1, ..., 6$) คือจุดตัวอย่าง ซึ่งแต่ละจุดสอดคล้องกับผลลัพธ์ของลูกเต๋า
+- การกำหนดค่า $P$ สำหรับลูกเต๋าที่เที่ยงตรง:
+$$P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = \frac{1}{6}$$
+
+---
+
+# ตัวแปรสุ่ม (Random variables)
+
+- **ตัวแปรสุ่ม (random variable)** คือฟังก์ชัน $X: \Omega \to D\_X$ จากปริภูมิตัวอย่างไปยังโดเมนบางอย่างที่กำหนดผลลัพธ์ของมัน
+    - เช่น $\text{Odd}: \Omega \to \\{ \text{true}, \text{false} \\}$ โดยที่ $\text{Odd}(\omega) = (\omega\,\text{mod}\,2 = 1)$
+- $P$ ก่อให้เกิด *การแจกแจงความน่าจะเป็น (probability distribution)* สำหรับตัวแปรสุ่ม $X$ ใดๆ
+    - $P(X=x\_i) = \sum\_{\\{\omega: X(\omega)=x\_i\\}} P(\omega)$
+    - เช่น $P(\text{Odd}=\text{true}) = P(1)+P(3)+P(5) = \frac{1}{2}$
+- *เหตุการณ์ (event)* $E$ คือเซตของผลลัพธ์ $\\{(x\_1, ..., x\_n), ...\\}$ ของตัวแปร $X\_1, ..., X\_n$ โดยที่ $$P(E) = \sum_{(x_1, ..., x_n) \in E} P(X\_1=x_1, ..., X\_n=x_n)$$
+
+???
+
+ในทางปฏิบัติ เราจะใช้ตัวแปรสุ่มเพื่อแสดงแง่มุมต่างๆ ของโลกที่เรา (อาจ) มีความไม่แน่นอน
+- $R$: ฝนตกหรือไม่?
+- $T$: อากาศร้อนหรือเย็น?
+- $L$: ผีอยู่ที่ไหน?
+
+---
+
+class: middle
+
+## สัญกรณ์ (Notations)
+
+- ตัวแปรสุ่มจะเขียนด้วยอักษรโรมันตัวใหญ่: $X$, $Y$, ฯลฯ
+- การปรากฏ (realization) ของตัวแปรสุ่มจะเขียนด้วยอักษรตัวเล็กที่สอดคล้องกัน
+   เช่น $x\_1$, $x\_2$, ..., $x\_n$ อาจเป็นผลลัพธ์ของตัวแปรสุ่ม $X$
+- ค่าความน่าจะเป็นของการปรากฏ $x$ จะเขียนเป็น $P(X=x)$
+- เมื่อชัดเจนจากบริบท จะย่อเป็น $P(x)$
+- การแจกแจงความน่าจะเป็นของตัวแปรสุ่ม (แบบไม่ต่อเนื่อง) $X$ จะเขียนแทนด้วย ${\bf{P}}(X)$ ซึ่งสอดคล้องกับเวกเตอร์ของตัวเลข โดยแต่ละตัวสำหรับค่าความน่าจะเป็น $P(X=x\_i)$ (และไม่ใช่ค่าสเกลาร์ค่าเดียว!)
+
+---
+
+# การแจกแจงความน่าจะเป็น (Probability distributions)
+
+สำหรับตัวแปรแบบไม่ต่อเนื่อง **การแจกแจงความน่าจะเป็น** สามารถเข้ารหัสได้ด้วยรายการของความน่าจะเป็นของผลลัพธ์ต่างๆ หรือที่เรียกว่า *ฟังก์ชันมวลของความน่าจะเป็น (probability mass function)*
+
+เราสามารถคิดว่าการแจกแจงความน่าจะเป็นเป็น **ตาราง** ที่เชื่อมโยงค่าความน่าจะเป็นกับแต่ละ *ผลลัพธ์* ของตัวแปร
+
+<br>
+
+.grid[
+.center.kol-1-2[
+${\bf P}(W)$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.6$ |
+| $\text{rain}$ | $0.1$ |
+| $\text{fog}$ | $0.3$ |
+| $\text{meteor}$ | $0.0$ |
+
+]
+.kol-1-2[.width-70[![](figures/lec4/pw.png)]]
+]
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+???
+
+- ตารางนี้อาจเป็นอนันต์ได้!
+- โดยโครงสร้างแล้ว ค่าความน่าจะเป็นจะถูก *ทำให้เป็นมาตรฐาน (normalized)* (คือ รวมกันได้ $1$)
+
+---
+
+class: middle
+
+## การแจกแจงร่วม (Joint distributions)
+
+**การแจกแจงความน่าจะเป็นร่วม (joint probability distribution)** ของชุดตัวแปรสุ่ม $X_1, ..., X_n$ จะระบุความน่าจะเป็นของแต่ละผลลัพธ์ (ที่รวมกัน):
+
+$$P(X\_1=x\_1, ..., X\_n=x\_n) = \sum\_{\\{\omega: X\_1(\omega)=x\_1, ..., X\_n(\omega)=x\_n\\}} P(\omega)$$
+
+<br>
+
+.center[${\bf P}(T,W)$]
+
+| $T$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{hot}$ | $\text{sun}$ | $0.4$ |
+| $\text{hot}$ | $\text{rain}$ | $0.1$ |
+| $\text{cold}$ | $\text{sun}$ | $0.2$ |
+| $\text{cold}$ | $\text{rain}$ | $0.3$ |
+
+???
+
+จากการแจกแจงร่วม สามารถคำนวณความน่าจะเป็นของเหตุการณ์ใดๆ ได้
+- ความน่าจะเป็นที่อากาศจะร้อนและมีแดด?
+- ความน่าจะเป็นที่อากาศจะร้อน?
+- ความน่าจะเป็นที่อากาศจะร้อนหรือมีแดด?
+
+เหตุการณ์ที่น่าสนใจมักจะสอดคล้องกับ **การกำหนดค่าบางส่วน (partial assignments)** เช่น $P(\text{hot})$
+
+---
+
+class: middle
+
+## การแจกแจงตามขอบ (Marginal distributions)
+
+**การแจกแจงตามขอบ (marginal distribution)** ของเซตย่อยของกลุ่มตัวแปรสุ่ม คือการแจกแจงความน่าจะเป็นร่วมของตัวแปรที่อยู่ในเซตย่อยนั้น
+
+.center.grid[
+.kol-1-3[
+${\bf P}(T,W)$
+
+| $T$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{hot}$ | $\text{sun}$ | $0.4$ |
+| $\text{hot}$ | $\text{rain}$ | $0.1$ |
+| $\text{cold}$ | $\text{sun}$ | $0.2$ |
+| $\text{cold}$ | $\text{rain}$ | $0.3$ |
+]
+.kol-1-3[
+${\bf P}(T)$
+
+| $T$ | $P$ |
+| --- | --- |
+| $\text{hot}$ | $0.5$ |
+| $\text{cold}$ | $0.5$ |
+
+$P(t) = \sum_w P(t, w)$
+]
+.kol-1-3[
+${\bf P}(W)$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.6$ |
+| $\text{rain}$ | $0.4$ |
+
+$P(w) = \sum_t P(t, w)$
+]
+]
+
+ตามสัญชาตญาณ การแจกแจงตามขอบคือตารางย่อยที่กำจัดตัวแปรบางตัวออกไป
+
+---
+
+class: middle
+
+## การแจกแจงมีเงื่อนไข (Conditional distributions)
+
+**ความน่าจะเป็นมีเงื่อนไข (conditional probability)** ของการปรากฏ $a$ เมื่อกำหนดให้มีการปรากฏ $b$ ถูกนิยามว่าเป็นอัตราส่วนของความน่าจะเป็นของการปรากฏร่วมกันของ $a$ และ $b$ ต่อความน่าจะเป็นของ $b$:
+$$P(a|b) = \frac{P(a,b)}{P(b)}.$$
+
+แท้จริงแล้ว การสังเกต $B=b$ จะตัดโลกที่เป็นไปได้ทั้งหมดที่ $B \neq b$ ออกไป เหลือเพียงเซตที่มีความน่าจะเป็นรวมเป็น $P(b)$ ภายในเซตนั้น โลกที่ $A=a$ จะสอดคล้องกับ $A=a \wedge B=b$ และคิดเป็นสัดส่วน $P(a,b)/ P(b)$
+
+.center.width-35[![](figures/lec4/conditional_b.png)]
+
+---
+
+class: middle
+
+การแจกแจงมีเงื่อนไขคือการแจกแจงความน่าจะเป็นของตัวแปรบางตัว โดยกำหนดให้ค่าของตัวแปรอื่น *คงที่*
+.center.grid[
+.kol-1-3[
+${\bf P}(T,W)$
+
+| $T$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{hot}$ | $\text{sun}$ | $0.4$ |
+| $\text{hot}$ | $\text{rain}$ | $0.1$ |
+| $\text{cold}$ | $\text{sun}$ | $0.2$ |
+| $\text{cold}$ | $\text{rain}$ | $0.3$ |
+]
+.kol-1-3[
+${\bf P}(W|T=\text{hot})$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.8$ |
+| $\text{rain}$ | $0.2$ |
+]
+.kol-1-3[
+${\bf P}(W|T=\text{cold})$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.4$ |
+| $\text{rain}$ | $0.6$ |
+]
+]
+
+---
+
+exclude: true
+class: middle
+
+## เทคนิคการทำให้เป็นมาตรฐาน (Normalization trick)
+
+.center.grid[
+.kol-1-3[
+${\bf P}(T,W)$
+
+| $T$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{hot}$ | $\text{sun}$ | $0.4$ |
+| $\text{hot}$ | $\text{rain}$ | $0.1$ |
+| $\text{cold}$ | $\text{sun}$ | $0.2$ |
+| $\text{cold}$ | $\text{rain}$ | $0.3$ |
+]
+.kol-1-3[
+$\rightarrow {\bf P}(T=\text{cold},W)$
+
+| $T$ | $W$ | $P$ |
+| --- | --- |
+| $\text{cold}$ | $\text{sun}$ | $0.2$ |
+| $\text{cold}$ | $\text{rain}$ | $0.3$ |
+
+*เลือก* ความน่าจะเป็นร่วมที่ตรงกับหลักฐาน $T=\text{cold}$
+
+]
+.kol-1-3[
+$\rightarrow {\bf P}(W|T=\text{cold})$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.4$ |
+| $\text{rain}$ | $0.6$ |
+
+*ทำให้เป็นมาตรฐาน* (Normalize) ส่วนที่เลือก (ทำให้ผลรวมเป็น 1)
+
+]
+]
+
+---
+
+# การอนุมานเชิงความน่าจะเป็น (Probabilistic inference)
+
+**การอนุมาน** เชิงความน่าจะเป็นคือปัญหาของการคำนวณความน่าจะเป็นที่ต้องการจากความน่าจะเป็นอื่นที่ทราบค่าอยู่แล้ว (เช่น การคำนวณความน่าจะเป็นมีเงื่อนไขจากการแจกแจงร่วม)
+
+- โดยทั่วไปเราจะคำนวณความน่าจะเป็นมีเงื่อนไข
+    - เช่น $P(\text{ตรงเวลา} | \text{ไม่มีรายงานอุบัติเหตุ}) = 0.9$
+    - สิ่งเหล่านี้แสดงถึง *ความเชื่อ* ของเอเจนต์เมื่อพิจารณาจากหลักฐาน
+- ความน่าจะเป็นเปลี่ยนแปลงไปตามหลักฐานใหม่:
+    - เช่น $P(\text{ตรงเวลา} | \text{ไม่มีรายงานอุบัติเหตุ}, \text{5AM}) = 0.95$
+    - เช่น $P(\text{ตรงเวลา} | \text{ไม่มีรายงานอุบัติเหตุ}, \text{ฝนตก}) = 0.8$
+    - เช่น $P(\text{ผีในช่อง } [3,2] | \text{สีแดงในช่อง } [3,2]) = 0.99$
+    - การสังเกตหลักฐานใหม่ทำให้ *ความเชื่อถูกปรับปรุง*
+
+---
+
+class: middle
+
+## กรณีทั่วไป
+- *ตัวแปรหลักฐาน* (Evidence variables): $E_1, ..., E_k = e_1, ..., e_k$
+- *ตัวแปรที่ต้องการหา* (Query variables): $Q$
+- *ตัวแปรซ่อนเร้น* (Hidden variables): $H_1, ..., H_r$
+- $(Q \cup E_1, ..., E_k \cup H_1, ..., H_r)$ = ตัวแปรทั้งหมด $X_1, ..., X_n$
+
+**การอนุมาน (Inference)** คือปัญหาของการคำนวณ **${\bf P}(Q|e_1, ..., e_k)$**
+
+---
+
+# การอนุมานโดยการแจกแจง (Inference by enumeration)
+
+เริ่มต้นจากการแจกแจงร่วม ${\bf P}(Q, E\_1, ..., E\_k, H\_1, ..., H\_r)$
+
+1.  เลือกรายการที่สอดคล้องกับหลักฐาน $E_1, ..., E_k = e_1, ..., e_k$
+2.  กำจัดตัวแปรซ่อนเร้นออกไปโดยการหาผลรวม (Marginalize out) เพื่อให้ได้การแจกแจงร่วมของตัวแปรที่ต้องการหากับตัวแปรหลักฐาน:
+    $${\bf P}(Q,e\_1,...,e\_k) = \sum\_{h\_1, ..., h\_r} {\bf P}(Q, h\_1, ..., h\_r, e\_1, ..., e\_k)$$
+3.  ทำให้เป็นมาตรฐาน (Normalize):
+    <br>
+    $$\begin{aligned}
+    Z &= \sum_q P(q,e_1,...,e_k) \\
+    {\bf P}(Q|e_1, ..., e_k) &= \frac{1}{Z} {\bf P}(Q,e_1,...,e_k)
+    \end{aligned}$$
+
+---
+
+class: middle
+
+## ตัวอย่าง
+
+.grid[
+.kol-1-2[
+
+- ${\bf P}(W)$?
+- ${\bf P}(W|\text{winter})$?
+- ${\bf P}(W|\text{winter},\text{hot})$?
+
+]
+.center.kol-1-2[
+
+| $S$ | $T$ | $W$ | $P$ |
+| --- | --- | --- | --- |
+| $\text{summer}$ | $\text{hot}$ | $\text{sun}$ | $0.3$ |
+| $\text{summer}$ | $\text{hot}$ | $\text{rain}$ | $0.05$ |
+| $\text{summer}$ | $\text{cold}$ | $\text{sun}$ | $0.1$ |
+| $\text{summer}$ | $\text{cold}$ | $\text{rain}$ | $0.05$ |
+| $\text{winter}$ | $\text{hot}$ | $\text{sun}$ | $0.1$ |
+| $\text{winter}$ | $\text{hot}$ | $\text{rain}$ | $0.05$ |
+| $\text{winter}$ | $\text{cold}$ | $\text{sun}$ | $0.15$ |
+| $\text{winter}$ | $\text{cold}$ | $\text{rain}$ | $0.2$ |
+
+]
+]
+
+---
+
+class: middle
+
+## ความซับซ้อน (Complexity)
+
+- การอนุมานโดยการแจกแจงสามารถใช้ตอบคำถามเชิงความน่าจะเป็นสำหรับ *ตัวแปรแบบไม่ต่อเนื่อง* (คือ มีจำนวนค่าจำกัด)
+- อย่างไรก็ตาม การแจกแจง **ไม่สามารถขยายขนาดได้ (does not scale)**!
+    - สมมติว่าโดเมนถูกอธิบายด้วยตัวแปร $n$ ตัว ซึ่งแต่ละตัวมีค่าได้ไม่เกิน $d$ ค่า
+    - ความซับซ้อนด้านพื้นที่ (Space complexity): $O(d^n)$
+    - ความซับซ้อนด้านเวลา (Time complexity): $O(d^n)$
+
+.question[เราสามารถลดขนาดการนำเสนอของการแจกแจงร่วมได้หรือไม่?]
+
+---
+
+# กฎผลคูณ (Product rule)
+
+$$P(a, b) = P(b)P(a|b)$$
+
+## ตัวอย่าง
+
+.center.grid[
+.kol-1-3[
+${\bf P}(W)$
+
+| $W$ | $P$ |
+| --- | --- |
+| $\text{sun}$ | $0.8$ |
+| $\text{rain}$ | $0.2$ |
+]
+.kol-1-3[
+${\bf P}(D|W)$
+
+| $D$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{wet}$ | $\text{sun}$ | $0.1$ |
+| $\text{dry}$ | $\text{sun}$ | $0.9$ |
+| $\text{wet}$ | $\text{rain}$ | $0.7$ |
+| $\text{dry}$ | $\text{rain}$ | $0.3$ |
+
+]
+.kol-1-3[
+${\bf P}(D,W)$
+
+| $D$ | $W$ | $P$ |
+| --- | --- | --- |
+| $\text{wet}$ | $\text{sun}$ | ? |
+| $\text{dry}$ | $\text{sun}$ | ? |
+| $\text{wet}$ | $\text{rain}$ | ? |
+| $\text{dry}$ | $\text{rain}$ | ? |
+
+]
+]
+
+---
+
+# กฎลูกโซ่ (Chain rule)
+
+โดยทั่วไปแล้ว การแจกแจงร่วมใดๆ สามารถเขียนเป็นผลคูณของความน่าจะเป็นมีเงื่อนไขที่เพิ่มขึ้นทีละขั้นได้เสมอ:
+
+$$
+\begin{aligned}
+P(x\_1,x\_2,x\_3) &= P(x\_1)P(x\_2|x\_1)P(x\_3|x\_1,x\_2) \\
+P(x\_1,...,x\_n) &= \prod\_{i=1}^n P(x\_i | x\_1, ..., x\_{i-1})
+\end{aligned}
+$$
+
+---
+
+# ความเป็นอิสระ (Independence)
+
+$A$ และ $B$ เป็น **อิสระ (independent)** ต่อกัน ก็ต่อเมื่อ สำหรับทุก $a \in D_A$ และ $b \in D_B$,
+- $P(a|b) = P(a)$, หรือ
+- $P(b|a) = P(b)$, หรือ
+- $P(a,b) = P(a)P(b)$
+
+ความเป็นอิสระเขียนแทนด้วย $A \perp B$
+
+???
+
+... จากนิพจน์ที่สาม เราจะสังเกตได้ว่าการสมมติความเป็นอิสระจะนำไปสู่การแยกตัวประกอบซึ่งตัวประกอบจะมีขนาดเล็กลง
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 1
+
+.center[
+.width-40[![](figures/lec4/weather-independence.svg)]
+.width-45[![](figures/lec4/tooth.png)]
+]
+
+$$
+\begin{aligned}
+&P(\text{toothache}, \text{catch}, \text{cavity}, \text{weather}) \\
+&= P(\text{toothache}, \text{catch}, \text{cavity}) P(\text{weather})
+\end{aligned}$$
+
+ตารางเดิมที่มี 32 รายการจะลดลงเหลือตาราง 8 รายการหนึ่งตารางและตาราง 4 รายการอีกหนึ่งตาราง (สมมติว่า $\text{Weather}$ มี 4 ค่า และตัวแปรอื่นเป็นค่าบูลีน)
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 2
+
+สำหรับการโยนเหรียญที่เป็นอิสระต่อกัน $n$ ครั้ง การแจกแจงร่วมสามารถ **แยกตัวประกอบ (factored)** ได้ทั้งหมดและแสดงเป็นผลคูณของตารางขนาด 1 รายการจำนวน $n$ ตาราง
+- **$2^n \to n$**
+
+---
+
+# ความเป็นอิสระมีเงื่อนไข (Conditional independence)
+
+$A$ และ $B$ เป็น **อิสระมีเงื่อนไข (conditionally independent)** ต่อกันเมื่อกำหนด $C$ ก็ต่อเมื่อ สำหรับทุก $a \in D_A$, $b \in D_B$ และ $c \in D_C$,
+- $P(a|b,c) = P(a|c)$, หรือ
+- $P(b|a,c) = P(b|c)$, หรือ
+- $P(a,b|c) = P(a|c)P(b|c)$
+
+ความเป็นอิสระมีเงื่อนไขเขียนแทนด้วย $A \perp B | C$
+
+---
+
+class: middle
+
+- การใช้กฎลูกโซ่ ทำให้การแจกแจงร่วมสามารถแยกตัวประกอบเป็นผลคูณของความน่าจะเป็นมีเงื่อนไขได้
+- ความน่าจะเป็นมีเงื่อนไขแต่ละตัวอาจสามารถ *ทำให้ง่ายขึ้นได้โดยใช้ความเป็นอิสระมีเงื่อนไข*
+- การยืนยันความเป็นอิสระมีเงื่อนไขช่วยให้แบบจำลองความน่าจะเป็น **ขยายขนาดขึ้น (scale up)** ได้
+
+---
+
+class: middle
+
+.center.width-35[![](figures/lec4/tooth.png)]
+
+## ตัวอย่างที่ 1
+
+สมมติตัวแปรสุ่มสามตัว $\text{Toothache}$ (ปวดฟัน), $\text{Catch}$ (ตรวจพบค้น) และ $\text{Cavity}$ (ฟันผุ)
+
+$\text{Catch}$ เป็นอิสระมีเงื่อนไขจาก $\text{Toothache}$ เมื่อกำหนด $\text{Cavity}$
+ดังนั้น เราสามารถเขียนได้ว่า:
+
+$$
+\begin{aligned}
+&P(\text{toothache}, \text{catch}, \text{cavity}) \\
+&= P(\text{toothache}|\text{catch}, \text{cavity}) P(\text{catch}|\text{cavity}) P(\text{cavity}) \\
+&= P(\text{toothache}|\text{cavity}) P(\text{catch}|\text{cavity}) P(\text{cavity})
+\end{aligned}
+$$
+
+ในกรณีนี้ การนำเสนอการแจกแจงร่วมจะลดลงเหลือตัวเลขที่ไม่ขึ้นต่อกัน $2+2+1$ ตัว (แทนที่จะเป็น $2^n-1$)
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 2 (Naive Bayes)
+
+โดยทั่วไป จากกฎผลคูณ เราจะได้
+$$P(\text{cause},\text{effect}_1, ..., \text{effect}_n) = P(\text{effect}_1, ..., \text{effect}_n|\text{cause}) P(\text{cause})$$
+
+เมื่อสมมติ *ความเป็นอิสระมีเงื่อนไขแบบจับคู่ (pairwise conditional independence)* ระหว่างผลกระทบ (effects) เมื่อกำหนดสาเหตุ (cause) จะได้ว่า:
+$$P(\text{cause},\text{effect}_1, ..., \text{effect}_n) = P(\text{cause}) \prod_i P(\text{effect}_i|\text{cause}) $$
+
+แบบจำลองความน่าจะเป็นนี้เรียกว่าแบบจำลอง **Naive Bayes**
+- ความซับซ้อนของแบบจำลองนี้คือ $O(n)$ แทนที่จะเป็น $O(2^n)$ หากไม่มีสมมติฐานความเป็นอิสระมีเงื่อนไข
+- Naive Bayes สามารถทำงานได้ดีอย่างน่าประหลาดใจในทางปฏิบัติ แม้ว่าสมมติฐานจะไม่ถูกต้องก็ตาม
+
+???
+
+นี่เป็นแบบจำลองที่สำคัญที่คุณควรรู้!
+
+---
+
+class: middle, center, red-slide
+count: false
+
+ศึกษาสไลด์ถัดไป .bold[สองรอบ]
+
+---
+
+# กฎของเบย์ (The Bayes' rule)
+
+.grid[
+.kol-2-3[
+
+กฎผลคูณนิยามสองวิธีในการแยกตัวประกอบการแจกแจงร่วมของตัวแปรสุ่มสองตัว
+    $$P(a,b) = P(a|b)P(b) = P(b|a)P(a)$$
+ดังนั้น,
+**$$P(a|b) = \frac{P(b|a)P(a)}{P(b)}$$**
+]
+.kol-1-3[
+.circle.width-50[![](figures/lec4/thomas.png)]
+]
+]
+
+- $P(a)$ คือความเชื่อก่อนหน้า (prior belief) เกี่ยวกับ $a$
+- $P(b)$ คือความน่าจะเป็นของหลักฐาน $b$
+- $P(a|b)$ คือความเชื่อภายหลัง (posterior belief) เกี่ยวกับ $a$ เมื่อพิจารณาหลักฐาน $b$
+- $P(b|a)$ คือความน่าจะเป็นมีเงื่อนไขของ $b$ เมื่อกำหนด $a$ ขึ้นอยู่กับบริบท คำนี้เรียกว่า likelihood
+
+???
+
+เขียนบนกระดาน
+
+---
+
+class: middle, center
+
+.grid[
+.kol-1-2[
+
+<br><br><br>
+
+**$$P(a|b) = \frac{P(b|a)P(a)}{P(b)}$$**
+
+]
+.kol-1-2[.center.width-80[![](figures/lec4/inference-cartoon.png)]]
+]
+
+<br>
+
+กฎของเบย์เป็น **รากฐาน** ของระบบ AI จำนวนมาก
+
+???
+
+กฎ/การอนุมานของเบย์: เน้นว่ามันเหมือนกับ Sherlock Holmes:
+- เริ่มต้นจากชุดของความเป็นไปได้ (prior)
+- ทิ้ง/ลดน้ำหนักสิ่งที่ไม่สอดคล้องกับการสังเกต/หลักฐาน
+
+กฎของเบย์ให้วิธีการในการปรับปรุงความเชื่อของเราอย่างเป็นระบบ
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 1: ความน่าจะเป็นเชิงวินิจฉัยจากความน่าจะเป็นเชิงสาเหตุ
+
+$$P(\text{cause}|\text{effect}) = \frac{P(\text{effect}|\text{cause})P(\text{cause})}{P(\text{effect})}$$
+โดยที่
+- $P(\text{effect}|\text{cause})$ วัดปริมาณความสัมพันธ์ในทิศทาง *เชิงสาเหตุ (causal)*
+- $P(\text{cause}|\text{effect})$ อธิบายทิศทาง **เชิงวินิจฉัย (diagnostic)**
+
+ให้ $S$=คอแข็ง และ $M$=เยื่อหุ้มสมองอักเสบ
+กำหนดให้ $P(s|m) = 0.7$, $P(m) = 1/50000$, $P(s) = 0.01,$
+จะได้
+$$P(m|s) = \frac{P(s|m)P(m)}{P(s)} = \frac{0.7 \times 1/50000}{0.01} = 0.0014$$
+
+???
+
+... หรือ $M$=โควิด-19!
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 2: Ghostbusters, ทบทวนอีกครั้ง
+
+- สมมติตัวแปรสุ่ม $G$ สำหรับตำแหน่งของผี และชุดของตัวแปรสุ่ม $R_{i,j}$ สำหรับค่าที่อ่านได้แต่ละค่า
+- เราเริ่มต้นด้วย **การแจกแจงก่อนหน้า (prior distribution)** ที่เป็นเอกรูป (uniform) ${\bf P}(G)$ สำหรับตำแหน่งของผี
+- เราสมมติแบบจำลองการอ่านของเซ็นเซอร์ *reading model* ${\bf P}(R\_{i,j}|G)$
+    - นั่นคือ เรารู้ว่าเซ็นเซอร์ทำงานอย่างไร
+    - $R_{i,j}$ = สีที่อ่านได้ ณ ตำแหน่ง $[i,j]$
+        - เช่น $P(R_{1,1}=\text{yellow}|G=[1,1])=0.1$
+    - ค่าที่อ่านได้สองค่าเป็นอิสระมีเงื่อนไขต่อกัน เมื่อกำหนดตำแหน่งของผี
+
+???
+
+นี่คือแบบจำลอง Naive Bayes!
+
+---
+
+class: middle
+
+- เราสามารถคำนวณ **การแจกแจงภายหลัง (posterior distribution)** ${\bf P}(G|R\_{i,j})$ โดยใช้กฎของเบย์:
+$${\bf P}(G|R\_{i,j}) = \frac{ {\bf P}(R\_{i,j}|G){\bf P}(G)}{ {\bf P}(R\_{i,j})}$$
+- สำหรับการอ่านค่าครั้งต่อไป $R\_{i',j'}$ การแจกแจงภายหลังนี้จะกลายเป็นการแจกแจงก่อนหน้าสำหรับตำแหน่งของผี ซึ่งเราจะปรับปรุงในทำนองเดียวกัน
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec4/gb-prob.mp4" type="video/mp4">
+</video>]
+
+.footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+???
+
+จะเกิดอะไรขึ้นถ้าเราเลือก prior ที่แตกต่างออกไป?
+
+---
+
+class: middle
+
+## ตัวอย่างที่ 3: AI สำหรับวิทยาศาสตร์ (AI for Science)
+
+.center.width-100[![](figures/lec4/lfi-chain.png)]
+
+
+เมื่อมีการสังเกต $x$ และความเชื่อก่อนหน้า $p(\theta)$ วิทยาศาสตร์คือการปรับปรุงความรู้ของตนเอง ซึ่งสามารถมองในกรอบของการคำนวณ
+$$p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}$$
+
+
+---
+
+class: middle, black-slide
+
+## การจำแนกลักษณะชั้นบรรยากาศของดาวเคราะห์นอกระบบสุริยะ (Exoplanet atmosphere characterization)
+
+.center.width-70[![](./figures/lec4/exoplanet-probe.jpg)]
+
+.footnote[ที่มา: [NSA/JPL-Caltech](https://www.nasa.gov/topics/universe/features/exoplanet20100203-b.html), 2010.]
+
+---
+
+class: middle
+
+.avatars[![](figures/lec4/faces/malavika.jpg)![](figures/lec4/faces/francois.jpg)![](figures/lec4/faces/absil.jpg)]
+
+.center[
+.width-25[![](./figures/lec4/exoplanet-residuals.png)]
+.width-50[![](./figures/lec4/exoplanet-corner.png)]
+]
+
+.footnote[ที่มา: [Vasist et al](https://arxiv.org/abs/2301.06575), 2023.]
+
+---
+
+# สรุป (Summary)
+
+- ความไม่แน่นอนเกิดขึ้นจากความขี้เกียจและความไม่รู้ มัน **หลีกเลี่ยงไม่ได้** ในสภาพแวดล้อมที่ซับซ้อน ไม่เป็นเชิงกำหนด หรือสังเกตได้เพียงบางส่วน
+- การให้เหตุผลเชิงความน่าจะเป็นเป็นกรอบการทำงานสำหรับจัดการความรู้และ *ความเชื่อ* ของเรา โดยมีกฎของเบย์เป็นเครื่องมือหลักสำหรับการอนุมาน
+
+---
+
+class: end-slide, center
+count: false
+
+จบ
+
+    </textarea>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/contrib/auto-render.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    </script>
+</body>
+</html>

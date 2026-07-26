@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Slide Presentation</title>
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="../assets/auto-render.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        .remark-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .remark-slide-content {
+            font-size: 1.3em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.4em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 15pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-100 * {
+            width: 100%;
+        }
+
+        .width-50 * {
+            width: 50%;
+        }
+
+        .width-30 * {
+            width: 30%;
+        }
+
+        .width-40 * {
+            width: 40%;
+        }
+
+        .width-60 * {
+            width: 60%;
+        }
+
+        .width-70 * {
+            width: 70%;
+        }
+        /* Added widths used in slides */
+        .width-80 * {
+            width: 80%;
+        }
+        .width-90 * {
+            width: 90%;
+        }
+        .width-25 * {
+            width: 25%;
+        }
+        .width-20 * {
+            width: 20%;
+        }
+
+        .title-slide:after {
+            content: '';
+            background: url("../assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{
+            color: #0288d1;
+        }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child {
+            padding-right: 0px;
+        }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .kol-1-1 {
+            width: 100%;
+        }
+
+        .kol-1-2 {
+            width: 50%;
+        }
+
+        .kol-1-3 {
+            width: 33.33%;
+        }
+
+        .kol-2-3 {
+            width: 66.66%;
+        }
+
+        .kol-1-4 {
+            width: 25%;
+        }
+
+        .kol-3-4 {
+            width: 75%;
+        }
+
+        .kol-1-5 {
+            width: 20%;
+        }
+
+        .kol-3-5 {
+            width: 60%;
+        }
+
+    </style>
+</head>
+<body>
+    <textarea id="source">
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์ (Artificial Intelligence)
+
+บทบรรยายที่ 9: การเรียนรู้เสริมกำลัง<br>
+(Reinforcement Learning)
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th](mailto:ittipon@g.sut.ac.th)
+
+---
+
+# วันนี้
+
+จะตัดสินใจภายใต้ความไม่แน่นอน **ไปพร้อมกับการเรียนรู้** เกี่ยวกับสภาพแวดล้อมได้อย่างไร?
+
+.grid[
+.kol-1-2[
+- การเรียนรู้เสริมกำลัง (Reinforcement learning: RL)
+- Passive RL (RL แบบพาสซีฟ)
+  - การประมาณแบบมีแบบจำลอง (Model-based estimation)
+  - การประมาณแบบไร้แบบจำลอง (Model-free estimation)
+    - การประมาณอรรถประโยชน์โดยตรง (Direct utility estimation)
+    - การเรียนรู้แบบความต่างตามเวลา (Temporal-difference learning)
+- Active RL (RL แบบแอกทีฟ)
+  - การเรียนรู้แบบมีแบบจำลอง (Model-based learning)
+  - Q-Learning
+  - การทำให้ทั่วไปข้ามสถานะ (Generalizing across states)
+]
+.kol-1-2.width-100[<br><br><br>![](figures/lec9/intro.png)]
+]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.width-100[![](figures/lec9/plan.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+???
+
+วิธีแก้ออฟไลน์ = การวางแผน (Planning)
+
+---
+
+class: middle
+
+# MDPs
+
+สรุปสั้นๆ
+
+---
+
+# MDPs
+
+**กระบวนการตัดสินใจของมาร์คอฟ** (Markov decision process: MDP) คือทูเพิล $(\mathcal{S}, \mathcal{A}, P, R)$ ที่ประกอบด้วย:
+- $\mathcal{S}$ คือเซตของสถานะ $s$;
+- $\mathcal{A}$ คือเซตของการกระทำ $a$;
+- $P$ คือแบบจำลองการเปลี่ยนผ่าน (stationary) โดย $P(s'|s,a)$ แทนความน่าจะเป็นในการไปถึงสถานะ $s'$ เมื่อทำการกระทำ $a$ ที่สถานะ $s$;
+- $R$ คือฟังก์ชันรางวัลที่ให้ค่ารางวัลทันที (จำกัด) $R(s)$ สำหรับสถานะ $s$;
+- ($0 < \gamma \leq 1$ คือตัวคูณลดค่า หรือ discount factor.)
+
+---
+
+class: middle
+
+.grid[
+.kol-1-5.center[
+<br><br><br><br>
+$$s'$$
+$$r' = R(s')$$
+]
+.kol-3-5.center[
+$$s$$
+.width-90[![](figures/lec9/loop.png)]
+$$s' \sim P(s'|s,a)$$
+]
+.kol-1-5[
+<br><br><br><br><br>
+$$a$$
+]
+]
+
+---
+
+class: middle
+
+## ข้อสังเกต
+
+- แม้ว่า MDP จะทั่วไปไปยังปริภูมิสถานะ/การกระทำต่อเนื่องได้ แต่ในบทนี้เราจะสมมติว่า $\mathcal{S}$ และ $\mathcal{A}$ เป็นแบบไม่ต่อเนื่องและมีจำนวนจำกัด
+- รูปแบบนิยามของ MDP ไม่ได้มีแบบเดียว โดยอีกแบบที่ใช้กันแพร่หลายคือกำหนดฟังก์ชันรางวัลตามการเปลี่ยนผ่าน $(s,a,s')$ คือ $R(s,a,s')$ ซึ่งจะทำให้ได้รูปแบบอัลกอริทึมที่ต่างออกไปเล็กน้อย (แต่เทียบเท่า) กับบทบรรยายที่ 8
+
+---
+
+# สมการเบลล์แมน (The Bellman equation)
+
+อรรถประโยชน์ของสถานะคือรางวัลทันทีของสถานะนั้น บวกด้วยอรรถประโยชน์ที่คาดหวังแบบมีการลดค่า (discounted) ของสถานะถัดไป โดยสมมติว่าเอเจนต์เลือกการกระทำที่เหมาะที่สุด:
+$$V(s) = R(s) + \gamma  \max\_{a} \sum\_{s'} P(s'|s,a) V(s').$$
+
+.center.width-50[![](figures/lec8/how-to.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# การวนค่ามูลค่า (Value iteration)
+
+อัลกอริทึม **Value iteration** ให้กระบวนการวนคงที่ (fixed-point iteration) เพื่อคำนวณอรรถประโยชน์ของสถานะ $V(s)$:
+- ให้ $V\_i(s)$ เป็นค่าประมาณอรรถประโยชน์ของ $s$ ณ รอบที่ $i$;
+- **Bellman update** คือการอัปเดตค่าประมาณทั้งหมดพร้อมกันให้สอดคล้องกับสมการเบลล์แมนในเชิงเฉพาะที่:
+$$V\_{i+1}(s) = R(s) + \gamma \max\_a \sum\_{s'} P(s'|s,a) V\_i(s'). $$
+- ทำซ้ำจนบรรจบ
+
+---
+
+# การวนค่านโยบาย (Policy iteration)
+
+อัลกอริทึม **Policy iteration** คำนวณนโยบายโดยตรง (แทนที่จะคำนวณค่าสถานะ) โดยสลับสองขั้นตอนต่อไปนี้:
+- ประเมินนโยบาย: เมื่อกำหนด $\pi\_i$ ให้คำนวณ $V\_i = V^{\pi\_i}$ คืออรรถประโยชน์ของแต่ละสถานะเมื่อรัน $\pi\_i$:
+$$V\_i(s)  = R(s) + \gamma \sum\_{s'} P(s'|s,\pi\_i(s)) V\_i(s').$$
+- ปรับปรุงนโยบาย: คำนวณนโยบายใหม่ $\pi\_{i+1}$ ด้วยการมองล่วงหน้า 1 ก้าวจาก $V\_i$:
+$$\pi\_{i+1}(s) = \arg\max\_a \sum\_{s'} P(s'|s,a)V\_i(s').$$
+
+---
+
+class: middle
+
+# การเรียนรู้เสริมกำลัง (Reinforcement learning)
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="500" width="700">
+  <source src="./figures/lec9/chicken1.mp4" type="video/mp4">
+</video>]
+
+.footnote[เครดิตวิดีโอ: [Megan Hayes](https://twitter.com/PigMegan), [@YAWScience](https://twitter.com/YAWScience/status/1304199719036444672), 2020.]
+
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="500" width="700">
+  <source src="./figures/lec9/chicken2.mp4" type="video/mp4">
+</video>]
+
+.footnote[เครดิตวิดีโอ: [Megan Hayes](https://twitter.com/PigMegan), [@YAWScience](https://twitter.com/YAWScience/status/1304199719036444672), 2020.]
+
+---
+
+class: middle 
+
+## เกิดอะไรขึ้น?
+
+- นี่ไม่ใช่การวางแผน (planning) แต่มันคือการเรียนรู้เสริมกำลัง!
+- มี MDP อยู่ แต่ไก่ไม่สามารถแก้ด้วยการคำนวณอย่างเดียว
+- ไก่ต้องลงมือกระทำจริงเพื่อหาคำตอบ
+
+## แนวคิดสำคัญใน RL ที่โผล่มา
+- การสำรวจ (Exploration): ต้องลองการกระทำที่ไม่รู้จักเพื่อเก็บข้อมูล
+- การแสวงหาผล (Exploitation): ในที่สุดต้องใช้ความรู้ที่มีให้เกิดประโยชน์
+- ความเสียใจ (Regret): แม้เรียนรู้อย่างชาญฉลาด ก็อาจทำพลาดได้
+- การสุ่มตัวอย่าง (Sampling): เพราะความบังเอิญ ต้องลองซ้ำๆ หลายครั้ง
+- ความยาก: การเรียนรู้อาจยากกว่าการแก้ MDP ที่รู้จักดีอยู่แล้วมาก
+
+???
+
+มีกระดานเกมหนึ่ง (MDP ไม่รู้กติกา) ไก่ต้องการเพิ่มรางวัลรวมให้มากที่สุด
+
+---
+
+# Reinforcement learning
+
+เรายังคงสมมติ MDP $(\mathcal{S}, \mathcal{A}, P, R)$ ที่
+- $\mathcal{S}$ คือเซตของสถานะ $s$;
+- $\mathcal{A}$ คือเซตของการกระทำ $a$;
+- $P$ คือแบบจำลองการเปลี่ยนผ่าน (stationary) โดย $P(s'|s,a)$ แทนความน่าจะเป็นในการไปถึง $s'$ เมื่อทำ $a$ ที่ $s$;
+- $R$ คือฟังก์ชันรางวัลที่ให้รางวัลทันที $R(s)$ ในสถานะ $s$.
+
+เป้าหมายของเราคือหานโยบายที่เหมาะที่สุด $\pi^*(s)$
+
+---
+
+class: middle
+
+## ลูกเล่นใหม่ (New twist)
+
+แบบจำลองการเปลี่ยนผ่าน $P(s'|s,a)$ และฟังก์ชันรางวัล $R(s)$ เป็น **สิ่งที่ไม่รู้จัก**
+- เราไม่รู้ว่าสถานะไหนดีและการกระทำใดทำอะไร!
+- ต้องสังเกตหรือโต้ตอบกับสภาพแวดล้อมเพื่อ *เรียนรู้* ไดนามิกเหล่านี้ พร้อมกับลงมือกระทำ
+.grid[
+.kol-1-5.center[
+<br><br><br><br>
+$$s'$$
+$$r' = \underbrace{R(s')}\_{???}$$
+]
+.kol-3-5.center[
+$$s$$
+.width-70[![](figures/lec9/loop.png)]
+$$s' \sim \underbrace{P(s'|s,a)}\_{???}$$
+]
+.kol-1-5[
+<br><br><br><br><br>
+$$a$$
+]
+]
+
+???
+
+นึกภาพเล่นเกมใหม่ที่ไม่รู้กติกา เล่นไปสักร้อยตา คู่แข่งบอกว่า “คุณแพ้” — นี่แหละ RL แบบย่อ
+
+---
+
+# Passive RL
+
+.center.width-50[![](figures/lec9/passive-rl.png)]
+
+## เป้าหมาย: ประเมินนโยบาย (policy evaluation)
+- นโยบายของเอเจนต์ $\pi$ ถูกตรึงตายตัว
+- เป้าหมายคือเรียนรู้ค่าอรรถประโยชน์ $V^\pi(s)$
+- ผู้เรียนไม่มีสิทธิ์เลือกการกระทำ แค่รันนโยบายและเรียนรู้จากประสบการณ์
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+???
+
+นี่ไม่ใช่การวางแผนออฟไลน์ คุณต้องลงมือทำจริงในโลก! (เพราะ $P$ และ $R$ ไม่รู้)
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec9/policy-example.png)]
+
+เอเจนต์รัน **การทดลอง** (trials/episodes) หลายครั้งด้วยนโยบาย $\pi$.
+ลำดับการเดิน (trajectory) $(s, r, a, s'), (s', r', a', s''), ...$ อาจเป็นเช่นนี้:
+- Trial 1: $(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+- Trial 2: $(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+- Trial 3: $(E, -1, \text{north}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+- Trial 4: $(E, -1, \text{north}, C), (C, -1, \text{east}, A), (A, -10, \text{exit}, \perp)$
+
+---
+
+# การประมาณแบบมีแบบจำลอง (Model-based estimation)
+
+เอเจนต์แบบ **Model-based** จะประมาณแบบจำลองการเปลี่ยนผ่านและรางวัล $\hat{P}$ และ $\hat{R}$ จากประสบการณ์ แล้วประเมิน MDP เชิงประจักษ์ที่ได้
+
+- ขั้นที่ 1: เรียนรู้ MDP เชิงประจักษ์
+  - ประมาณ $\hat{P}(s'|s,a)$ จากตัวอย่างเชิงประจักษ์ $(s,a,s')$ หรือด้วยการเรียนรู้แบบมีผู้สอน
+  - ค้นหารางวัล $\hat{R}(s)$ ของแต่ละ $s$
+- ขั้นที่ 2: ประเมิน $\pi$ ด้วย $\hat{P}$ และ $\hat{R}$ เช่น
+  $$V(s)  = \hat{R}(s) + \gamma \sum\_{s'} \hat{P}(s'|s,\pi(s)) V(s').$$
+
+.center.width-40[![](figures/lec9/model-based-rl.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ตัวอย่าง
+
+.grid[
+.kol-1-4.smaller-x[
+นโยบาย $\pi$:
+
+.width-100[![](figures/lec9/policy-example.png)]
+]
+.kol-3-4[
+.smaller-x[
+Trajectories:
+
+$(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(E, -1, \text{north}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(E, -1, \text{north}, C), (C, -1, \text{east}, A), (A, -10, \text{exit}, \perp)$
+
+]
+]
+]
+
+.grid.smaller-x[
+.kol-1-2[
+แบบจำลองการเปลี่ยนผ่านที่เรียนรู้ได้ $\hat{P}$:
+
+$\hat{P}(C|B, \text{east}) = 1$<br>
+$\hat{P}(D|C, \text{east}) = 0.75$<br>
+$\hat{P}(A|C, \text{east}) = 0.25$<br>
+$(...)$
+]
+.kol-1-2[
+รางวัลที่เรียนรู้ได้ $\hat{R}$:
+
+$\hat{R}(B) = -1$<br>
+$\hat{R}(C) = -1$<br>
+$\hat{R}(D) = +10$ <br>
+$(...)$
+]
+]
+
+---
+
+# การประมาณแบบไร้แบบจำลอง (Model-free estimation)
+
+เราจะเรียนรู้ $V^\pi$ แบบ **ไร้แบบจำลอง** ได้ไหม โดยไม่ต้องสร้างแบบจำลองสิ่งแวดล้อมชัดๆ เช่น ไม่ต้องเรียนรู้ $\hat{P}$ และ $\hat{R}$?
+
+---
+
+# การประมาณอรรถประโยชน์โดยตรง (Direct utility estimation)
+
+(หรือ Monte Carlo evaluation)
+
+- อรรถประโยชน์ $V^\pi(s)$ ของสถานะ $s$ คือรางวัลรวมที่คาดหวังจากสถานะนั้นไปข้างหน้า (เรียกว่า **reward-to-go** ที่คาดหวัง)
+$$V^\pi(s) = \mathbb{E}\left[\sum\_{t=0}^\infty \gamma^t R(s\_t) \right]\Biggr\rvert\_{s\_0=s}$$
+- แต่ละการทดลองให้ตัวอย่างของปริมาณนี้สำหรับสถานะที่ถูกเยี่ยม
+- ดังนั้น เมื่อจบลำดับหนึ่งๆ เราสามารถอัปเดตค่าเฉลี่ยตัวอย่าง $\hat{V}^\pi(s)$ โดย:
+  - คำนวณ reward-to-go ที่สังเกตสำหรับแต่ละสถานะ
+  - อัปเดตค่าประมาณอรรถประโยชน์ของสถานะนั้นด้วยค่าเฉลี่ยสะสม
+- เมื่อจำนวนการทดลองไปสู่อนันต์ ค่าเฉลี่ยตัวอย่างจะบรรจบสู่ค่าคาดหมายจริง
+
+---
+
+class: middle
+
+## ตัวอย่าง ($\gamma=1$)
+
+.grid[
+.kol-1-4.smaller-x[
+นโยบาย $\pi$:
+
+.width-100[![](figures/lec9/policy-example.png)]
+]
+.kol-3-4[
+.smaller-x[
+Trajectories:
+
+$(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(B, -1, \text{east}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(E, -1, \text{north}, C), (C, -1, \text{east}, D), (D, +10, \text{exit}, \perp)$
+$(E, -1, \text{north}, C), (C, -1, \text{east}, A), (A, -10, \text{exit}, \perp)$
+]
+]
+]
+
+.grid[
+.kol-1-4.smaller-x[
+ค่าเอาต์พุต $\hat{V}^\pi(s)$:
+
+.width-100[![](figures/lec9/due-example.png)]
+]
+.kol-3-4.center.italic[<br><br>
+
+ถ้า $B$ และ $E$ ไป $C$ ภายใต้ $\pi$ ทำไมค่าของพวกมันถึงต่างกันได้?]
+]
+
+---
+
+class: middle
+
+น่าเสียดายที่การประมาณโดยตรงละเลยความจริงที่ว่า $V^\pi(s)$ ของสถานะต่างๆ ไม่ได้อิสระต่อกัน เพราะต้องเป็นไปตามสมการเบลล์แมนเมื่อกำหนดนโยบายคงที่:
+$$V^\pi(s) = R(s) + \gamma \sum\_{s'}P(s'|s,\pi(s)) V^\pi(s').$$
+ดังนั้นจึงพลาดโอกาสในการเรียนรู้และต้องใช้เวลานานกว่าจะเรียนรู้ได้ดี
+
+---
+
+# การเรียนรู้แบบความต่างตามเวลา (Temporal-difference learning)
+
+TD learning อัปเดต $V^\pi(s)$ ทุกครั้งที่เอเจนต์ประสบการเปลี่ยนผ่าน $(s, r=R(s), a=\pi(s), s')$
+
+.width-20.center[![](figures/lec9/td-triple.png)]
+
+เมื่อเกิดการเปลี่ยนจาก $s$ ไป $s'$ การอัปเดตแบบ TD จะพยายามดัน $V^\pi(s)$ ให้สอดคล้องกับสมการเบลล์แมนของนโยบายคงที่ดีขึ้น คือ
+$$V^\pi(s) \leftarrow V^\pi(s) + \alpha \underbrace{(r + \gamma V^\pi(s') - V^\pi(s))}\_{\text{temporal difference error}}$$
+โดยที่ $\alpha$ คือพารามิเตอร์ *อัตราการเรียนรู้* (learning rate)
+
+???
+
+แทนที่จะรอจนจบ trajectory เพื่ออัปเดต $V^\pi(s)$ เราอัปเดตได้ทันที...
+
+...
+
+- ถ้า $r + \gamma V^\pi(s') > V^\pi(s)$ แสดงว่าค่าคาดการณ์ต่ำเกินไป จึงเพิ่ม
+- ถ้า $r + \gamma V^\pi(s') < V^\pi(s)$ แสดงว่าค่าคาดการณ์สูงเกินไป จึงลด
+
+---
+
+class: middle
+
+อีกมุมหนึ่ง การอัปเดต TD มองได้ว่าเป็นก้าวของเกรเดียนต์ดิเซนต์บนความคลาดเคลื่อนกำลังสองระหว่างเป้า $r+ \gamma V^\pi(s')$ กับค่าพยากรณ์ $V^\pi(s)$ (รายละเอียดภายหลัง)
+
+---
+
+class: middle
+
+## ค่าเฉลี่ยเคลื่อนที่แบบเอ็กซ์โพเนนเชียล
+
+การอัปเดต TD เขียนใหม่ได้เป็นค่าเฉลี่ยเคลื่อนที่แบบเอ็กซ์โพเนนเชียล
+$$V^\pi(s) \leftarrow (1-\alpha)V^\pi(s) + \alpha (r + \gamma V^\pi(s')).$$
+
+โดยสัญชาตญาณ
+- ให้ความสำคัญกับตัวอย่างล่าสุดมากขึ้น
+- ค่อยๆ ลืมอดีต (ซึ่งมักประเมินผิดอยู่ดี)
+  
+---
+
+class: middle 
+
+## ตัวอย่าง ($\gamma=1$, $\alpha=0.5$)
+
+.grid[
+.kol-1-4[]
+.kol-1-2.center[.width-25[![](figures/lec9/td-example1.png)] .width-25[![](figures/lec9/td-example2.png)]
+
+การเปลี่ยนผ่าน: $(B, -1, \text{east}, C)$
+]
+]
+
+TD-update:
+
+$\begin{aligned}
+V^\pi(B) &\leftarrow V^\pi(B) + \alpha(R(B) + \gamma V^\pi(C) - V^\pi(B)) \\
+&\leftarrow 0 + 0.5 (-1 + 0 - 0) \\
+&\leftarrow -0.5
+\end{aligned}$
+
+---
+
+class: middle
+
+.grid[
+.kol-1-4[]
+.kol-1-2.center[.width-25[![](figures/lec9/td-example2.png)] .width-25[![](figures/lec9/td-example3.png)]
+
+การเปลี่ยนผ่าน: $(C, -1, \text{east}, D)$
+]
+]
+
+TD-update:
+
+$\begin{aligned}
+V^\pi(C) &\leftarrow V^\pi(C) + \alpha(R(C) + \gamma V^\pi(D) - V^\pi(C)) \\
+&\leftarrow 0 + 0.5 (-1 + 8 - 0) \\
+&\leftarrow 3.5
+\end{aligned}$
+
+???
+
+สังเกตว่ารางวัลก้อนใหญ่ค่อยๆ กระจายย้อนกลับไปยังสถานะที่นำไปสู่มัน 
+
+ทำอัปเดตแรกอีกครั้งจะให้ค่าที่ดีขึ้นสำหรับ $B$
+
+---
+
+class: middle
+
+## การบรรจบ (Convergence)
+
+- สังเกตว่าการอัปเดต TD ใช้เพียงผู้สืบทอดที่สังเกตได้ $s'$ ขณะที่สมการเบลล์แมนจริงสำหรับนโยบายคงที่พิจารณาสถานะถัดไปทุกตัว แต่ค่าเฉลี่ยของ $V^\pi(s)$ จะบรรจบสู่ค่าที่ถูกต้อง
+- หากเปลี่ยน $\alpha$ จากค่าคงที่เป็นฟังก์ชันที่ลดลงตามจำนวนครั้งที่สถานะนั้นถูกเยี่ยม $V^\pi(s)$ เองก็จะบรรจบสู่ค่าที่ถูกต้อง
+
+---
+
+# Active RL
+
+.center.width-70[![](figures/lec9/active-rl.png)]
+
+## เป้าหมาย: เรียนรู้นโยบายที่เหมาะที่สุด
+- นโยบายของเอเจนต์ไม่ถูกตรึงอีกต่อไป
+- เป้าหมายคือเรียนรู้ $\pi^*$ หรือค่าอรรถประโยชน์สถานะ $V(s)$
+- ผู้เรียนเป็นคนเลือก!
+- สงครามพื้นฐาน: การสำรวจ vs การแสวงหาผล
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# การเรียนรู้แบบมีแบบจำลอง (Model-based learning)
+
+เอเจนต์แบบ model-based ในโหมด passive ทำให้เป็น active ได้โดยการหานโยบายเหมาะที่สุด $\pi^*$ ของ MDP เชิงประจักษ์แทน
+
+เช่น เมื่อได้ฟังก์ชันอรรถประโยชน์ $V$ ที่เหมาะที่สุดสำหรับแบบจำลองที่เรียนรู้มา (เช่น ด้วย Value Iteration) การกระทำที่เหมาะที่สุดจากการมองล่วงหน้า 1 ก้าว คือ
+$$\pi^*(s) = \arg \max\_a \sum\_{s'} \hat{P}(s'|s,a) V(s').$$
+
+---
+
+class: middle, center
+
+.width-80[![](figures/lec9/active-model-based.png)]
+
+เอเจนต์ **ไม่ได้** เรียนรู้ค่าอรรถประโยชน์ที่แท้จริงหรือ policy ที่แท้จริงที่เหมาะที่สุด!
+
+---
+
+class: middle
+
+นโยบายที่ได้จะเป็น **โลภ (greedy)** และ **ต่ำกว่าที่สุด (suboptimal)**:
+- แบบจำลองการเปลี่ยนผ่านและรางวัลที่เรียนรู้ $\hat{P}$ และ $\hat{R}$ ไม่ตรงกับโลกจริง เพราะอาศัยตัวอย่างที่ได้จากนโยบายของเอเจนต์เอง ซึ่งมีอคติ
+- ดังนั้นสิ่งที่เหมาะที่สุดภายใต้แบบจำลองที่เรียนรู้อาจต่ำกว่าที่สุดในโลกจริง
+
+---
+
+# การสำรวจ (Exploration)
+
+การกระทำไม่ได้แค่ให้รางวัลตามแบบจำลองที่เรียนรู้ในปัจจุบัน แต่ยังช่วยให้เรียนรู้โลกจริงด้วย
+
+นี่คือสงคราม **แสวงหาผล-สำรวจ** (exploitation-exploration):
+- แสวงหาผล: ทำตามการกระทำที่เพิ่มรางวัลสูงสุดภายใต้แบบจำลองปัจจุบัน
+- สำรวจ: เลือกการกระทำเพื่อสำรวจและเรียนรู้โลกจริง
+
+.center.width-60[![](figures/lec9/exploitation-exploration.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle 
+
+## จะสำรวจอย่างไร?
+
+วิธีง่ายสุดเพื่อบังคับการสำรวจ: การกระทำแบบสุ่ม ($\epsilon$-greedy)
+- ด้วยความน่าจะเป็น (เล็ก) $\epsilon$ กระทำแบบสุ่ม
+- ด้วยความน่าจะเป็น (ใหญ่) $(1-\epsilon)$ ทำตามนโยบายปัจจุบัน
+
+$\epsilon$-greedy จะสำรวจครบในที่สุด แต่จะยัง “ซัดไปมา” แม้เรียนรู้เสร็จแล้ว
+
+---
+
+class: middle 
+
+## ควรสำรวจเมื่อใด?
+
+ไอเดียที่ดีกว่า: สำรวจบริเวณที่ยังไม่แน่ชัดว่าแย่ แล้วหยุดสำรวจเมื่อมั่นใจ
+
+ให้ $V^+(s)$ เป็นค่าประมาณแบบมองโลกในแง่ดีของอรรถประโยชน์สถานะ $s$ และ $N(s,a)$ คือจำนวนครั้งที่เคยลองการกระทำ $a$ ใน $s$ 
+
+สำหรับ Value Iteration สมการอัปเดตกลายเป็น
+$$V^+\_{i+1}(s) = R(s) + \gamma \max\_a f(\sum_{s'} P(s'|s,a) V^+\_i(s'), N(s,a)),$$
+โดยที่ $f(v, n)$ เรียกว่า **exploration function**
+
+ฟังก์ชัน $f(v,n)$ ควรเพิ่มเมื่อ $v$ มากขึ้น และลดเมื่อ $n$ มากขึ้น ตัวเลือกง่ายๆ คือ $f(v,n) = v + K/n$
+
+???
+
+คล้ายกับ MCTS! (บทที่ 3)
+
+---
+
+# การเรียนรู้แบบไร้แบบจำลอง (Model-free learning)
+
+แม้ TD learning จะให้วิธีประมาณ $V^\pi$ แบบไร้แบบจำลอง แต่ยังต้องเรียนรู้แบบจำลอง $P(s'|s,a)$ เพื่อเลือกการกระทำด้วย one-step look-ahead
+
+<br>
+.center.width-50[![](figures/lec9/cartoon-model-free.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# ทางอ้อม: ค่า Q (Détour: Q-values)
+
+.grid[
+.kol-1-2[
+- ค่าของสถานะ $V(s)$ คืออรรถประโยชน์ที่คาดหวังเมื่อเริ่มที่ $s$ และกระทำอย่างเหมาะที่สุด
+- ค่าของคู่สถานะ-การกระทำ $Q(s,a)$ คืออรรถประโยชน์ที่คาดหวังเมื่อเริ่มจากทำการกระทำ $a$ ที่ $s$ แล้วหลังจากนั้นกระทำอย่างเหมาะที่สุด ดังนั้น $V(s) = \max\_a Q(s,a)$
+]
+.kol-1-2.width-100[![](figures/lec9/optimal-quantities.png)]
+]
+
+---
+
+class: middle
+
+## นโยบายที่เหมาะที่สุด (Optimal policy)
+
+นิยามนโยบายที่เหมาะที่สุด $\pi(s)$ ได้ทั้งในแง่ของ $V(s)$ หรือ $Q(s,a)$:
+$$\begin{aligned}
+\pi(s) &= \arg \max\_a \sum\_{s'} P(s'|s,a) V(s') \\
+&= \arg \max\_a Q(s,a)
+\end{aligned}$$
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## สมการเบลล์แมนสำหรับ $Q$
+
+เพราะ $V(s) = \max\_a Q(s,a)$ ค่าของ $Q(s,a)$ นิยามเวียนเกิดได้เป็น
+$$\begin{aligned}
+Q(s,a) &= R(s) + \gamma \sum\_{s'} P(s'|s,a) V(s') \\
+&= R(s) + \gamma \sum\_{s'} P(s'|s,a) \max\_{a'} Q(s',a').
+\end{aligned} $$
+
+เช่นเดียวกับ Value Iteration สมการสุดท้ายใช้เป็นสมการอัปเดตเพื่อวนหาจุดคงที่ของ $Q(s,a)$ ได้ แต่ยังต้องรู้ $P(s'|s,a)$ อยู่ดี!
+
+---
+
+# Q-Learning
+
+ค่า $Q(s,a)$ เรียนรู้ได้แบบไร้แบบจำลองด้วยวิธี TD ที่เรียกว่า **Q-Learning**
+
+Q-Learning จะอัปเดต $Q(s,a)$ ทุกครั้งที่เอเจนต์ประสบการเปลี่ยนผ่าน $(s, r=R(s), a, s')$
+
+สมการอัปเดตของ TD Q-Learning คือ
+$$Q(s,a) \leftarrow Q(s,a) + \alpha (r + \gamma \max\_{a'} Q(s',a') - Q(s,a)).$$
+
+.alert[เพราะ $\pi^*(s) = \arg \max\_a Q(s,a)$ ตัวแทนแบบ TD ที่เรียนรู้ค่า Q จึงไม่ต้องมีแบบจำลอง $P(s'|s,a)$ ไม่ว่าจะเพื่อการเรียนรู้หรือเพื่อเลือกการกระทำ!]
+
+---
+
+class: middle
+
+.width-100[![](figures/lec9/q-learning.png)]
+
+---
+
+class: middle
+
+.width-30.center[![](figures/lec9/q-learning-agent.png)]
+
+## การบรรจบ (Convergence)
+
+Q-Learning **บรรจบสู่นโยบายที่เหมาะที่สุด** แม้ขณะกระทำแบบไม่เหมาะที่สุด
+- สิ่งนี้เรียกว่า off-policy learning
+- เงื่อนไขทางเทคนิค:
+  - ต้องสำรวจให้เพียงพอ
+  - อัตราการเรียนรู้ต้องเล็กลงในที่สุด
+  - ... แต่อย่าลดเร็วเกินไป
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# การทำให้ทั่วไปข้ามสถานะ (Generalizing across states)
+
+.grid[
+.kol-2-3[
+- Q-Learning แบบพื้นฐานเก็บตารางสำหรับทุกค่า $Q(s,a)$
+- ในสถานการณ์จริง เราไม่สามารถเรียนรู้ทุกสถานะได้!
+  - สถานะมากเกินไปที่จะเยี่ยมครบในช่วงฝึก
+  - สถานะมากเกินไปที่จะเก็บตาราง Q ไว้ในหน่วยความจำ
+- เราต้องการการทำให้ทั่วไป:
+  - เรียนรู้จากสถานะฝึกจำนวนน้อย
+  - เผยแพร่ประสบการณ์ไปยังสถานการณ์ใหม่ที่คล้ายกัน
+  - นี่กลับไปเป็นการเรียนรู้แบบมีผู้สอนอีกครั้ง!
+]
+.kol-1-3.width-100[<br><br>![](figures/lec9/cartoon-generalization.png)]
+]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ตัวอย่าง: Pacman
+.grid.center[
+.kol-1-8[]
+.kol-1-4[(a)
+
+.width-100[![](figures/lec9/pacman1.png)]]
+.kol-1-4[(b)
+
+.width-100[![](figures/lec9/pacman2.png)]]
+.kol-1-4[(c)
+
+.width-100[![](figures/lec9/pacman3.png)]]
+.kol-1-8[]
+]
+
+ถ้าเรารู้จากประสบการณ์ว่า (a) แย่ ใน Q-Learning แบบง่าย เราจะไม่รู้อะไรเกี่ยวกับ (b) หรือ (c) เลย!
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle 
+
+.grid[
+.kol-3-4[
+## การแทนด้วยคุณลักษณะ (Feature-based representations)
+
+วิธีแก้: อธิบายสถานะ $s$ ด้วยเวกเตอร์คุณลักษณะ $\mathbf{x} = [f\_1(s), ..., f\_d(s)] \in \mathbb{R}^d$
+- คุณลักษณะเป็นฟังก์ชัน $f\_k$ จากสถานะไปยังจำนวนจริงที่จับคุณสมบัติสำคัญของสถานะ
+- ตัวอย่างคุณลักษณะ:
+  - ระยะทางถึงผีที่ใกล้ที่สุด
+  - ระยะทางถึงจุด (dot) ที่ใกล้ที่สุด
+  - จำนวนผี
+  - ...
+- อธิบาย q-state $(s, a)$ ด้วยคุณลักษณะ $f\_k(s,a)$ ได้เช่นกัน
+]
+.kol-1-4.width-100[![](figures/lec9/pacman1.png)]
+]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec9/lr-cartoon.png)]
+
+## Q-Learning แบบประมาณค่า (Approximate Q-Learning)
+
+เมื่อใช้การแทนด้วยคุณลักษณะ ตาราง Q สามารถแทนด้วยตัวประมาณฟังก์ชัน เช่น แบบจำลองเชิงเส้น
+$$Q(s,a) = w\_1 f\_1(s,a) + w\_2 f\_2(s,a) + ... + w\_d f\_d(s,a).$$
+
+เมื่อเกิดการเปลี่ยนผ่าน $(s, r, a, s')$ การอัปเดตกลายเป็น
+$$
+w\_k \leftarrow  w\_k + \alpha (r + \gamma \max\_{a'} Q(s', a') - Q(s,a)) f\_k(s,a),
+$$
+สำหรับทุก $w\_k$
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+
+*จำได้ไหมว่า TD-update มองเป็นการอัปเดต GD ออนไลน์ได้ แต่ตอนนี้เราไม่ปรับ $Q(s,a)$ โดยตรง เราปรับพารามิเตอร์ของตัวประมาณฟังก์ชันแทน*
+
+---
+
+class: middle
+
+ในรีเกรสชันเชิงเส้น สมมติว่ามีจุดเดียว $\mathbf{x}$ ที่มีคุณลักษณะ $[f\_1, ..., f\_d]$ จะได้
+$$
+\begin{aligned}
+\ell(\mathbf{w}) &= \frac{1}{2} \left( y - \sum\_k w\_k f\_k \right)^2 \\
+\frac{\partial \ell}{\partial w\_k} &= -\left(y -  \sum\_k w\_k f_k \right) f\_k \\
+w\_k &\leftarrow w\_k + \alpha \left(y -  \sum\_k w\_k f\_k \right) f\_k,
+\end{aligned}
+$$
+
+จึงได้การอัปเดต Q
+$$w\_k \leftarrow w\_k + \alpha \left(\underbrace{r + \gamma \max\_{a'} Q(s', a')}\_{\text{target}\, y} -  \underbrace{Q(s,a)}\_{\text{prediction}} \right) f\_k(s,a).$$
+
+---
+
+class: middle
+
+## DQN
+
+เช่นเดียวกัน ตาราง Q สามารถแทนด้วยโครงข่ายประสาทเทียมเป็นตัวประมาณฟังก์ชันได้ กลายเป็นอัลกอริทึม *DQN*
+
+.center.width-100[![](figures/lec9/dqn.png)]
+
+---
+
+class: middle, center
+
+(สาธิต)
+
+---
+
+class: middle
+
+# การประยุกต์ใช้งาน (Applications)
+
+---
+
+class: middle, black-slide
+
+.center[
+<iframe width="640" height="480" src="https://www.youtube.com/embed/Tnu4O_xEmVk?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+MarIQ
+]
+
+---
+
+class: middle, black-slide
+
+.center[
+<iframe width="640" height="480" src="https://www.youtube.com/embed/l5o429V1bbU?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+เล่นเกม Atari (Pinball)
+]
+
+---
+
+class: middle, black-slide
+
+.center[
+<iframe width="640" height="480" src="https://www.youtube.com/embed/W4joe3zzglU?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+การหยิบจับด้วยหุ่นยนต์ (Robotic manipulation)
+]
+
+---
+
+class: middle, black-slide
+
+.center[
+<iframe width="640" height="480" src="https://www.youtube.com/embed/fBiataDpGIo?&loop=1&start=0" frameborder="0" volume="0" allowfullscreen></iframe>
+
+การแข่งโดรน (Drone racing)
+]
+
+---
+
+# สรุป (Summary)
+
+.width-80[![](figures/lec9/plan.png)]
+
+.footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ภารกิจของฉัน .green[&#10004;]
+
+เมื่อจบรายวิชานี้ คุณจะสร้างเอเจนต์อิสระที่ตัดสินใจได้อย่างมีประสิทธิภาพในสภาพแวดล้อมที่รู้ข้อมูลครบถ้วน รู้บางส่วน และมีปฏิปักษ์ เอเจนต์ของคุณจะอนุมานในโลกที่ไม่แน่นอนและไม่รู้จัก และเพิ่มประสิทธิภาพการกระทำสำหรับโครงสร้างรางวัลตามที่กำหนดได้
+
+---
+
+class: end-slide, center
+count: false
+
+จบการนำเสนอ
+
+    </textarea>
+    
+    <script src="../assets/remark.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

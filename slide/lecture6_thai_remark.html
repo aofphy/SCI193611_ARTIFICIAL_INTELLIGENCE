@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Slide Presentation</title>
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="../assets/auto-render.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        .remark-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .remark-slide-content {
+            font-size: 1.3em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.4em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 15pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-100 * {
+            width: 100%;
+        }
+
+        .width-50 * {
+            width: 50%;
+        }
+
+        .width-30 * {
+            width: 30%;
+        }
+
+        .width-40 * {
+            width: 40%;
+        }
+
+        .width-60 * {
+            width: 60%;
+        }
+
+        .width-70 * {
+            width: 70%;
+        }
+
+        .title-slide:after {
+            content: '';
+            background: url("../assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{
+            color: #0288d1;
+        }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child {
+            padding-right: 0px;
+        }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .kol-1-1 {
+            width: 100%;
+        }
+
+        .kol-1-2 {
+            width: 50%;
+        }
+
+        .kol-1-3 {
+            width: 33.33%;
+        }
+
+        .kol-2-3 {
+            width: 66.66%;
+        }
+
+        .kol-1-4 {
+            width: 25%;
+        }
+
+        .kol-3-4 {
+            width: 75%;
+        }
+
+    </style>
+</head>
+<body>
+    <textarea id="source">
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์ (Artificial Intelligence)
+
+บทบรรยายที่ 6: การให้เหตุผลเกี่ยวกับเวลา<br>
+(Reasoning over Ti**การแจกแจงร่วม** ของตัวแปรทั้งหมดจนถึงเวลา $t$ คือ:
+
+$${\bf P}(\mathbf{X}\_{0:t}, \mathbf{E}\_{1:t}) = {\bf P}(\mathbf{X}\_{0}) \prod\_{i=1}^t {\bf P}(\mathbf{X}\_{i} | \mathbf{X}\_{i-1}) {\bf P}(\mathbf{E}\_{i}|\mathbf{X}\_{i})$$
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th]
+
+---
+
+# เนื้อหาวันนี้
+
+การรักษา **สถานะความเชื่อ (belief state)** เกี่ยวกับโลก และปรับปรุงข้อมูลเมื่อเวลาผ่านไปและมีหลักฐานใหม่เข้ามา
+
+.grid[
+.kol-1-2[
+- **Markov models**
+    - Markov processes
+    - งานการ inference
+    - Hidden Markov models
+- **Filters**
+    - Kalman filter
+    - Particle filter
+]
+.kol-1-2[.width-70[![](figures/lec6/outline-cartoon.png)]
+]
+]
+
+.alert[บทบรรยายนี้สำคัญมาก อย่ามองข้าม!]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec6/pacman-no-beliefs.mp4" type="video/mp4">
+</video>
+
+.bold[Pacman ผู้แก้แค้น]: จะใช้ข้อมูลจาก sonar readings ให้เกิดประโยชน์ได้อย่างไร?
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+# Markov Models
+
+## แบบจำลองที่พิจารณาความเปลี่ยนแปลงตามเวลา
+
+---
+
+class: middle
+
+## การจำลองการเปลี่ยนแปลงของเวลา
+
+เราจะพิจารณาโลกเป็น *ชุดเวลาแบบไม่ต่อเนื่อง (discrete time slices)* โดยแต่ละช่วงเวลาจะประกอบด้วยตัวแปรสุ่ม:
+
+- $\mathbf{X}\_t$ หมายถึงชุดของ **ตัวแปรสถานะที่ไม่สามารถสังเกตได้** ณ เวลา $t$
+- $\mathbf{E}\_t$ หมายถึงชุดของ *ตัวแปรหลักฐานที่สังเกตได้* ณ เวลา $t$
+
+### แผนผังแสดงความสัมพันธ์ตามเวลา
+
+```
+เวลา:    t=0      t=1      t=2      t=3    ...
+สถานะ:   X₀  →    X₁  →    X₂  →    X₃    ...
+         ↓        ↓        ↓        ↓
+หลักฐาน:          E₁       E₂       E₃    ...
+```
+
+---
+
+class: middle
+
+## ส่วนประกอบของ Markov Model
+
+เราต้องระบุ:
+
+1. **Prior distribution** ${\bf P}(\mathbf{X}\_0)$
+   - กำหนดสถานะความเชื่อเริ่มต้นเกี่ยวกับตัวแปรสถานะที่ซ่อนอยู่
+
+2. **Transition model** ${\bf P}(\mathbf{X}\_t | \mathbf{X}\_{0:t-1})$ (สำหรับ $t > 0$)
+   - กำหนดการแจกแจงความน่าจะเป็นของตัวแปรสถานะล่าสุด จากค่าก่อนหน้า
+
+3. **Sensor model** ${\bf P}(\mathbf{E}\_t | \mathbf{X}\_{0:t}, \mathbf{E}\_{0:t-1})$ (สำหรับ $t > 0$)
+   - กำหนดการแจกแจงความน่าจะเป็นของตัวแปรหลักฐานล่าสุด จากค่าที่ผ่านมาทั้งหมด
+
+---
+
+# Markov Processes
+
+## สมมติฐาน Markov (Markov Assumption)
+
+สถานะปัจจุบันของโลกขึ้นอยู่กับสถานะก่อนหน้าเพียงเล็กน้อยเท่านั้น กล่าวคือ $\mathbf{X}\_t$ ขึ้นอยู่กับเซตย่อยที่จำกัดของ $\mathbf{X}\_{0:t-1}$
+
+กระบวนการสุ่มที่เป็นไปตามสมมติฐานนี้เรียกว่า **Markov processes** หรือ **Markov chains**
+
+## First-order Markov Processes
+
+กระบวนการ Markov ที่มีคุณสมบัติ:
+
+${\bf P}(\mathbf{X}\_t | \mathbf{X}\_{0:t-1}) = {\bf P}(\mathbf{X}\_t | \mathbf{X}\_{t-1})$
+
+หมายความว่า $\mathbf{X}\_t$ และ $\mathbf{X}\_{0:t-2}$ เป็นอิสระเมื่อกำหนดค่า $\mathbf{X}\_{t-1}$
+
+<br>
+.center.width-100[![](figures/lec6/markov-process.png)]
+
+---
+
+class: middle
+
+## Sensor Markov Assumption
+
+เราสร้างสมมติฐาน **sensor Markov assumption** (อันดับหนึ่ง):
+
+$${\bf P}(\mathbf{E}\_t | \mathbf{X}\_{0:t}, \mathbf{E}\_{0:t-1}) = {\bf P}(\mathbf{E}\_t | \mathbf{X}\_{t})$$
+
+**ความหมาย**: ข้อมูลที่สังเกตได้ในปัจจุบันขึ้นอยู่กับสถานะปัจจุบันเท่านั้น
+
+## สมมติฐาน Stationarity
+
+**Transition model** และ **sensor model** จะเหมือนกันสำหรับทุก $t$ 
+
+*กฎฟิสิกส์ไม่เปลี่ยนแปลงตามเวลา*
+
+---
+
+# การแจกแจงร่วม (Joint Distribution)
+
+<br>
+.center.width-100[![](figures/lec6/smoothing-dbn.svg)]
+<br>
+
+**Markov chain** ที่รวมกับ **sensor model** สามารถแสดงเป็น *Bayesian network ที่ขยายได้* ซึ่งกางออกไปตามเวลาอนันต์
+
+**การแจกแจงร่วม** ของตัวแปรทั้งหมดจนถึงเวลา $t$ คือ:
+
+$${\bf P}(\mathbf{X}\_{0:t}, \mathbf{E}\_{1:t}) = {\bf P}(\mathbf{X}\_{0}) \prod\_{i=1}^t {\bf P}(\mathbf{X}\_{i} | \mathbf{X}\_{i-1}) {\bf P}(\mathbf{E}\_{i}|\mathbf{X}\_{i})$$
+
+---
+
+class: middle
+
+## ตัวอย่าง: วันนี้คุณจะเอาร่มไปหรือไม่?
+
+.center.width-80[![](figures/lec6/weather-bn.svg)]
+
+.grid[
+.kol-1-2[
+.center.width-60[![](figures/lec6/weather-forecast.png)]
+
+**สถานการณ์**: 
+- ฝนตก → เอาร่ม
+- ไม่ฝนตก → ไม่เอาร่ม
+- แต่เราไม่รู้ว่าจริงๆ ฝนตกหรือไม่
+]
+.kol-1-2[
+**คำถามที่น่าสนใจ**:
+- ${\bf P}(\text{Umbrella}\_t | \text{Rain}\_t)$?
+  - มีร่มเมื่อฝนตก?
+- ${\bf P}(\text{Rain}\_t | \text{Umbrella}\_{0:t-1})$?
+  - ฝนตกจากการเอาร่มก่อนหน้า?
+- ${\bf P}(\text{Rain}\_{t+2} | \text{Rain}\_{t})$?
+  - ฝนตกในอนาคตจากปัจจุบัน?
+]]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+.center.width-30[![](figures/lec6/weather-transition.png)]
+
+**Transition model** ${\bf P}(\text{Rain}\_t | \text{Rain}\_{t-1})$ สามารถแสดงด้วย **state transition diagram** ได้
+
+### ตารางความน่าจะเป็นการเปลี่ยนผ่าน
+
+| วันก่อน | วันนี้ | ความน่าจะเป็น |
+|---------|--------|--------------|
+| ฝนตก | ฝนตก | 0.7 |
+| ฝนตก | ไม่ฝน | 0.3 |
+| ไม่ฝน | ฝนตก | 0.2 |
+| ไม่ฝน | ไม่ฝน | 0.8 |
+
+---
+
+# งานการ Inference
+## ประเภทของการ Inference
+1. **Prediction** (การทำนาย): ${\bf P}(\mathbf{X}\_{t+k}| \mathbf{e}\_{1:t})$ สำหรับ $k>0$
+   - คำนวณการแจกแจงความน่าจะเป็นของสถานะในอนาคต
+   - ใช้สำหรับประเมินลำดับการกระทำที่เป็นไปได้
+
+2. **Filtering**: ${\bf P}(\mathbf{X}\_{t}| \mathbf{e}\_{1:t})$
+   - การติดตามสถานะปัจจุบันที่ซ่อนอยู่ $\mathbf{X}\_t$ (**belief state**)
+   - สิ่งที่ rational agent ทำเพื่อตัดสินใจอย่างมีเหตุผล
+
+3. **Smoothing**: ${\bf P}(\mathbf{X}\_{k}| \mathbf{e}\_{1:t})$ สำหรับ $0 \leq k < t$
+   - คำนวณการแจกแจงความน่าจะเป็นของสถานะในอดีต
+   - ใช้สร้างการประมาณที่ดีกว่า เนื่องจากรวมหลักฐานมากขึ้น
+   - จำเป็นสำหรับการเรียนรู้
+
+4. **Most likely explanation**: $\arg \max\_{\mathbf{x}\_{1:t}} P(\mathbf{x}\_{1:t}| \mathbf{e}\_{1:t})$
+   - ใช้ในการถอดรหัส (decoding) ช่องทางสัญญาณรบกวน, การรู้จำเสียงพูด ฯลฯ
+
+---
+
+# กรณีฐาน (Base Cases)
+
+.grid[
+.kol-1-2.center[
+.width-80[![](figures/lec6/base-case2.png)]
+
+### การทำนาย (Prediction)
+
+$\begin{aligned}
+{\bf P}(\mathbf{X}\_2) &= \sum\_{\mathbf{x}\_1} {\bf P}(\mathbf{X}\_2, \mathbf{x}\_1) \\\\
+&= \sum\_{\mathbf{x}\_1} P(\mathbf{x}\_1) {\bf P}(\mathbf{X}\_2 | \mathbf{x}\_1)
+\end{aligned}$
+
+**ขั้นตอน**: ส่ง ${\bf P}(\mathbf{X}\_1)$ ข้างหน้าผ่าน transition model
+]
+.kol-1-2.center[
+.width-80[![](figures/lec6/base-case1.png)]
+
+### การปรับปรุง (Update)
+
+$\begin{aligned}
+{\bf P}(\mathbf{X}\_1 | \mathbf{e}\_1) &=\frac{ {\bf P}(\mathbf{e}\_1 | \mathbf{X}\_1) {\bf P}(\mathbf{X}\_1)}{P(\mathbf{e}\_1)} \\\\
+&\propto {\bf P}(\mathbf{e}\_1 | \mathbf{X}\_1) {\bf P}(\mathbf{X}\_1)
+\end{aligned}$
+
+**ขั้นตอน**: ปรับปรุง ${\bf P}(\mathbf{X}\_1)$ ด้วยหลักฐาน $\mathbf{e}\_1$ โดยใช้ sensor model
+]
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# การทำนาย (Prediction)
+
+.center.width-50[![](figures/lec6/stationary-cartoon.png)]
+
+เพื่อทำนายอนาคต ${\bf P}(\mathbf{X}\_{t+k}| \mathbf{e}\_{1:t})$:
+---
+### ขั้นตอนการทำนาย
+
+1. **ส่งต่อ (Push)** สถานะความเชื่อก่อนหน้า ${\bf P}(\mathbf{X}\_{t} | \mathbf{e}\_{1:t})$ ผ่าน transition model:
+
+${\bf P}(\mathbf{X}\_{t+1}|\mathbf{e}\_{1:t}) = \sum\_{\mathbf{x}\_{t}} {\bf P}(\mathbf{X}\_{t+1} | \mathbf{x}\_{t}) P(\mathbf{x}\_{t} | \mathbf{e}\_{1:t})$
+
+2. **ทำซ้ำ** จนถึง $t+k$ โดยใช้ ${\bf P}(\mathbf{X}\_{t+k-1}| \mathbf{e}\_{1:t})$ ในการคำนวณ ${\bf P}(\mathbf{X}\_{t+k}| \mathbf{e}\_{1:t})$
+
+### หลักการ
+- ยิ่งไกลในอนาคต → ความไม่แน่นอนมากขึ้น
+- ไม่มีหลักฐานใหม่ → การแจกแจงกระจายออก
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec6/gb-basics.mp4" type="video/mp4">
+</video>]
+
+.center[**พลศาสตร์แบบสุ่ม (Random Dynamics)**<br>
+การเคลื่อนที่แบบไม่มีทิศทาง]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec6/gb-circular.mp4" type="video/mp4">
+</video>]
+
+.center[**พลศาสตร์แบบวงกลม (Circular Dynamics)**<br>
+การเคลื่อนที่เป็นวงกลม]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec6/gb-whirlpool.mp4" type="video/mp4">
+</video>]
+
+.center[**พลศาสตร์แบบน้ำวน (Whirlpool Dynamics)**<br>
+การเคลื่อนที่เป็นเกลียวหมุน]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+class: middle
+
+## ความไม่แน่นอนเพิ่มขึ้นตามเวลา
+
+.center[
+.width-60[![](figures/lec6/prediction.png)]
+
+.width-60[![](figures/lec6/uncertainty.png)]
+]
+
+### สิ่งสำคัญที่ต้องจำ
+- **เมื่อเวลาผ่านไป** → ความไม่แน่นอน (โดยทั่วไป) เพิ่มขึ้น
+- **ไม่มีหลักฐานใหม่** → การแจกแจงกระจายออก
+- **มีหลักฐานใหม่** → ความแน่นอนเพิ่มขึ้น
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+
+# การแจกแจงคงที่ (Stationary Distributions)
+
+## จะเกิดอะไรขึ้นเมื่อ $t \to \infty$?
+
+- สำหรับ chain ส่วนใหญ่ อิทธิพลของการแจกแจงเริ่มต้นจะลดลงเรื่อยๆ ตามเวลา
+- ในที่สุด การแจกแจงจะเข้าสู่จุดคงที่ เรียกว่า **stationary distribution**
+- การแจกแจงนี้มีคุณสมบัติ:
+
+$${\bf P}(\mathbf{X}\_\infty) = {\bf P}(\mathbf{X}\_{\infty+1}) = \sum\_{\mathbf{x}\_\infty} {\bf P}(\mathbf{X}\_{\infty+1} | \mathbf{x}\_\infty) P(\mathbf{x}\_\infty)$$
+
+### ความหมาย
+- การแจกแจงไม่เปลี่ยนแปลงอีกต่อไป
+- เป็นสมดุลระยะยาว (Long-term equilibrium)
+- ไม่ขึ้นกับสถานะเริ่มต้น
+
+---
+
+class: middle
+
+## ตัวอย่างการคำนวณ Stationary Distribution
+
+### ตารางการเปลี่ยนผ่านสภาพอากาศ
+
+| $\mathbf{X}\_{t-1}$ | $\mathbf{X}\_{t}$ | $P$ |
+| --- | --- | --- |
+| แดด | แดด | 0.9 |
+| แดด | ฝน | 0.1 |
+| ฝน | แดด | 0.3 |
+| ฝน | ฝน | 0.7 |
+
+### การแก้สมการ
+
+$\begin{aligned}
+P(\mathbf{X}\_\infty = \text{แดด}) =&\, P(\mathbf{X}\_{\infty+1} = \text{แดด}) \\\\
+=&\, P(\mathbf{X}\_{\infty+1}=\text{แดด} | \mathbf{X}\_{\infty}=\text{แดด}) P(\mathbf{X}\_{\infty}=\text{แดด})\\\\
+ & + P(\mathbf{X}\_{\infty+1}=\text{แดด} | \mathbf{X}\_{\infty}=\text{ฝน}) P(\mathbf{X}\_{\infty}=\text{ฝน})\\\\
+=&\, 0.9 P(\mathbf{X}\_{\infty}=\text{แดด}) + 0.3 P(\mathbf{X}\_{\infty}=\text{ฝน})
+\end{aligned}$
+
+**ผลลัพธ์**: $P(\mathbf{X}\_\infty=\text{แดด}) = 3 P(\mathbf{X}\_\infty=\text{ฝน})$
+
+เนื่องจาก $P(\text{แดด}) + P(\text{ฝน}) = 1$
+- $P(\mathbf{X}\_\infty=\text{แดด}) = 0.75$
+- $P(\mathbf{X}\_\infty=\text{ฝน}) = 0.25$
+
+---
+
+class: middle
+
+# การ Filtering
+
+## การติดตามสถานะปัจจุบัน
+
+---
+
+# อัลกอริทึม Forward Algorithm
+
+การคำนวณ ${\bf P}(\mathbf{X}\_t | \mathbf{e}\_{1:t})$ แบบเวียนเกิด (recursive):
+
+### ขั้นตอน Predict (ทำนาย)
+$${\bf P}(\mathbf{X}\_{t+1} | \mathbf{e}\_{1:t}) = \sum\_{\mathbf{x}\_t} {\bf P}(\mathbf{X}\_{t+1} | \mathbf{x}\_t) P(\mathbf{x}\_t | \mathbf{e}\_{1:t})$$
+
+### ขั้นตอน Update (ปรับปรุง)
+$${\bf P}(\mathbf{X}\_{t+1} | \mathbf{e}\_{1:t+1}) \propto {\bf P}(\mathbf{e}\_{t+1} | \mathbf{X}\_{t+1}) {\bf P}(\mathbf{X}\_{t+1} | \mathbf{e}\_{1:t})$$
+
+### ลำดับการทำงาน
+1. เริ่มจาก ${\bf P}(\mathbf{X}\_0)$ (prior)
+2. สำหรับแต่ละ $t$:
+   - **Predict**: คำนวณ ${\bf P}(\mathbf{X}\_t | \mathbf{e}\_{1:t-1})$
+   - **Update**: คำนวณ ${\bf P}(\mathbf{X}\_t | \mathbf{e}\_{1:t})$
+
+---
+
+class: middle
+
+## ตัวอย่างการ Filtering: Ghost Tracking
+
+.center.width-70[![](figures/lec6/ghost-tracking.png)]
+
+### สถานการณ์
+- **Agent** (Pacman) อยู่ที่ตำแหน่งที่ทราบ
+- **Ghost** อยู่ที่ตำแหน่งที่ไม่ทราบ (สถานะที่ซ่อน)
+- มี **sensor** วัดระยะทางแต่ไม่แม่นยำ (noisy distance reading)
+
+### โจทย์
+ติดตามตำแหน่งของ Ghost ตามเวลาโดยใช้ sensor readings
+
+---
+
+class: middle
+
+# Hidden Markov Models (HMMs)
+
+## แบบจำลองที่มีสถานะซ่อน
+
+---
+
+# Hidden Markov Models
+
+**Hidden Markov Model** คือ Markov chain ที่:
+- **สถานะ** $\mathbf{X}\_t$ ไม่สามารถสังเกตได้โดยตรง (hidden)
+- **การสังเกต** $\mathbf{E}\_t$ สามารถมองเห็นได้ และขึ้นอยู่กับสถานะ
+
+### องค์ประกอบของ HMM
+
+1. **States** $\mathbf{X}\_t \in \\{s\_1, s\_2, ..., s\_n\\}$
+   - สถานะที่ซ่อนอยู่ $n$ สถานะ
+
+2. **Observations** $\mathbf{E}\_t \in \\{o\_1, o\_2, ..., o\_m\\}$
+   - การสังเกตที่มองเห็นได้ $m$ รูปแบบ
+
+3. **Transition probabilities** $A\_{ij} = P(X\_{t+1}=s\_j | X\_t=s\_i)$
+   - ความน่าจะเป็นการเปลี่ยนสถานะ
+---
+# Hidden Markov Models
+
+**Hidden Markov Model** คือ Markov chain ที่:
+- **สถานะ** $\mathbf{X}\_t$ ไม่สามารถสังเกตได้โดยตรง (hidden)
+- **การสังเกต** $\mathbf{E}\_t$ สามารถมองเห็นได้ และขึ้นอยู่กับสถานะ
+
+### องค์ประกอบของ HMM (ต่อ)
+ 4. **Emission probabilities** $B\_{jk} = P(E\_t=o\_k | X\_t=s\_j)$
+   - ความน่าจะเป็นการสังเกตในแต่ละสถานะ
+
+ 5. **Initial probabilities** $\pi\_i = P(X\_0=s\_i)$
+   - ความน่าจะเป็นเริ่มต้น
+
+---
+
+class: middle
+
+## ตัวอย่าง HMM: การวินิจฉัยทางการแพทย์
+
+### สถานการณ์
+- **สถานะที่ซ่อน**: สุขภาพ (ดี/ไม่ดี)
+- **การสังเกต**: อาการ (มีไข้/ไม่มีไข้, ปวดหัว/ไม่ปวดหัว)
+
+.grid[
+.kol-1-2[
+### Transition Matrix
+|     | ดี   | ไม่ดี |
+|-----|------|------|
+| ดี  | 0.7  | 0.3  |
+| ไม่ดี| 0.4  | 0.6  |
+
+### Initial State
+- P(ดี) = 0.6
+- P(ไม่ดี) = 0.4
+]
+.kol-1-2[
+### Emission Matrix
+|     | ไม่มีอาการ | มีอาการ |
+|-----|-----------|--------|
+| ดี  | 0.8       | 0.2    |
+| ไม่ดี| 0.1       | 0.9    |
+
+### คำถาม
+ถ้าผู้ป่วยมีอาการ 3 วันติดต่อกัน ความน่าจะเป็นที่สุขภาพไม่ดีแต่ละวันคือเท่าไร?
+]
+]
+
+---
+
+# การประยุกต์ใช้ HMMs
+
+## 1. การรู้จำเสียงพูด (Speech Recognition)
+- **สถานะ**: phonemes (หน่วยเสียง)
+- **การสังเกต**: acoustic features
+
+## 2. การรู้จำลายมือ (Handwriting Recognition)
+- **สถานะ**: letters/words
+- **การสังเกต**: pen strokes/pixels
+
+## 3. Bioinformatics
+- **สถานะ**: gene structure (exon/intron)
+- **การสังเกต**: DNA sequences
+
+## 4. การวิเคราะห์ตลาดการเงิน
+- **สถานะ**: market regimes (bull/bear)
+- **การสังเกต**: stock prices/returns
+
+---
+
+class: middle
+
+# Filters (ตัวกรอง)
+
+## เครื่องมือสำหรับการติดตามสถานะ
+
+---
+
+# Kalman Filter
+
+**Kalman Filter** เป็น optimal filter สำหรับระบบ linear Gaussian:
+
+### สมมติฐาน
+- **สถานะ**: ตัวแปรต่อเนื่อง (continuous variables)
+- **Transition model**: linear transformation + Gaussian noise
+- **Sensor model**: linear transformation + Gaussian noise
+
+### สมการ Kalman Filter
+
+.grid[
+.kol-1-2[
+**Predict step (การทำนาย)**:
+
+$$\hat{\mathbf{x}}\_{t|t-1} = \mathbf{F}\_t \hat{\mathbf{x}}\_{t-1|t-1}$$
+
+$$\mathbf{P}\_{t|t-1} = \mathbf{F}\_t \mathbf{P}\_{t-1|t-1} \mathbf{F}\_t^T + \mathbf{Q}\_t$$
+
+**โดยที่**:
+- $\mathbf{F}\_t$ = transition matrix
+- $\mathbf{Q}\_t$ = process noise covariance
+]
+.kol-1-2[
+**Update step (การปรับปรุง)**:
+
+$$\mathbf{K}\_t = \mathbf{P}\_{t|t-1} \mathbf{H}\_t^T (\mathbf{H}\_t \mathbf{P}\_{t|t-1} \mathbf{H}\_t^T + \mathbf{R}\_t)^{-1}$$
+
+$$\hat{\mathbf{x}}\_{t|t} = \hat{\mathbf{x}}\_{t|t-1} + \mathbf{K}\_t (\mathbf{z}\_t - \mathbf{H}\_t \hat{\mathbf{x}}\_{t|t-1})$$
+
+$$\mathbf{P}\_{t|t} = (\mathbf{I} - \mathbf{K}\_t \mathbf{H}\_t) \mathbf{P}\_{t|t-1}$$
+
+**โดยที่**:
+- $\mathbf{H}\_t$ = observation matrix  
+- $\mathbf{R}\_t$ = measurement noise covariance
+- $\mathbf{K}\_t$ = Kalman gain
+]
+]
+
+---
+
+class: middle
+
+## ตัวอย่าง Kalman Filter: การติดตามวัตถุ
+
+### สถานการณ์: ติดตามรถยนต์ด้วย GPS
+
+.grid[
+.kol-1-2[
+**สถานะ (State)**:
+- ตำแหน่ง $(x, y)$
+- ความเร็ว $(v\_x, v\_y)$
+
+**การสังเกต (Observation)**:
+- GPS readings (มี noise)
+- ความเร็วจาก speedometer
+]
+.kol-1-2[
+**แบบจำลอง**:
+$$\mathbf{x}\\_t = \begin{bmatrix} x \\ y \\ v\\_x \\ v\\_y \end{bmatrix}\\_t$$
+
+**Transition matrix**:
+$$\mathbf{F} = \begin{bmatrix} 
+1 & 0 & \Delta t & 0 \\
+0 & 1 & 0 & \Delta t \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}$$
+]
+]
+
+### ข้อดีของ Kalman Filter
+- **Optimal** สำหรับระบบ linear Gaussian
+- **คำนวณเร็ว** (complexity เป็น $O(n^3)$)
+- **ใช้หน่วยความจำน้อย** (เก็บแค่ state และ covariance)
+
+---
+
+# Particle Filter
+
+**Particle Filter** ใช้สำหรับกรณีที่ไม่ใช่ linear/Gaussian:
+
+### หลักการ
+- ใช้ **particles** (samples) เป็นตัวแทนการแจกแจงความน่าจะเป็น
+- แต่ละ particle คือสถานะที่เป็นไปได้หนึ่งสถานะ
+- จำนวน particles ในแต่ละพื้นที่แสดงความน่าจะเป็น
+
+### ขั้นตอนการทำงาน
+
+1. **Initialization**: สร้าง N particles จาก prior distribution
+
+2. **Prediction**: เลื่อน particles ตาม transition model
+   ```
+   สำหรับแต่ละ particle i:
+     x_t^(i) = sample จาก P(X_t | x_{t-1}^(i))
+   ```
+
+3. **Update**: คำนวณ weight จากความน่าจะเป็นของการสังเกต
+   ```
+   สำหรับแต่ละ particle i:
+     w_t^(i) = P(e_t | x_t^(i))
+   ```
+
+4. **Resampling**: เลือก particles ใหม่ตาม weights
+
+---
+
+class: middle
+
+## ตัวอย่าง Particle Filter: Robot Localization
+
+.center.width-70[![](figures/lec6/particle-filter-demo.png)]
+
+### สถานการณ์
+- **Robot** เคลื่อนที่ในพื้นที่ที่ทราบแผนที่
+- **Sensors**: วัดระยะทางถึงผนัง (มี noise)
+- **โจทย์**: หาตำแหน่งของ robot
+
+### การแสดงผล
+- **จุดสีแดง**: particles (สถานะที่เป็นไปได้)
+- **ความหนาแน่น**: แสดงความน่าจะเป็น
+- **เส้นสีเขียว**: sensor readings
+
+---
+
+class: middle, black-slide
+
+.center[
+<video controls preload="auto" height="400" width="640">
+  <source src="./figures/lec6/pacman-with-beliefs.mp4" type="video/mp4">
+</video>
+
+**Pacman ด้วย Particle Filter**<br>
+การติดตามตำแหน่งผี (ghost) ด้วย belief state
+]
+
+.footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+---
+```
+python3 run.py --nghosts 2 --layout maze_small --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
+python3 run.py --nghosts 3 --layout maze_medium --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
+python3 run.py --nghosts 4 --layout maze_huge --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
+
+```
+---
+# การเปรียบเทียบ Filters
+
+| | **Kalman Filter** | **Particle Filter** |
+|---|---|---|
+| **ประเภทสถานะ** | Continuous | Discrete/Continuous |
+| **Transition Model** | Linear + Gaussian | ใดก็ได้ |
+| **Sensor Model** | Linear + Gaussian | ใดก็ได้ |
+| **การแสดง Belief** | Gaussian (μ, Σ) | Set of particles |
+| **ความแม่นยำ** | Optimal (หากสมมติฐานถูก) | Approximate |
+| **ความเร็ว** | เร็วมาก O(n³) | ช้ากว่า O(N×n) |
+| **หน่วยความจำ** | น้อย O(n²) | มาก O(N×n) |
+| **ความยืดหยุ่น** | จำกัด | สูงมาก |
+
+### เมื่อไหร่ใช้อะไร?
+- **Kalman**: ระบบ linear, Gaussian, ต้องการความเร็ว
+- **Particle**: ระบบ nonlinear, non-Gaussian, ต้องการความยืดหยุ่น
+
+---
+
+class: middle
+
+# การประยุกต์ใช้จริง
+
+## ตัวอย่างการใช้งานในโลกแห่งความเป็นจริง
+
+---
+
+# การประยุกต์ใช้ในชีวิตจริง
+
+## 1. ระบบนำทาง GPS
+- **Kalman Filter** สำหรับติดตามตำแหน่งรถ
+- รวม GPS, accelerometer, gyroscope
+- ประมาณความเร็วและทิศทาง
+
+## 2. รถยนต์ไร้คนขับ (Autonomous Vehicles)
+- **Particle Filter** สำหรับ localization
+- **Kalman Filter** สำหรับติดตามวัตถุ
+- รวมข้อมูล camera, LiDAR, radar
+
+## 3. หุ่นยนต์ในโรงงาน
+- ติดตามตำแหน่งชิ้นงาน
+- วางแผนเส้นทางการเคลื่อนที่
+- หลีกเลี่ยงสิ่งกีดขวาง
+
+---
+
+class: middle
+
+## 4. การตรวจจับใบหน้า
+- **HMM** สำหรับติดตาม facial landmarks
+- **Particle Filter** สำหรับติดตามการเคลื่อนไหว
+- การรู้จำอารมณ์และการแสดงออก
+
+## 5. การวิเคราะห์การเงิน
+- **HMM** สำหรับหา market regimes
+- **Kalman Filter** สำหรับ portfolio optimization
+- การทำนายราคาหุ้น
+
+## 6. เกมและความบันเทิง
+- **Particle Filter** ใน game AI
+- การติดตามผู้เล่นใน augmented reality
+- การสร้าง intelligent NPCs
+
+---
+
+class: middle
+
+# สรุปและข้อคิด
+
+---
+
+# สรุปสำคัญ
+
+## แนวคิดหลัก
+
+1. **Markov Assumption**: อนาคตขึ้นอยู่กับปัจจุบัน ไม่ใช่อดีต
+2. **Belief State**: การรักษาความน่าจะเป็นของสถานะที่เป็นไปได้
+3. **Predict-Update Cycle**: วงจรการทำนายและปรับปรุง
+
+## เครื่องมือสำคัญ
+
+- **Hidden Markov Models**: สำหรับระบบ discrete states
+- **Kalman Filter**: สำหรับระบบ linear Gaussian
+- **Particle Filter**: สำหรับระบบทั่วไป non-linear/non-Gaussian
+
+## การประยุกต์
+
+- การติดตามวัตถุ (Object tracking)
+- การระบุตำแหน่ง (Localization) 
+- การรู้จำรูปแบบ (Pattern recognition)
+- การควบคุมระบบ (Control systems)
+
+---
+
+class: middle
+
+## คำถามสำหรับคิด
+
+1. **ทำไม** Markov assumption ถึงมีประโยชน์?
+   - ลดความซับซ้อน computational
+   - ทำให้สามารถแก้ปัญหาได้
+
+2. **เมื่อไหร่** ควรใช้ Particle Filter แทน Kalman Filter?
+   - ระบบ non-linear
+   - การแจกแจงไม่ใช่ Gaussian
+   - ต้องการความยืดหยุ่น
+
+3. **อย่างไร** จะปรับปรุงประสิทธิภาพ?
+   - เพิ่มจำนวน particles
+   - ปรับปรุง resampling algorithm  
+   - ใช้ adaptive techniques
+
+---
+
+class: middle
+
+## การเชื่อมโยงกับบทบรรยายอื่นๆ
+
+### บทก่อนหน้า
+- **Probability & Bayes' Theorem** → พื้นฐานการคำนวณ
+- **Bayesian Networks** → โครงสร้างการแทนความรู้
+
+### บทต่อไป
+- **Decision Making** → การใช้ belief state ในการตัดสินใจ
+- **Reinforcement Learning** → การเรียนรู้ในสภาพแวดล้อมที่ไม่แน่นอน
+- **Planning under Uncertainty** → การวางแผนเมื่อไม่ทราบสถานะแน่นอน
+
+---
+
+class: middle
+
+# แบบฝึกหัดและโปรเจ็กต์
+
+---
+
+class: middle
+
+## แบบฝึกหัดที่แนะนำ
+
+### 1. การคำนวณ Stationary Distribution
+จากตาราง transition probabilities ให้หา stationary distribution
+
+### 2. การ Implement Simple Particle Filter  
+สร้าง particle filter สำหรับปัญหา 1D tracking
+
+### 3. การวิเคราะห์ HMM
+จากข้อมูลการสังเกต ให้หาความน่าจะเป็นของสถานะที่ซ่อน
+
+### 4. การออกแบบ Sensor Model
+ออกแบบ sensor model สำหรับปัญหา robot localization
+
+### 5. การเปรียบเทียบ Filters
+เปรียบเทียบประสิทธิภาพ Kalman vs Particle Filter
+
+---
+
+class: end-slide, center
+count: false
+
+# ขอบคุณสำหรับความสนใจ
+
+### คำถาม - ข้อสงสัย - อภิปราย
+
+**บทบรรยายหน้า**: การตัดสินใจภายใต้ความไม่แน่นอน<br>
+(Decision Making under Uncertainty)
+
+---
+
+class: middle
+
+## เอกสารอ้างอิง
+
+1. Stuart Russell and Peter Norvig. *Artificial Intelligence: A Modern Approach*. 4th Edition.
+
+2. Sebastian Thrun, Wolfram Burgard, and Dieter Fox. *Probabilistic Robotics*. MIT Press.
+
+3. Christopher M. Bishop. *Pattern Recognition and Machine Learning*. Springer.
+
+4. Kevin Murphy. *Machine Learning: A Probabilistic Perspective*. MIT Press.
+
+5. Daphne Koller and Nir Friedman. *Probabilistic Graphical Models*. MIT Press.
+
+### แหล่งข้อมูลออนไลน์
+- CS188 UC Berkeley: [https://inst.eecs.berkeley.edu/~cs188/](https://inst.eecs.berkeley.edu/~cs188/)
+- Stanford CS221: [https://stanford-cs221.github.io/](https://stanford-cs221.github.io/)
+
+.footnote[เครดิตต้นฉบับ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
+
+    </textarea>
+    
+    <script src="../assets/remark.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

@@ -8,7 +8,7 @@
     <!-- KaTeX for math rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
-    <script defer src="/Users/aof_mac/Desktop/AI_comsci/SCI193611-ai-master/assets/auto-render.min.js"></script>
+    <script defer src="../assets/auto-render.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
@@ -194,7 +194,7 @@
 
         .title-slide:after {
             content: '';
-            background: url("/Users/aof_mac/Desktop/AI_comsci/SCI193611-ai-master/assets/logo_ulg.png") no-repeat;
+            background: url("../assets/logo_ulg.png") no-repeat;
             background-size: 75% 75%;
             width: 150px;
             height: 73px;
@@ -702,7 +702,7 @@ Ghostbusters กับตัวกรองของเบย์
 --
 
 ```
-python3 run.py --nghosts 2 --layout maze_small --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
+python3 run.py --nghosts 2 --layout large_filter --agentfile sherlockpacman.py --bsagentfile bayesfilter.py
 python3 run.py --nghosts 3 --layout maze_medium --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
 python3 run.py --nghosts 4 --layout maze_huge --agentfile sherlockpacman.py --bsagentfile bayesfilter.py --show True
 
@@ -1412,7 +1412,7 @@ The end.
 
     </textarea>
     
-    <script src="/Users/aof_mac/Desktop/AI_comsci/SCI193611-ai-master/assets/remark.min.js"></script>
+    <script src="../assets/remark.min.js"></script>
     <script>
         var slideshow = remark.create({
             highlightStyle: 'github',
