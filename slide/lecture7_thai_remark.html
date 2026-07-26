@@ -329,7 +329,7 @@ class: middle, center, title-slide
 
 # เนื้อหาวันนี้
 
-.center.width-40[![](figures/lec7/sl-cartoon.png)]
+.center.width-40[![](../figures/lec7/sl-cartoon.png)]
 
 การเรียนรู้จากข้อมูลเป็นองค์ประกอบสำคัญของปัญญาประดิษฐ์ ในบทบรรยายนี้ เราจะแนะนำหลักการของ:
 - การเรียนรู้ของเครื่อง (Machine learning)
@@ -354,29 +354,29 @@ class: middle, center, title-slide
 ---
 
 .center[
-.width-30[![](figures/lec7/cat.jpg)] &nbsp; &nbsp;
-.width-30[![](figures/lec7/dog.jpg)]
+.width-30[![](../figures/lec7/cat.jpg)] &nbsp; &nbsp;
+.width-30[![](../figures/lec7/dog.jpg)]
 ]
 
 .question[คุณจะเขียนโปรแกรมคอมพิวเตอร์ที่จำแนกแมวออกจากสุนัขได้อย่างไร?]
 
 ---
 
-.center.width-30[![](figures/lec7/cat1.png)]
+.center.width-30[![](../figures/lec7/cat1.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-40[![](figures/lec7/cat2.png)]
+.center.width-40[![](../figures/lec7/cat2.png)]
 
 
 ---
 
 count: false
 class: black-slide, middle
-background-image: url(./figures/lec7/cat3.png)
+background-image: url(../figures/lec7/cat3.png)
 background-size: cover
 
 ---
@@ -384,7 +384,7 @@ background-size: cover
 count: false
 class: black-slide, middle
 
-background-image: url(./figures/lec7/cat4.png)
+background-image: url(../figures/lec7/cat4.png)
 background-size: cover
 
 ---
@@ -401,14 +401,14 @@ background-size: cover
 จากข้อมูลนี้ เราต้องการระบุแบบจำลองความน่าจะเป็น $$p_{\theta}(y|\mathbf{x})$$ ที่อธิบายข้อมูลได้ดีที่สุด
 
 ]
-.kol-1-3[<br><br>.center.width-50[![](figures/lec7/latent.svg)]]
+.kol-1-3[<br><br>.center.width-50[![](../figures/lec7/latent.svg)]]
 ]
 
 ---
 
 class: middle
 
-.center.width-40[![](figures/lec7/IntroModels.svg)]
+.center.width-40[![](../figures/lec7/IntroModels.svg)]
 
 .center[ปัญหาการถดถอย (Regression) ($y \in \mathbb{R}$) และการจำแนกประเภท (classification) ($y \in \{0, 1, ..., C-1\}$)]
 
@@ -418,7 +418,7 @@ class: middle
 
 class: middle
 
-.center.width-40[![](figures/lec7/IntroModels2a.svg)]
+.center.width-40[![](../figures/lec7/IntroModels2a.svg)]
 
 .center[การเรียนรู้แบบมีผู้สอนพร้อมผลลัพธ์ที่มีโครงสร้าง (structured outputs) ($y \in \mathcal{Y}$)]
 
@@ -431,7 +431,7 @@ class: middle
 สมมติว่า $y \in \mathbb{R}$ ก่อน
 
 <br>
-.center.width-60[![](figures/lec7/lr-cartoon.png)]
+.center.width-60[![](../figures/lec7/lr-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -440,8 +440,8 @@ class: middle
 class: middle
 
 .grid[
-.kol-1-5[<br>.center.width-70[![](figures/lec7/latent.svg)]]
-.kol-4-5[.center.width-30[![](figures/lec7/lr-gaussian.svg)]]
+.kol-1-5[<br>.center.width-70[![](../figures/lec7/latent.svg)]]
+.kol-4-5[.center.width-30[![](../figures/lec7/lr-gaussian.svg)]]
 ]
 
 Linear regression พิจารณาแบบจำลองเชิงเส้นแบบเกาส์เซียน (linear Gaussian model) ที่มีพารามิเตอร์สำหรับแบบจำลองพาราเมตริกของ $p(y|\mathbf{x})$ นั่นคือ
@@ -470,7 +470,7 @@ $$\mathcal{L}(\mathbf{w},b) = \sum_{j=1}^N (y_j - (\mathbf{w}^T \mathbf{x}_j + b
 
 class: middle
 
-.center.width-30[![](figures/lec7/lr-sum-squares.svg)]
+.center.width-30[![](../figures/lec7/lr-sum-squares.svg)]
 
 .center[
   
@@ -499,7 +499,7 @@ $$\mathbf{w}^* = \left(\mathbf{X}^T \mathbf{X}\right)^{-1} \mathbf{X}^T \mathbf{
 ตอนนี้ให้เราสมมติว่า $y \in \{0,1\}$
 
 <br>
-.center.width-30[![](figures/lec7/classif-cartoon.png)]
+.center.width-30[![](../figures/lec7/classif-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -507,7 +507,7 @@ $$\mathbf{w}^* = \left(\mathbf{X}^T \mathbf{X}\right)^{-1} \mathbf{X}^T \mathbf{
 
 class: middle
 
-.center.width-40[![](figures/lec7/activation-sigmoid.png)]
+.center.width-40[![](../figures/lec7/activation-sigmoid.png)]
 
 ฟังก์ชัน sigmoid $\sigma(z) = \frac{1}{1+e^{-z}}$ จะจับคู่ค่าใดๆ บนเส้นจำนวนจริงกับช่วง $(0,1)$
 ---
@@ -564,70 +564,70 @@ class: middle
 
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-0.png)]
+.center.width-50[![](../figures/lec7/gd-good-0.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-1.png)]
+.center.width-50[![](../figures/lec7/gd-good-1.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-2.png)]
+.center.width-50[![](../figures/lec7/gd-good-2.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-3.png)]
+.center.width-50[![](../figures/lec7/gd-good-3.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-4.png)]
+.center.width-50[![](../figures/lec7/gd-good-4.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-30[![](figures/lec7/gd-good-5.png)]
+.center.width-30[![](../figures/lec7/gd-good-5.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-6.png)]
+.center.width-50[![](../figures/lec7/gd-good-6.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-7.png)]
+.center.width-50[![](../figures/lec7/gd-good-7.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-8.png)]
+.center.width-50[![](../figures/lec7/gd-good-8.png)]
 
 ---
 
 count: false
 class: middle
 
-.center.width-50[![](figures/lec7/gd-good-9.png)]
+.center.width-50[![](../figures/lec7/gd-good-9.png)]
 
 ---
 
@@ -641,7 +641,7 @@ Can we learn to play Pacman only from observations?
 - We want to learn the actions that the expert would take in a given situation. That is, learn the mapping $f:\mathbb{R}^d \to \mathcal{A}$.
 - This is a multiclass classification problem that can be solved by combining binary classifers.
 
-.center.width-70[![](figures/lec7/pacman.png)]
+.center.width-70[![](../figures/lec7/pacman.png)]
 
 .footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -651,7 +651,7 @@ class: middle, black-slide
 
 .center[
 <video controls muted preload="auto" height="400" width="640">
-  <source src="./figures/lec7/training1.mp4" type="video/mp4">
+  <source src="../figures/lec7/training1.mp4" type="video/mp4">
 </video>
 
 The agent observes a very good Minimax-based agent for two games and updates its weight vectors as data are collected.
@@ -665,7 +665,7 @@ class: middle, black-slide
 
 .center[
 <video controls muted preload="auto" height="400" width="640">
-  <source src="./figures/lec7/training2.mp4" type="video/mp4">
+  <source src="../figures/lec7/training2.mp4" type="video/mp4">
 </video>
 
 <br><br>]
@@ -678,7 +678,7 @@ class: middle, black-slide
 
 .center[
 <video controls muted preload="auto" height="400" width="640">
-  <source src="./figures/lec7/apprentice.mp4" type="video/mp4">
+  <source src="../figures/lec7/apprentice.mp4" type="video/mp4">
 </video>
 
 After two training episodes, the ML-based agents plays.<br>
@@ -733,7 +733,7 @@ Draw the (generic) architecture of a shallow network.
 
 class: middle
 
-.center.width-30[![](figures/lec7/ShallowReLU.svg)]
+.center.width-30[![](../figures/lec7/ShallowReLU.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -748,7 +748,7 @@ We first consider the case where $d\_\text{in} = 1$ and $d\_\text{out} = 1$ for 
 $$y = v\_{0} \sigma(w\_{0} x + b\_0) + v\_{1} \sigma(w\_{1} x + b\_1) + v\_{2} \sigma(w\_{2} x + b\_2) + c$$
 where $w\_{0}$, $w\_{1}$, $w\_{2}$, $b\_0$, $b\_1$, $b\_2$, $v\_{0}$, $v\_{1}$, $v\_{2}$ and $c$ are the model parameters and where the activation function $\sigma$ is $\text{ReLU}(\cdot) = \max(0, \cdot)$.
 
-.center.width-20[![](figures/lec7/ShallowReLU.svg)]
+.center.width-20[![](../figures/lec7/ShallowReLU.svg)]
 
 .footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -758,7 +758,7 @@ class: middle
 
 โครงข่ายนี้กำหนดตระกูลของฟังก์ชันเชิงเส้นเป็นช่วง (piecewise linear functions) ซึ่งตำแหน่งของข้อต่อ, ความชัน และความสูงของฟังก์ชันถูกกำหนดโดยพารามิเตอร์ 10 ตัว $w\_{0}$, $w\_{1}$, $w\_{2}$, $b\_0$, $b\_1$, $b\_2$, $v\_{0}$, $v\_{1}$, $v\_{2}$ และ $c$
 
-.center.width-30[![](figures/lec7/ShallowBuildUp.svg)]
+.center.width-30[![](../figures/lec7/ShallowBuildUp.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -801,7 +801,7 @@ h\_2 &= \sigma\left( w\_{20} x\_0 + w\_{21} x\_1 + b\_2 \right).
 
 class: middle
 
-.center.width-40[![](figures/lec7/ShallowBuildUp2D.svg)]
+.center.width-40[![](../figures/lec7/ShallowBuildUp2D.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -825,7 +825,7 @@ y' &= v'\_0 h\_0' + v'\_1 h\_1' + v'\_2 h\_2' + c'.
 
 class: middle
 
-.center.width-60[![](figures/lec7/DeepConcat1.svg)]
+.center.width-60[![](../figures/lec7/DeepConcat1.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -833,7 +833,7 @@ class: middle
 
 class: middle
 
-.center.width-50[![](figures/lec7/DeepConcat2.svg)]
+.center.width-50[![](../figures/lec7/DeepConcat2.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -862,7 +862,7 @@ $$y = v\_0 h\_0' + v\_1 h\_1' + v\_2 h\_2' + c.$$
 
 class: middle
 
-.center.width-35[![](figures/lec7/DeepBuildUp.svg)]
+.center.width-35[![](../figures/lec7/DeepBuildUp.svg)]
 
 .footnote[เครดิต: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -941,7 +941,7 @@ Convolutional neural networks extend fully connected architectures with
 - pooling layers acting as spatial down-samplers.
 
 <br>
-.center.width-60[![](figures/lec7/convnet-pattern.png)]
+.center.width-60[![](../figures/lec7/convnet-pattern.png)]
 
 ---
 
@@ -961,10 +961,10 @@ class: middle
 
 Convolutions can implement differential operators:
 $$(0,0,0,0,1,2,3,4,4,4,4) \circledast (-1,1) = (0,0,0,1,1,1,1,0,0,0) $$
-.center.width-100[![](figures/lec7/conv-op1.png)]
+.center.width-100[![](../figures/lec7/conv-op1.png)]
 or crude template matchers:
 $$(0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0) \circledast (1, 0, 1) = (3, 0, 3, 0, 0, 0, 3, 0, 6, 0, 3, 0)$$
-.center.width-70[![](figures/lec7/conv-op2.png)]
+.center.width-70[![](../figures/lec7/conv-op2.png)]
 
 .footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
 
@@ -983,7 +983,7 @@ $$\mathbf{o}\_{j,i} = (\mathbf{x} \circledast \mathbf{u})[j,i] = \sum\_{c=0}^{C-
 
 class: middle
 
-.center[![](figures/lec7/3d-conv.gif)]
+.center[![](../figures/lec7/3d-conv.gif)]
 
 .footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
 
@@ -995,7 +995,7 @@ Give some intuition about the interpretation of the convolution in terms of simi
 
 class: middle
 
-.center.width-90[![](figures/lec7/Conv2a.svg)]
+.center.width-90[![](../figures/lec7/Conv2a.svg)]
 
 Convolutional layers (c-f) are a special case of fully connected layers (a-b) where hidden units are connected to local regions of the input through shared weights (the kernels).
 - The connectivity allows the network to learn local patterns in the input.
@@ -1018,7 +1018,7 @@ $$\mathbf{o}\_{c,j,i} = \max\_{n < h, m < w} \mathbf{x}_{c,rj+n,si+m}.$$
 
 class: middle
 
-.center[![](figures/lec7/3d-pooling.gif)]
+.center[![](../figures/lec7/3d-pooling.gif)]
 
 .footnote[Credits: Francois Fleuret, [EE559 Deep Learning](https://fleuret.org/ee559/), EPFL.]
 
@@ -1074,7 +1074,7 @@ Transformers are deep neural networks at the core of large-scale language models
 
 <br>
 
-.center.width-70[![](figures/lec7/transformer-next.png)]
+.center.width-70[![](../figures/lec7/transformer-next.png)]
 
 .footnote[Credits: [Simon J.D. Prince](https://udlbook.github.io/udlbook/), 2023.]
 
@@ -1092,7 +1092,7 @@ where $w\_t$ is the next word in the sequence and $w\_{1:t-1}$ are the previous 
 
 class: middle
 
-.center.width-100[![](figures/lec7/TransformerDecoder.svg)]
+.center.width-100[![](../figures/lec7/TransformerDecoder.svg)]
 
 The decoder-only transformer is a stack of $K$ transformer blocks that process the input sequence in parallel using (masked) self-attention.
 
@@ -1104,7 +1104,7 @@ The output of the last block is used to predict the next word in the sequence, a
 
 class: middle
 
-.width-100[![](./figures/lec0/scaling-power-law.png)]
+.width-100[![](../figures/lec0/scaling-power-law.png)]
 
 ## Scaling laws
 
@@ -1133,7 +1133,7 @@ How AI Helps Autonomous Vehicles See Outside the Box<br>
 
 class: black-slide, middle, center
 
-.width-100[![](figures/lec7/hydranet.png)]
+.width-100[![](../figures/lec7/hydranet.png)]
 
 Hydranet (Tesla, 2021)
 
@@ -1164,7 +1164,7 @@ How machine learning is advancing medicine (Google, 2018)
 
 class: middle
 
-.center.circle.width-20[![](figures/lec7/bishop.jpg)]
+.center.circle.width-20[![](../figures/lec7/bishop.jpg)]
 
 .center[
 "วิธีการเรียนรู้ของเครื่องแบบดั้งเดิมจำเป็นต้องมีผู้ออกแบบที่เป็นมนุษย์ที่มีความชำนาญในการออกแบบตัวแยกคุณลักษณะ (feature extractor) ที่เหมาะสม...

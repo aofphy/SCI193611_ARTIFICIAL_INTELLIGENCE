@@ -321,7 +321,7 @@ class: middle, center, title-slide
     - ตัวกรองคาลมาน (Kalman filter)
     - ตัวกรองอนุภาค (Particle filter)
 ]
-.kol-1-2[.width-100[![](figures/lec6/outline-cartoon.png)]
+.kol-1-2[.width-100[![](../figures/lec6/outline-cartoon.png)]
 ]
 ]
 
@@ -335,7 +335,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/pacman-no-beliefs.mp4" type="video/mp4">
+  <source src="../figures/lec6/pacman-no-beliefs.mp4" type="video/mp4">
 </video>
 
 .bold[Pacman แก้แค้น]: จะใช้ประโยชน์จากค่าที่อ่านได้จากโซนาร์ได้อย่างไร?
@@ -386,7 +386,7 @@ class: middle
 กล่าวคือ $\mathbf{X}\_t$ และ $\mathbf{X}\_{0:t-2}$ เป็นอิสระต่อกันตามเงื่อนไข (conditionally independent) เมื่อกำหนด $\mathbf{X}\_{t-1}$
 
 <br>
-.center.width-100[![](figures/lec6/markov-process.png)]
+.center.width-100[![](../figures/lec6/markov-process.png)]
 
 ---
 
@@ -405,7 +405,7 @@ class: middle
 # การแจกแจงร่วม (Joint distribution)
 
 <br>
-.center.width-100[![](figures/lec6/smoothing-dbn.svg)]
+.center.width-100[![](../figures/lec6/smoothing-dbn.svg)]
 <br>
 
 ลูกโซ่มาร์คอฟที่เชื่อมต่อกับแบบจำลองเซ็นเซอร์สามารถแสดงเป็นเครือข่ายแบบเบย์ (Bayesian network) ที่*ขยายได้* (growable) และคลี่ออกไปอย่างไม่สิ้นสุดตามเวลา
@@ -420,11 +420,11 @@ class: middle
 ## ตัวอย่าง: วันนี้คุณจะพกร่มไปด้วยไหม?
 
 
-.center.width-80[![](figures/lec6/weather-bn.svg)]
+.center.width-80[![](../figures/lec6/weather-bn.svg)]
 
 .grid[
 .kol-1-2[
-.center.width-100[![](figures/lec6/weather-forecast.png)]
+.center.width-100[![](../figures/lec6/weather-forecast.png)]
 ]
 .kol-1-2[
 - ${\bf P}(\text{Umbrella}\_t | \text{Rain}\_t)$?
@@ -438,7 +438,7 @@ class: middle
 
 class: middle
 
-.center.width-60[![](figures/lec6/weather-transition.png)]
+.center.width-60[![](../figures/lec6/weather-transition.png)]
 
 แบบจำลองการเปลี่ยนสถานะ ${\bf P}(\text{Rain}\_t | \text{Rain}\_{t-1})$ สามารถแสดงแทนได้ด้วยแผนภาพการเปลี่ยนสถานะ (state transition diagram)
 
@@ -464,7 +464,7 @@ class: middle
 
 .grid[
 .kol-1-2.center[
-.width-80[![](figures/lec6/base-case2.png)]
+.width-80[![](../figures/lec6/base-case2.png)]
 
 $\begin{aligned}
 {\bf P}(\mathbf{X}\_2) &= \sum\_{\mathbf{x}\_1} {\bf P}(\mathbf{X}\_2, \mathbf{x}\_1) \\\\
@@ -474,7 +474,7 @@ $\begin{aligned}
 (ทำนาย) ผลัก ${\bf P}(\mathbf{X}\_1)$ ไปข้างหน้าผ่านแบบจำลองการเปลี่ยนสถานะ
 ]
 .kol-1-2.center[
-.width-70[![](figures/lec6/base-case1.png)]
+.width-70[![](../figures/lec6/base-case1.png)]
 
 $\begin{aligned}
 {\bf P}(\mathbf{X}\_1 | \mathbf{e}\_1) &=\frac{ {\bf P}(\mathbf{e}\_1 | \mathbf{X}\_1) {\bf P}(\mathbf{X}\_1)}{P(\mathbf{e}\_1)} \\\\
@@ -491,7 +491,7 @@ $\begin{aligned}
 
 # การทำนาย (Prediction)
 
-.center.width-50[![](figures/lec6/stationary-cartoon.png)]
+.center.width-50[![](../figures/lec6/stationary-cartoon.png)]
 
 เพื่อทำนายอนาคต ${\bf P}(\mathbf{X}\_{t+k}| \mathbf{e}\_{1:t})$:
 - **ผลัก**สถานะความเชื่อก่อนหน้า ${\bf P}(\mathbf{X}\_{t} | \mathbf{e}\_{1:t})$ ผ่านแบบจำลองการเปลี่ยนสถานะ:
@@ -507,7 +507,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-basics.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-basics.mp4" type="video/mp4">
 </video>]
 
 .center[พลวัตแบบสุ่ม (Random dynamics)]
@@ -520,7 +520,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-circular.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-circular.mp4" type="video/mp4">
 </video>]
 
 .center[พลวัตแบบวงกลม (Circular dynamics)]
@@ -533,7 +533,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-whirlpool.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-whirlpool.mp4" type="video/mp4">
 </video>]
 
 .center[พลวัตแบบน้ำวน (Whirlpool dynamics)]
@@ -545,9 +545,9 @@ class: middle, black-slide
 class: middle
 
 .center[
-.width-70[![](figures/lec6/prediction.png)]
+.width-70[![](../figures/lec6/prediction.png)]
 
-.width-70[![](figures/lec6/uncertainty.png)]
+.width-70[![](../figures/lec6/uncertainty.png)]
 ]
 
 เมื่อเวลาผ่านไป ความไม่แน่นอน (uncertainty) มักจะเพิ่มขึ้นเมื่อไม่มีหลักฐานใหม่
@@ -598,7 +598,7 @@ $P(\mathbf{X}\_\infty=\text{rain}) = \frac{1}{4}$
 
 <br><br>
 
-.center.width-90[![](figures/lec6/observation.png)]
+.center.width-90[![](../figures/lec6/observation.png)]
 <br>
 
 .center[เมื่อมีหลักฐานใหม่ ความไม่แน่นอนจะลดลง ความเชื่อจะถูกถ่วงน้ำหนักใหม่ แต่อย่างไร?]
@@ -657,7 +657,7 @@ class: middle
 
 ## ตัวอย่าง
 
-.center.width-50[![](figures/lec6/filtering.png)]
+.center.width-50[![](../figures/lec6/filtering.png)]
 
 <br>
 
@@ -691,7 +691,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/pacman-with-beliefs.mp4" type="video/mp4">
+  <source src="../figures/lec6/pacman-with-beliefs.mp4" type="video/mp4">
 </video>
 
 Ghostbusters กับตัวกรองของเบย์
@@ -751,7 +751,7 @@ class: middle
 
 ## อัลกอริทึมไปข้างหน้า-ย้อนกลับ (Forward-backward algorithm)
 
-.center.width-70[![](figures/lec6/forward-backward.png)]
+.center.width-70[![](../figures/lec6/forward-backward.png)]
 
 ความซับซ้อน:
 - การปรับให้เรียบสำหรับช่วงเวลา $k$ ใดๆ ใช้เวลา: $O(t)$
@@ -763,7 +763,7 @@ class: middle
 
 ## ตัวอย่าง
 
-.center.width-50[![](figures/lec6/smoothing.png)]
+.center.width-50[![](../figures/lec6/smoothing.png)]
 
 ???
 
@@ -774,7 +774,7 @@ class: middle
 # คำอธิบายที่น่าจะเป็นไปได้มากที่สุด (Most likely explanation)
 
 <br>
-.center.width-80[![](figures/lec6/sherlock-mostlikely.png)]
+.center.width-80[![](../figures/lec6/sherlock-mostlikely.png)]
 
 .footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -782,7 +782,7 @@ class: middle
 
 class: middle 
 
-.center.width-80[![](figures/lec6/weather.png)]
+.center.width-80[![](../figures/lec6/weather.png)]
 
 สมมติว่า $[\text{true}, \text{true}, \text{false}, \text{true}, \text{true}]$ คือลำดับการพกร่ม
 
@@ -833,7 +833,7 @@ class: middle
 
 ## ตัวอย่าง
 
-.center.width-50[![](figures/lec6/viterbi.png)]
+.center.width-50[![](../figures/lec6/viterbi.png)]
 
 
 <span class="Q">[Q]</span> คุณจะดึงเส้นทางกลับมาได้อย่างไร นอกเหนือจากความน่าจะเป็นของมัน?
@@ -936,7 +936,7 @@ class: middle
 
 class: middle
 
-.center.width-30[![](figures/lec6/robot-helicopter.png)]
+.center.width-30[![](../figures/lec6/robot-helicopter.png)]
 
 สมมติว่าเราต้องการติดตามตำแหน่งและความเร็วของหุ่นยนต์จากการสังเกตที่มีสัญญาณรบกวนซึ่งรวบรวมเมื่อเวลาผ่านไป
 
@@ -964,7 +964,7 @@ class: middle
 
 ## การแจกแจงเอกรูป (Uniform)
 
-.center.width-40[![](figures/lec6/uniform.png)]
+.center.width-40[![](../figures/lec6/uniform.png)]
 
 การแจกแจงเอกรูป $\mathcal{U}(a,b)$ ถูกอธิบายโดยฟังก์ชันความหนาแน่น
 $$
@@ -980,7 +980,7 @@ class: middle
 
 ## การแจกแจงปกติ (Normal)
 
-.center.width-40[![](figures/lec6/normal.png)]
+.center.width-40[![](../figures/lec6/normal.png)]
 
 การแจกแจงปกติ (หรือเกาส์เซียน) $\mathcal{N}(\mu,\sigma)$ ถูกอธิบายโดยฟังก์ชันความหนาแน่น
 $$p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
@@ -998,7 +998,7 @@ class: middle
 
 ## การแจกแจงปกติหลายตัวแปร (Multivariate normal)
 
-.center.width-60[![](figures/lec6/mvn.png)]
+.center.width-60[![](../figures/lec6/mvn.png)]
 
 การแจกแจงปกติหลายตัวแปรขยายไปสู่ตัวแปรสุ่ม $n$ ตัว ฟังก์ชันความหนาแน่น (ร่วม) ของมันถูกกำหนดเป็น
 $$p(\mathbf{x}=x\_1, ..., x\_n) = \frac{1}{\sqrt{(2\pi)^n|\mathbf{\Sigma}|}} \exp\left(-\frac{1}{2} (\mathbf{x}-\mathbf{m})^T \mathbf{\Sigma}^{-1} (\mathbf{x}-\mathbf{m}) \right) $$
@@ -1095,7 +1095,7 @@ $$Z = \int p(\mathbf{e}\_{t+1} | \mathbf{x}\_{t+1}) p(\mathbf{x}\_{t+1} | \mathb
 .grid[
 .kol-1-2.center[
 <br><br><br>
-![](figures/lec6/lg-model1.png)
+![](../figures/lec6/lg-model1.png)
 
 $p(\mathbf{x}\_{t+1} | \mathbf{x}\_t) = \mathcal{N}(\mathbf{x}\_{t+1} | \mathbf{A} \mathbf{x}\_t + \mathbf{b}, \mathbf{\Sigma}\_{\mathbf{x}})$
 
@@ -1103,7 +1103,7 @@ $p(\mathbf{x}\_{t+1} | \mathbf{x}\_t) = \mathcal{N}(\mathbf{x}\_{t+1} | \mathbf{
 
 ]
 .kol-1-2.center[
-![](figures/lec6/lg-model2.png)
+![](../figures/lec6/lg-model2.png)
 
 $p(\mathbf{e}\_{t} | \mathbf{x}\_t) = \mathcal{N}(\mathbf{e}\_t | \mathbf{C} \mathbf{x}\_t + \mathbf{d}, \mathbf{\Sigma}\_{\mathbf{e}})$
 
@@ -1184,7 +1184,7 @@ $$
 
 class: middle
 
-.center.width-30[![](figures/lec6/walk.png)]
+.center.width-30[![](../figures/lec6/walk.png)]
 
 โดยสรุป สมการอัปเดตเมื่อมีหลักฐานใหม่ $e\_{t+1}$ คือ:
 $$
@@ -1253,8 +1253,8 @@ class: middle
 คอมพิวเตอร์นำทางของอพอลโล (Apollo Guidance Computer) ใช้ตัวกรองคาลมานเพื่อประมาณตำแหน่งของยานอวกาศ ตัวกรองคาลมานถูกใช้เพื่อรวมข้อมูลใหม่เข้ากับการวัดตำแหน่งในอดีตเพื่อสร้างค่าประมาณตำแหน่งที่ดีที่สุดของยานอวกาศ
 
 .grid[
-.kol-1-3[.width-100[![](figures/lec6/agc.jpeg)]]
-.kol-2-3[.width-100[![](figures/lec6/apollo.png)]]
+.kol-1-3[.width-100[![](../figures/lec6/agc.jpeg)]]
+.kol-2-3[.width-100[![](../figures/lec6/apollo.png)]]
 ]
 
 .footnote[ที่มา: [ซอร์สโค้ดของอพอลโล-11](https://github.com/chrislgarry/Apollo-11/blob/4f3a1d4374d4708737683bed78a501a321b6042c/Comanche055/MEASUREMENT_INCORPORATION.agc#L208)]
@@ -1263,7 +1263,7 @@ class: middle
 
 class: middle
 
-.center.width-75[![](figures/lec6/moon.png)]
+.center.width-75[![](../figures/lec6/moon.png)]
 
 .center[สาธิต: [การติดตามวัตถุในอวกาศโดยใช้ตัวกรองคาลมาน](https://demonstrations.wolfram.com/TrackingAnObjectInSpaceUsingTheKalmanFilter/)]
 
@@ -1310,8 +1310,8 @@ class: middle, black-slide
 # เครือข่ายเบย์แบบพลวัต (Dynamic Bayesian networks)
 
 .grid[
-.kol-2-3[.center.width-70[![](figures/lec6/dbn-cartoon.png)]]
-.kol-1-3[.center.width-80[![](figures/lec6/robot-dbn1.svg)]]
+.kol-2-3[.center.width-70[![](../figures/lec6/dbn-cartoon.png)]]
+.kol-1-3[.center.width-80[![](../figures/lec6/robot-dbn1.svg)]]
 ]
 
 เครือข่ายเบย์แบบพลวัต (Dynamic Bayesian networks - DBNs) สามารถใช้ในการติดตามตัวแปรหลายตัวเมื่อเวลาผ่านไป โดยใช้แหล่งข้อมูลหลายแหล่ง แนวคิดคือ:
@@ -1326,11 +1326,11 @@ DBNs เป็นการขยายแนวคิดของ HMMs และ
 
 class: middle
 
-.pull-right[![](figures/lec6/icu.png)]
+.pull-right[![](../figures/lec6/icu.png)]
 
 ## การประยุกต์ใช้: การเฝ้าระวังในห้องไอซียู
 
-.center.width-60[![](figures/lec6/icu-data.png)]
+.center.width-60[![](../figures/lec6/icu-data.png)]
 
 ---
 
@@ -1338,7 +1338,7 @@ class: middle
 
 ## การอนุมานที่แม่นยำ (Exact inference)
 
-.center.width-100[![](figures/lec6/dbn-unrolling.svg)]
+.center.width-100[![](../figures/lec6/dbn-unrolling.svg)]
 
 คลี่เครือข่ายออกตามเวลาและใช้อัลกอริทึมการอนุมานที่แม่นยำใดๆ (เช่น การกำจัดตัวแปร)
 - ปัญหา: ค่าใช้จ่ายในการอนุมานสำหรับการอัปเดตแต่ละครั้งจะเพิ่มขึ้นตาม $t$
@@ -1359,7 +1359,7 @@ class: middle
 
 วิธีนี้สามารถปรับขนาดให้เข้ากับมิติที่สูงได้!
 
-.center.width-65[![](figures/lec6/robot.png)]
+.center.width-65[![](../figures/lec6/robot.png)]
 
 .footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1369,7 +1369,7 @@ class: middle
 
 ## วงจรการอัปเดต
 
-.center.width-100[![](figures/lec6/particle-filter.png)]
+.center.width-100[![](../figures/lec6/particle-filter.png)]
 
 .footnote[ที่มา: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1377,7 +1377,7 @@ class: middle
 
 class: middle
 
-.center.width-100[![](figures/lec6/pf-algorithm.png)]
+.center.width-100[![](../figures/lec6/pf-algorithm.png)]
 
 ---
 
@@ -1385,7 +1385,7 @@ class: middle
 
 ## การหาตำแหน่งหุ่นยนต์ (Robot localization)
 
-.center.width-50[![](figures/lec6/pf-demo.png)]
+.center.width-50[![](../figures/lec6/pf-demo.png)]
 
 .center[(ดูการสาธิต)]
 

@@ -324,7 +324,7 @@ $${\bf P}(\mathbf{X}\_{0:t}, \mathbf{E}\_{1:t}) = {\bf P}(\mathbf{X}\_{0}) \prod
     - Kalman filter
     - Particle filter
 ]
-.kol-1-2[.width-70[![](figures/lec6/outline-cartoon.png)]
+.kol-1-2[.width-70[![](../figures/lec6/outline-cartoon.png)]
 ]
 ]
 
@@ -338,7 +338,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/pacman-no-beliefs.mp4" type="video/mp4">
+  <source src="../figures/lec6/pacman-no-beliefs.mp4" type="video/mp4">
 </video>
 
 .bold[Pacman ผู้แก้แค้น]: จะใช้ข้อมูลจาก sonar readings ให้เกิดประโยชน์ได้อย่างไร?
@@ -410,7 +410,7 @@ ${\bf P}(\mathbf{X}\_t | \mathbf{X}\_{0:t-1}) = {\bf P}(\mathbf{X}\_t | \mathbf{
 หมายความว่า $\mathbf{X}\_t$ และ $\mathbf{X}\_{0:t-2}$ เป็นอิสระเมื่อกำหนดค่า $\mathbf{X}\_{t-1}$
 
 <br>
-.center.width-100[![](figures/lec6/markov-process.png)]
+.center.width-100[![](../figures/lec6/markov-process.png)]
 
 ---
 
@@ -435,7 +435,7 @@ $${\bf P}(\mathbf{E}\_t | \mathbf{X}\_{0:t}, \mathbf{E}\_{0:t-1}) = {\bf P}(\mat
 # การแจกแจงร่วม (Joint Distribution)
 
 <br>
-.center.width-100[![](figures/lec6/smoothing-dbn.svg)]
+.center.width-100[![](../figures/lec6/smoothing-dbn.svg)]
 <br>
 
 **Markov chain** ที่รวมกับ **sensor model** สามารถแสดงเป็น *Bayesian network ที่ขยายได้* ซึ่งกางออกไปตามเวลาอนันต์
@@ -450,11 +450,11 @@ class: middle
 
 ## ตัวอย่าง: วันนี้คุณจะเอาร่มไปหรือไม่?
 
-.center.width-80[![](figures/lec6/weather-bn.svg)]
+.center.width-80[![](../figures/lec6/weather-bn.svg)]
 
 .grid[
 .kol-1-2[
-.center.width-60[![](figures/lec6/weather-forecast.png)]
+.center.width-60[![](../figures/lec6/weather-forecast.png)]
 
 **สถานการณ์**: 
 - ฝนตก → เอาร่ม
@@ -477,7 +477,7 @@ class: middle
 
 class: middle
 
-.center.width-30[![](figures/lec6/weather-transition.png)]
+.center.width-30[![](../figures/lec6/weather-transition.png)]
 
 **Transition model** ${\bf P}(\text{Rain}\_t | \text{Rain}\_{t-1})$ สามารถแสดงด้วย **state transition diagram** ได้
 
@@ -516,7 +516,7 @@ class: middle
 
 .grid[
 .kol-1-2.center[
-.width-80[![](figures/lec6/base-case2.png)]
+.width-80[![](../figures/lec6/base-case2.png)]
 
 ### การทำนาย (Prediction)
 
@@ -528,7 +528,7 @@ $\begin{aligned}
 **ขั้นตอน**: ส่ง ${\bf P}(\mathbf{X}\_1)$ ข้างหน้าผ่าน transition model
 ]
 .kol-1-2.center[
-.width-80[![](figures/lec6/base-case1.png)]
+.width-80[![](../figures/lec6/base-case1.png)]
 
 ### การปรับปรุง (Update)
 
@@ -547,7 +547,7 @@ $\begin{aligned}
 
 # การทำนาย (Prediction)
 
-.center.width-50[![](figures/lec6/stationary-cartoon.png)]
+.center.width-50[![](../figures/lec6/stationary-cartoon.png)]
 
 เพื่อทำนายอนาคต ${\bf P}(\mathbf{X}\_{t+k}| \mathbf{e}\_{1:t})$:
 ---
@@ -571,7 +571,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-basics.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-basics.mp4" type="video/mp4">
 </video>]
 
 .center[**พลศาสตร์แบบสุ่ม (Random Dynamics)**<br>
@@ -585,7 +585,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-circular.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-circular.mp4" type="video/mp4">
 </video>]
 
 .center[**พลศาสตร์แบบวงกลม (Circular Dynamics)**<br>
@@ -599,7 +599,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/gb-whirlpool.mp4" type="video/mp4">
+  <source src="../figures/lec6/gb-whirlpool.mp4" type="video/mp4">
 </video>]
 
 .center[**พลศาสตร์แบบน้ำวน (Whirlpool Dynamics)**<br>
@@ -614,9 +614,9 @@ class: middle
 ## ความไม่แน่นอนเพิ่มขึ้นตามเวลา
 
 .center[
-.width-60[![](figures/lec6/prediction.png)]
+.width-60[![](../figures/lec6/prediction.png)]
 
-.width-60[![](figures/lec6/uncertainty.png)]
+.width-60[![](../figures/lec6/uncertainty.png)]
 ]
 
 ### สิ่งสำคัญที่ต้องจำ
@@ -705,7 +705,7 @@ class: middle
 
 ## ตัวอย่างการ Filtering: Ghost Tracking
 
-.center.width-70[![](figures/lec6/ghost-tracking.png)]
+.center.width-70[![](../figures/lec6/ghost-tracking.png)]
 
 ### สถานการณ์
 - **Agent** (Pacman) อยู่ที่ตำแหน่งที่ทราบ
@@ -930,7 +930,7 @@ class: middle
 
 ## ตัวอย่าง Particle Filter: Robot Localization
 
-.center.width-70[![](figures/lec6/particle-filter-demo.png)]
+.center.width-70[![](../figures/lec6/particle-filter-demo.png)]
 
 ### สถานการณ์
 - **Robot** เคลื่อนที่ในพื้นที่ที่ทราบแผนที่
@@ -948,7 +948,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="400" width="640">
-  <source src="./figures/lec6/pacman-with-beliefs.mp4" type="video/mp4">
+  <source src="../figures/lec6/pacman-with-beliefs.mp4" type="video/mp4">
 </video>
 
 **Pacman ด้วย Particle Filter**<br>

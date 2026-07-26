@@ -714,7 +714,7 @@ class: middle, center, title-slide
 - การอนุมาน (Inference)
 - การเรียนรู้พารามิเตอร์ (Parameter learning)
 
-.center.width-50[![](figures/lec5/bn-cartoon.png)]
+.center.width-50[![](../figures/lec5/bn-cartoon.png)]
 
 .footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -744,14 +744,14 @@ class: middle
 - แต่ละโหนด $X_i$ จะถูกกำกับด้วย *การแจกแจงความน่าจะเป็นแบบมีเงื่อนไข (conditional probability distribution)* $${\bf P}(X_i | \text{parents}(X_i))$$ ซึ่งกำหนดการแจกแจงของ $X_i$ เมื่อกำหนดค่าของโหนดพ่อแม่ (parents) ของมันในโครงข่าย
 
 ]
-.kol-1-4.width-70[![](figures/lec5/example-d.png)]
+.kol-1-4.width-70[![](../figures/lec5/example-d.png)]
 ในนกรณีที่ง่ายที่สุด การแจกแจงแบบมีเงื่อนไขจะถูกแสดงในรูปแบบตารางความน่าจะเป็นแบบมีเงื่อนไข *(Conditional Probability Tables - CPTs)*
 ]
 ---
 
 class: middle
 
-.center.width-20[![](figures/lec5/alarm.png)]
+.center.width-20[![](../figures/lec5/alarm.png)]
 
 ## ตัวอย่างที่ 1
 
@@ -772,7 +772,7 @@ class: middle
 
 class: middle
 
-.center.width-70[![](figures/lec5/burglary2.svg)]
+.center.width-70[![](../figures/lec5/burglary2.svg)]
 
 ???
 
@@ -814,8 +814,8 @@ class: middle
 ## ตัวอย่างที่ 2
 
 .grid[
-.kol-1-2[.width-70[![](figures/lec5/tooth.png)]]
-.kol-1-2[.width-70[![](figures/lec5/dentist-network.svg)]]
+.kol-1-2[.width-70[![](../figures/lec5/tooth.png)]]
+.kol-1-2[.width-70[![](../figures/lec5/dentist-network.svg)]]
 ]
 
 สถานการณ์ของทันตแพทย์สามารถจำลองเป็นโครงข่ายเบย์ที่มี 4 ตัวแปร ดังที่แสดงทางด้านขวา
@@ -835,14 +835,14 @@ class: middle
 class: middle
 
 .grid.center[
-.kol-1-3[.width-50[![](figures/lec5/traffic1.png)]]
-.kol-2-3[.width-50[![](figures/lec5/traffic2.png)]<br><br>]
+.kol-1-3[.width-50[![](../figures/lec5/traffic1.png)]]
+.kol-2-3[.width-50[![](../figures/lec5/traffic2.png)]<br><br>]
 ]
 
 ## ตัวอย่างที่ 3
 เส้นเชื่อม (Edges) อาจสอดคล้องกับความสัมพันธ์เชิงสาเหตุ (causal relations)
 .grid.center[
-.kol-1-5[.width-30[![](figures/lec5/traffic1-bn.png)]]
+.kol-1-5[.width-30[![](../figures/lec5/traffic1-bn.png)]]
 .kol-2-5[
 ${\bf P}(R)$
 
@@ -873,14 +873,14 @@ ${\bf P}(T|R)$
 
 class: middle
 
-.center.width-45[![](figures/lec5/traffic3.png)]
+.center.width-45[![](../figures/lec5/traffic3.png)]
 
 ## ตัวอย่างที่ 3 (อีกแบบ)
 
 ... แต่เส้นเชื่อมไม่จำเป็นต้องเป็นความสัมพันธ์เชิงสาเหตุเสมอไป!
 
 .grid.center[
-.kol-1-5[.width-50[![](figures/lec5/traffic2-bn.png)]]
+.kol-1-5[.width-50[![](../figures/lec5/traffic2-bn.png)]]
 .kol-2-5[
 ${\bf P}(T)$
 
@@ -927,7 +927,7 @@ ${\bf P}(R|T)$
 class: middle
 
 .center.width-80[
-![](figures/lec5/burglary-mess.svg)
+![](../figures/lec5/burglary-mess.svg)
 ]
 
 .question[โครงข่ายทั้งสองนี้แทนการแจกแจงเดียวกันหรือไม่? และมีความกระชับ (compact) เท่ากันหรือไม่?]
@@ -952,7 +952,7 @@ class: middle
 
 <br><br><br>
 
-.center.width-45[![](figures/lec5/xyz.png)]
+.center.width-45[![](../figures/lec5/xyz.png)]
 
 .center[ตัวอย่าง: $X$ และ $Z$ จำเป็นต้องเป็นอิสระจากกันหรือไม่?]
 
@@ -987,7 +987,7 @@ $X$ เป็นอิสระจาก $Z$ หรือไม่? **ไม่*
     - $P(\lnot y|\lnot x)=1$, $P(\lnot z|\lnot y)=1$
 - ข้อมูลเกี่ยวกับ $X$ ส่งผลต่อความเชื่อของเราเกี่ยวกับ $Z$
 ]
-.kol-1-2.center[.width-80[![](figures/lec5/cascade.png)]
+.kol-1-2.center[.width-80[![](../figures/lec5/cascade.png)]
 
 $X$: ความกดอากาศต่ำ
 $Y$: ฝน
@@ -1015,7 +1015,7 @@ $$\begin{aligned}
 เรากล่าวว่าหลักฐาน (evidence) $Y$ ตามเส้นทางแบบอนุกรมนี้ **ปิดกั้น (blocks)** อิทธิพล
 
 ]
-.kol-1-2.center[.width-50[![](figures/lec5/cascade.png)]
+.kol-1-2.center[.width-50[![](../figures/lec5/cascade.png)]
 
 $X$: ความกดอากาศต่ำ
 $Y$: ฝน
@@ -1043,7 +1043,7 @@ $X$ เป็นอิสระจาก $Z$ หรือไม่? **ไม่*
     - $P(z|y)=1$, $P(\lnot z|\lnot y)=1$
 - การสังเกตว่าฟอรัมคนเยอะ ($X$) ทำให้เราเชื่อมากขึ้นว่ามีโปรเจกต์ต้องส่ง ($Y$) ซึ่งก็ทำให้เราเชื่อว่าห้องแล็บจะเต็ม ($Z$)
 ]
-.kol-1-2.center[.width-50[![](figures/lec5/common-parent.png)]
+.kol-1-2.center[.width-50[![](../figures/lec5/common-parent.png)]
 
 $X$: ฟอรัมคนเยอะ
 $Y$: โปรเจกต์ต้องส่ง
@@ -1070,7 +1070,7 @@ $$\begin{aligned}
 
 การสังเกตโหนดพ่อแม่ ($Y$) จะปิดกั้นอิทธิพลระหว่างโหนดลูก ($X, Z$)
 ]
-.kol-1-2.center[.width-50[![](figures/lec5/common-parent.png)]
+.kol-1-2.center[.width-50[![](../figures/lec5/common-parent.png)]
 
 $X$: ฟอรัมคนเยอะ
 $Y$: โปรเจกต์ต้องส่ง
@@ -1093,7 +1093,7 @@ $X$ และ $Y$ เป็นอิสระจากกันเมื่อ�
 - การที่เรารู้ว่ารถติด ($Z$) ทำให้ฝนตก ($X$) และการแข่งเบสบอล ($Y$) กลายเป็นคำอธิบายที่ "แข่งขัน" กันเอง (explaining away) เช่น ถ้ารู้ว่ารถติดแต่ไม่มีแข่งเบสบอล ก็จะทำให้เราเชื่อมากขึ้นว่าฝนตก
 - นี่คือสิ่งที่ **ตรงกันข้าม** กับกรณีก่อนหน้า การสังเกตโหนดลูกจะ *เปิด (activates)* อิทธิพลระหว่างโหนดพ่อแม่
 ]
-.kol-1-2.center[.width-30[![](figures/lec5/v-structure.png)]
+.kol-1-2.center[.width-30[![](../figures/lec5/v-structure.png)]
 $X$: ฝน
 $Y$: แข่งเบสบอล
 $Z$: รถติด
@@ -1137,7 +1137,7 @@ class: middle
 - **v-structure** $A \rightarrow B \leftarrow C$ โดยที่ $B$ หรือลูกหลาน (descendent) ของมัน **ถูกสังเกต** (observed)
 
 ]
-.kol-1-3.width-100[![](figures/lec5/active-inactive.png)]
+.kol-1-3.width-100[![](../figures/lec5/active-inactive.png)]
 ]
 
 .footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
@@ -1157,7 +1157,7 @@ class: middle
 - $L \perp B|T, R$?
 
 ]
-.kol-1-2.width-70.center[![](figures/lec5/example-d.png)]
+.kol-1-2.width-70.center[![](../figures/lec5/example-d.png)]
 ]
 
 ---
@@ -1196,7 +1196,7 @@ class: middle
 การตัดสินใจที่เหมาะสมที่สุด
 $\arg \max\_a \mathbb{E}_{p(s'|s,a)} \left[ V(s') \right]$
 
-.center.width-25[![](figures/lec5/query-cartoon.png)]
+.center.width-25[![](../figures/lec5/query-cartoon.png)]
 
 .footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1227,7 +1227,7 @@ $\arg \max\_a \mathbb{E}_{p(s'|s,a)} \left[ V(s') \right]$
 
 class: middle
 
-.width-25.center[![](figures/lec5/bn-alarm.svg)]
+.width-25.center[![](../figures/lec5/bn-alarm.svg)]
 
 พิจารณาโครงข่ายสัญญาณเตือนและคำถาม ${\bf P}(B|j,m)$ (ความน่าจะเป็นที่จะมีขโมย เมื่อจอห์นและแมรี่โทรมา)
 $$\begin{aligned}
@@ -1243,7 +1243,7 @@ $$\begin{aligned}
 
 class: middle
 
-.center.width-65[![](figures/lec5/enumeration.png)]
+.center.width-65[![](../figures/lec5/enumeration.png)]
 
 การอนุมานโดยการแจกแจงนั้นช้า เพราะต้องสร้างการแจกจ่ายร่วมทั้งหมดขึ้นมาก่อนที่จะบวกรวมตัวแปรซ่อนเร้นออกไป
 
@@ -1267,7 +1267,7 @@ $$
 
 class: middle
 
-.center.width-60[![](figures/lec5/inference-enumeration.png)]
+.center.width-60[![](../figures/lec5/inference-enumeration.png)]
 
 มีความซับซ้อนเช่นเดียวกับ DFS: $O(n)$ ในด้านพื้นที่ และ $O(d^n)$ ในด้านเวลา
 - $n$ คือจำนวนตัวแปร
@@ -1285,7 +1285,7 @@ class: middle
 
 ## แผนภูมิต้นไม้การประเมินสำหรับ $P(b|j,m)$
 
-.center.width-60[![](figures/lec5/enumeration-tree.png)]
+.center.width-60[![](../figures/lec5/enumeration-tree.png)]
 
 แม้จะมีการแยกตัวคูณออกมา การอนุมานโดยการแจกแจงก็ยังคง **ไม่มีประสิทธิภาพ** เพราะมีการคำนวณซ้ำซ้อน!
 - เช่น $P(j|a)P(m|a)$ ถูกคำนวณสองครั้ง ครั้งหนึ่งสำหรับ $e$ และอีกครั้งสำหรับ $\lnot e$
@@ -1305,7 +1305,7 @@ class: middle
 - การกำจัดตัวแปรซ่อนเร้น (Eliminating hidden variables)
 
 <br>
-.center.width-60[![](figures/lec5/elimination.png)]
+.center.width-60[![](../figures/lec5/elimination.png)]
 
 .footnote[Credits: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1363,7 +1363,7 @@ class: middle
 - ตัวแปรของ $\mathbf{f}\_3$ คือ *ยูเนียน* ของตัวแปรใน $\mathbf{f}_1$ และ $\mathbf{f}_2$
 - สมาชิกของ $\mathbf{f}\_3$ ได้มาจากการคูณสมาชิกที่สอดคล้องกันใน $\mathbf{f}_1$ และ $\mathbf{f}_2$
 
-.center.width-70[![](figures/lec5/ve-product.png)]
+.center.width-70[![](../figures/lec5/ve-product.png)]
 
 ---
 
@@ -1395,7 +1395,7 @@ $$
 
 class: middle
 
-.center.width-35[![](figures/lec5/bn-alarm.svg)]
+.center.width-35[![](../figures/lec5/bn-alarm.svg)]
 
 <br>
 
@@ -1420,7 +1420,7 @@ class: middle
 
 ## ความซับซ้อน (Complexity)
 
-.center.width-30[![](figures/lec5/ve-ordering.png)]
+.center.width-30[![](../figures/lec5/ve-ordering.png)]
 
 พิจารณาคำถาม ${\bf P}(X_n|y_1,...,y_n)$
 
@@ -1474,7 +1474,7 @@ _\theta(X)$) และ *ประมาณค่า (estimate)* พาราม�
 
 class: middle
 
-.center.width-70[![](figures/lec5/parameterized-bn.png)]
+.center.width-70[![](../figures/lec5/parameterized-bn.png)]
 
 ---
 
@@ -1614,7 +1614,7 @@ class: middle
 
 ## กรณี (b)
 
-.center.width-70[![](figures/lec5/caseb-bayesian.png)]
+.center.width-70[![](../figures/lec5/caseb-bayesian.png)]
 
 ---
 

@@ -698,7 +698,7 @@ class: middle, center, title-slide
 
 class: middle, center
 
-.width-35[![](figures/lec0/map.png)]
+.width-35[![](../figures/lec0/map.png)]
 
 ---
 
@@ -717,7 +717,7 @@ class: middle, center
     - Heuristics
 ]
 .kol-1-2[
-.center.width-100[![](figures/lec2/planning-agent.png)]
+.center.width-100[![](../figures/lec2/planning-agent.png)]
 
 ]
 ]
@@ -742,9 +742,9 @@ Reflex agents
 
 .grid[
 .kol-1-2[
-.width-100[![](figures/lec2/pacman-reflex.png)]]
+.width-100[![](../figures/lec2/pacman-reflex.png)]]
 .kol-1-2[
-.width-100[![](figures/lec2/pacman-reflex2.png)]]
+.width-100[![](../figures/lec2/pacman-reflex2.png)]]
 ]
 .caption[ตัวอย่างเช่น reflex agent ธรรมดาที่ใช้กฎเงื่อนไข-การกระทำ สามารถเคลื่อนที่<br>
          ไปยังจุดถ้ามีจุดอยู่ในบริเวณใกล้เคียง
@@ -764,10 +764,10 @@ Problem-solving agents
 
 .grid[
 .kol-1-2[
-.width-100[![](figures/lec2/pacman-goal.png)]
+.width-100[![](../figures/lec2/pacman-goal.png)]
 ]
 .kol-1-2[
-.width-100[![](figures/lec2/pacman-goal2.png)]
+.width-100[![](../figures/lec2/pacman-goal2.png)]
 ]
 ]
 .caption[Planning agent มองหาลำดับการกระทำเพื่อกินจุดทั้งหมด]
@@ -776,7 +776,7 @@ Problem-solving agents
 
 class: middle
 
-.width-80[![](figures/lec2/problem-solving-agent.png)]
+.width-80[![](../figures/lec2/problem-solving-agent.png)]
 
 ---
 
@@ -805,13 +805,13 @@ class: middle
 - *Goal test* *a* ในสถานะ *s*
     - เราบอกว่า *s'* เป็น *successor* ของ *s* ถ้ามี action ที่ยอมรับได้จาก *s* ไป *s'*
 
-<div class="center-25"></div>[![](figures/lec2/pacman-successor.png)]
+<div class="center-25"></div>[![](../figures/lec2/pacman-successor.png)]
 
 ---
 
 class: middle
 
-.center[![](figures/lec2/pacman-space.png)]
+.center[![](../figures/lec2/pacman-space.png)]
 
 - รวมกัน initial state, actions และ transition model จะกำหนด **state space** ของปัญหา คือ เซตของสถานะทั้งหมดที่สามารถเข้าถึงได้จาก initial state ด้วยลำดับ action ใดๆ
     - State space สร้าง directed graph:
@@ -838,7 +838,7 @@ class: middle
 
 ## ตัวอย่าง: การเดินทางในโรมาเนีย
 
-.center.width-75[![](figures/lec2/romania.svg)]
+.center.width-75[![](../figures/lec2/romania.svg)]
 
 .caption[จะไปจาก Arad ถึง Bucharest ได้อย่างไร?]
 
@@ -866,7 +866,7 @@ class: middle
 - *World state* รวมรายละเอียดทุกอย่างของสภาพแวดล้อม
 - *Search state* เก็บเฉพาะรายละเอียดที่จำเป็นสำหรับการวางแผน
 
-.width-55.center[![](figures/lec2/search-problems-models.png)]
+.width-55.center[![](../figures/lec2/search-problems-models.png)]
 .center[Search problems เป็น **models**]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
@@ -881,7 +881,7 @@ class: middle
 - Transition: อัปเดตตำแหน่งและอาจจะอัปเดต dot boolean
 - Goal test: dots ทั้งหมดเป็น false
 
-.width-100.center[![](figures/lec2/pacman-world.png)]
+.width-100.center[![](../figures/lec2/pacman-world.png)]
 
 ---
 
@@ -903,7 +903,7 @@ class: middle
         - $120 \times 2^{30}$
 ]
 .kol-1-2[
-.width-100[![](figures/lec2/pacman-size.png)]
+.width-100[![](../figures/lec2/pacman-size.png)]
 ]
 ]
 
@@ -917,13 +917,13 @@ class: middle
 
 สำหรับปัญหาส่วนใหญ่ เราไม่สามารถสร้าง tree ทั้งหมดได้จริง แต่เราต้องการหา branch ที่เหมาะสมที่สุด!
 
-.center[![](figures/lec2/pacman-tree.png)]
+.center[![](../figures/lec2/pacman-tree.png)]
 
 ---
 
 # Tree search algorithms
 
-.width-100[![](figures/lec2/tree-search.png)]
+.width-100[![](../figures/lec2/tree-search.png)]
 
 ## แนวคิดสำคัญ
 - Fringe (หรือ frontier) ของแผนบางส่วนที่อยู่ระหว่างการพิจารณา
@@ -940,7 +940,7 @@ class: middle
 
 class: middle
 
-.center.width-70[![](figures/lec2/search-map.svg)]
+.center.width-70[![](../figures/lec2/search-map.svg)]
 
 ---
 
@@ -975,14 +975,14 @@ class: middle
 
 class: middle
 
-.center.width-70[![](figures/lec2/search-properties.png)]
+.center.width-70[![](../figures/lec2/search-properties.png)]
 
 ---
 
 # Depth-first search
 
 <br><br>
-.width-70[![](figures/lec2/dfs-cartoon.png)]
+.width-70[![](../figures/lec2/dfs-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -993,13 +993,13 @@ class: middle
 - *กลยุทธ์*: expand node ที่ลึกที่สุดใน fringe
 - *การใช้งาน*: fringe เป็น **LIFO stack**
 
-.width-50.center[![](figures/lec2/dfs-progress.svg)]
+.width-50.center[![](../figures/lec2/dfs-progress.svg)]
 
 ---
 
 class: middle
 
-.center.width-80[![](figures/lec2/dfs-properties.png)]
+.center.width-80[![](../figures/lec2/dfs-properties.png)]
 
 ---
 
@@ -1023,7 +1023,7 @@ class: middle
 # Breadth-first search
 
 <br><br>
-.width-80[![](figures/lec2/bfs-cartoon.png)]
+.width-80[![](../figures/lec2/bfs-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1034,13 +1034,13 @@ class: middle
 - *กลยุทธ์*: expand node ที่ตื้นที่สุดใน fringe
 - *การใช้งาน*: fringe เป็น **FIFO queue**
 
-.width-80.center[![](figures/lec2/bfs-progress.svg)]
+.width-80.center[![](../figures/lec2/bfs-progress.svg)]
 
 ---
 
 class: middle
 
-.center.width-80[![](figures/lec2/bfs-properties.png)]
+.center.width-80[![](../figures/lec2/bfs-properties.png)]
 
 ---
 
@@ -1081,7 +1081,7 @@ class: middle, center
 ]
 ]
 .kol-1-2[
-.center.width-50[![](figures/lec2/id-properties.png)]
+.center.width-50[![](../figures/lec2/id-properties.png)]
 ]
 ]
 
@@ -1090,7 +1090,7 @@ class: middle, center
 # Uniform-cost search
 
 <br><br>
-.width-70[![](figures/lec2/ucs-cartoon.png)]
+.width-70[![](../figures/lec2/ucs-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1105,7 +1105,7 @@ class: middle
 
 class: middle
 
-.center.width-70[![](figures/lec2/ucs-properties.png)]
+.center.width-70[![](../figures/lec2/ucs-properties.png)]
 
 ---
 
@@ -1134,7 +1134,7 @@ class: middle, center
 
 # Informed search strategies
 
-.center.width-70[![](figures/lec2/ucs-issues.png)]
+.center.width-70[![](../figures/lec2/ucs-issues.png)]
 
 หนึ่งใน**ปัญหาของ UCS** คือมันสำรวจ state space ไปทุก*ทิศทาง*
 โดยไม่ใช้ประโยชน์จากข้อมูลเกี่ยวกับตำแหน่ง (ที่เป็นไปได้) ของ goal node
@@ -1149,7 +1149,7 @@ fringe ตามลำดับ*ความต้องการ*ที่ล�
 # Greedy search
 
 <br>
-.width-80[![](figures/lec2/gs-cartoon.png)]
+.width-80[![](../figures/lec2/gs-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1166,7 +1166,7 @@ class: middle
 - ถูกออกแบบสำหรับ search problem *เฉพาะ*
 
 <br>
-.center.width-60[![](figures/lec2/heuristic-pacman.png)]
+.center.width-60[![](../figures/lec2/heuristic-pacman.png)]
 
 ---
 
@@ -1181,7 +1181,7 @@ class: middle
 
 class: middle, center
 
-.width-50[![](figures/lec2/gs-progress.svg)]
+.width-50[![](../figures/lec2/gs-progress.svg)]
 
 $h(n)$ = ระยะทางเส้นตรงถึง Bucharest
 
@@ -1189,7 +1189,7 @@ $h(n)$ = ระยะทางเส้นตรงถึง Bucharest
 
 class: middle
 
-.center.width-90[![](figures/lec2/gs-properties.png)]
+.center.width-90[![](../figures/lec2/gs-properties.png)]
 
 .center[ในกรณีดีที่สุด greedy search นำคุณตรงไปสู่เป้าหมาย<br>
 ในกรณีเลวร้ายที่สุด มันเหมือน BFS ที่ถูกนำทางผิด]
@@ -1214,7 +1214,7 @@ class: middle
 # A*
 
 <br><br>
-.width-100[![](figures/lec2/as-cartoon.png)]
+.width-100[![](../figures/lec2/as-cartoon.png)]
 
 .footnote[เครดิต: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -1230,7 +1230,7 @@ class: middle
 - เป้าหมายคือการนำทางผ่านห้องที่มีสิ่งกีดขวาง
 ]
 .kol-1-2[
-.center.width-60[![](figures/lec2/shakey.jpg)]
+.center.width-60[![](../figures/lec2/shakey.jpg)]
 ]
 ]
 
@@ -1249,13 +1249,13 @@ class: middle
 
 class: middle
 
-.center.width-50[![](figures/lec2/as-progress1.png)]
+.center.width-50[![](../figures/lec2/as-progress1.png)]
 
 ---
 
 class: middle
 
-.center.width-50[![](figures/lec2/as-progress2.png)]
+.center.width-50[![](../figures/lec2/as-progress2.png)]
 
 .exercise[ทำไม A* ไม่หยุดที่ขั้นตอน (e) ถึงแม้ Bucharest อยู่ใน fringe?]
 
@@ -1267,7 +1267,7 @@ class: middle
 
 Heuristic $h$ เป็น **admissible** ถ้า $0 \leq h(n) \leq h^\*(n)$ โดย $h^\*(n)$ คือต้นทุนจริงไปยัง goal ที่ใกล้ที่สุด
 
-.center.width-80[![](figures/lec2/admissible.png)]
+.center.width-80[![](../figures/lec2/admissible.png)]
 .caption[Manhattan distance เป็น admissible]
 
 ---
@@ -1287,7 +1287,7 @@ class: middle
 $A$ จะออกจาก fringe ก่อน $B$
 ]
 .kol-1-3[
-.width-100[![](figures/lec2/astar-proof1.png)]
+.width-100[![](../figures/lec2/astar-proof1.png)]
 ]
 ]
 
@@ -1313,7 +1313,7 @@ class: middle
     - เนื่องจาก $f(n) \leq f(A) < f(B)$
 ]
 .kol-1-3[
-.width-100[![](figures/lec2/astar-proof2.png)]
+.width-100[![](../figures/lec2/astar-proof2.png)]
 ]
 ]
 ในทำนองเดียวกัน บรรพบุรุษทั้งหมดของ $A$ expand ก่อน $B$ รวมถึง $A$ ดังนั้น **A* เป็น optimal**
@@ -1328,8 +1328,8 @@ class: middle
 - เราสามารถกำหนด **contour levels** $t$ ใน state space ที่รวม nodes ทั้งหมด $n$ ที่ $f(n) \leq t$
 
 .center[
-![](figures/lec2/contours-ucs.png)
-![](figures/lec2/contours-as.png)]
+![](../figures/lec2/contours-ucs.png)
+![](../figures/lec2/contours-as.png)]
 .grid[
 .kol-1-2[สำหรับ UCS ($h(n)=0$ สำหรับ $n$ ทั้งหมด) bands เป็นวงกลมรอบจุดเริ่มต้น]
 .kol-1-2[สำหรับ A* ที่มี heuristics ที่แม่นยำ bands ยืดไปทางเป้าหมาย]
@@ -1341,13 +1341,13 @@ class: middle
 
 .grid[
 .kol-1-3[
-.width-100[![](figures/lec2/cmp-greedy.jpg)]
+.width-100[![](../figures/lec2/cmp-greedy.jpg)]
 ]
 .kol-1-3[
-.width-100[![](figures/lec2/cmp-ucs.jpg)]
+.width-100[![](../figures/lec2/cmp-ucs.jpg)]
 ]
 .kol-1-3[
-.width-100[![](figures/lec2/cmp-as.jpg)]
+.width-100[![](../figures/lec2/cmp-as.jpg)]
 ]
 ]
 .center.grid[
@@ -1379,7 +1379,7 @@ class: middle, center
 Admissible heuristics สามารถมาจากผลลัพธ์ที่แน่นอนของ *relaxed problems* โดยมี actions ใหม่
 
 <br><br>
-.center.width-65[![](figures/lec2/admissible-relax.png)]
+.center.width-65[![](../figures/lec2/admissible-relax.png)]
 
 ---
 
@@ -1407,7 +1407,7 @@ class: middle
 # Graph search
 
 <br>
-.center.width-70[![](figures/lec2/redundant.png)]
+.center.width-70[![](../figures/lec2/redundant.png)]
 <br>
 
 ความล้มเหลวในการตรวจจับ**repeated states** สามารถเปลี่ยนปัญหาเชิงเส้นให้เป็นแบบเลขชี้กำลังได้ และอาจนำไปสู่การค้นหาที่ไม่สิ้นสุด
@@ -1419,7 +1419,7 @@ Redundant paths และ cycles สามารถหลีกเลี่ย�
 
 class: middle
 
-.width-90[![](figures/lec2/graph-search.png)]
+.width-90[![](../figures/lec2/graph-search.png)]
 
 ---
 
@@ -1431,7 +1431,7 @@ class: middle
 - เราเริ่มที่ $S$ และ $G$ เป็น goal state
 - Graph search หา path ใด?
 ]
-.kol-1-2[.width-90[![](figures/lec2/astar-gone-wrong.png)]]
+.kol-1-2[.width-90[![](../figures/lec2/astar-gone-wrong.png)]]
 ]
 
 ---
@@ -1443,7 +1443,7 @@ class: middle
 Heuristic $h$ เป็น consistent ถ้าสำหรับทุก $n$ และทุก successor $n'$ ที่สร้างโดย action $a$ ใดๆ
 $h(n) \leq c(n,a,n') + h(n').$
 ]
-.kol-1-3[.width-85[![](figures/lec2/consistent-heuristic.png)]]
+.kol-1-3[.width-85[![](../figures/lec2/consistent-heuristic.png)]]
 ]
 
 ผลลัพธ์ของ consistent heuristics:
@@ -1455,7 +1455,7 @@ $h(n) \leq c(n,a,n') + h(n').$
 
 # สรุปตัวอย่าง: Super Mario
 
-.center.width-50[![](figures/lec2/mario.jpg)]
+.center.width-50[![](../figures/lec2/mario.jpg)]
 
 - *Task environment*?
     - performance measure, environment, actuators, sensors?

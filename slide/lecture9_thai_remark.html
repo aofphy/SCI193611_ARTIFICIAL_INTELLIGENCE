@@ -346,7 +346,7 @@ class: middle, center, title-slide
   - Q-Learning
   - การทำให้ทั่วไปข้ามสถานะ (Generalizing across states)
 ]
-.kol-1-2.width-100[<br><br><br>![](figures/lec9/intro.png)]
+.kol-1-2.width-100[<br><br><br>![](../figures/lec9/intro.png)]
 ]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
@@ -355,7 +355,7 @@ class: middle, center, title-slide
 
 class: middle
 
-.width-100[![](figures/lec9/plan.png)]
+.width-100[![](../figures/lec9/plan.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -394,7 +394,7 @@ $$r' = R(s')$$
 ]
 .kol-3-5.center[
 $$s$$
-.width-90[![](figures/lec9/loop.png)]
+.width-90[![](../figures/lec9/loop.png)]
 $$s' \sim P(s'|s,a)$$
 ]
 .kol-1-5[
@@ -419,7 +419,7 @@ class: middle
 อรรถประโยชน์ของสถานะคือรางวัลทันทีของสถานะนั้น บวกด้วยอรรถประโยชน์ที่คาดหวังแบบมีการลดค่า (discounted) ของสถานะถัดไป โดยสมมติว่าเอเจนต์เลือกการกระทำที่เหมาะที่สุด:
 $$V(s) = R(s) + \gamma  \max\_{a} \sum\_{s'} P(s'|s,a) V(s').$$
 
-.center.width-50[![](figures/lec8/how-to.png)]
+.center.width-50[![](../figures/lec8/how-to.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -455,7 +455,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="500" width="700">
-  <source src="./figures/lec9/chicken1.mp4" type="video/mp4">
+  <source src="../figures/lec9/chicken1.mp4" type="video/mp4">
 </video>]
 
 .footnote[เครดิตวิดีโอ: [Megan Hayes](https://twitter.com/PigMegan), [@YAWScience](https://twitter.com/YAWScience/status/1304199719036444672), 2020.]
@@ -467,7 +467,7 @@ class: middle, black-slide
 
 .center[
 <video controls preload="auto" height="500" width="700">
-  <source src="./figures/lec9/chicken2.mp4" type="video/mp4">
+  <source src="../figures/lec9/chicken2.mp4" type="video/mp4">
 </video>]
 
 .footnote[เครดิตวิดีโอ: [Megan Hayes](https://twitter.com/PigMegan), [@YAWScience](https://twitter.com/YAWScience/status/1304199719036444672), 2020.]
@@ -522,7 +522,7 @@ $$r' = \underbrace{R(s')}\_{???}$$
 ]
 .kol-3-5.center[
 $$s$$
-.width-70[![](figures/lec9/loop.png)]
+.width-70[![](../figures/lec9/loop.png)]
 $$s' \sim \underbrace{P(s'|s,a)}\_{???}$$
 ]
 .kol-1-5[
@@ -539,7 +539,7 @@ $$a$$
 
 # Passive RL
 
-.center.width-50[![](figures/lec9/passive-rl.png)]
+.center.width-50[![](../figures/lec9/passive-rl.png)]
 
 ## เป้าหมาย: ประเมินนโยบาย (policy evaluation)
 - นโยบายของเอเจนต์ $\pi$ ถูกตรึงตายตัว
@@ -556,7 +556,7 @@ $$a$$
 
 class: middle
 
-.center.width-30[![](figures/lec9/policy-example.png)]
+.center.width-30[![](../figures/lec9/policy-example.png)]
 
 เอเจนต์รัน **การทดลอง** (trials/episodes) หลายครั้งด้วยนโยบาย $\pi$.
 ลำดับการเดิน (trajectory) $(s, r, a, s'), (s', r', a', s''), ...$ อาจเป็นเช่นนี้:
@@ -577,7 +577,7 @@ class: middle
 - ขั้นที่ 2: ประเมิน $\pi$ ด้วย $\hat{P}$ และ $\hat{R}$ เช่น
   $$V(s)  = \hat{R}(s) + \gamma \sum\_{s'} \hat{P}(s'|s,\pi(s)) V(s').$$
 
-.center.width-40[![](figures/lec9/model-based-rl.png)]
+.center.width-40[![](../figures/lec9/model-based-rl.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -591,7 +591,7 @@ class: middle
 .kol-1-4.smaller-x[
 นโยบาย $\pi$:
 
-.width-100[![](figures/lec9/policy-example.png)]
+.width-100[![](../figures/lec9/policy-example.png)]
 ]
 .kol-3-4[
 .smaller-x[
@@ -655,7 +655,7 @@ class: middle
 .kol-1-4.smaller-x[
 นโยบาย $\pi$:
 
-.width-100[![](figures/lec9/policy-example.png)]
+.width-100[![](../figures/lec9/policy-example.png)]
 ]
 .kol-3-4[
 .smaller-x[
@@ -673,7 +673,7 @@ $(E, -1, \text{north}, C), (C, -1, \text{east}, A), (A, -10, \text{exit}, \perp)
 .kol-1-4.smaller-x[
 ค่าเอาต์พุต $\hat{V}^\pi(s)$:
 
-.width-100[![](figures/lec9/due-example.png)]
+.width-100[![](../figures/lec9/due-example.png)]
 ]
 .kol-3-4.center.italic[<br><br>
 
@@ -694,7 +694,7 @@ $$V^\pi(s) = R(s) + \gamma \sum\_{s'}P(s'|s,\pi(s)) V^\pi(s').$$
 
 TD learning อัปเดต $V^\pi(s)$ ทุกครั้งที่เอเจนต์ประสบการเปลี่ยนผ่าน $(s, r=R(s), a=\pi(s), s')$
 
-.width-20.center[![](figures/lec9/td-triple.png)]
+.width-20.center[![](../figures/lec9/td-triple.png)]
 
 เมื่อเกิดการเปลี่ยนจาก $s$ ไป $s'$ การอัปเดตแบบ TD จะพยายามดัน $V^\pi(s)$ ให้สอดคล้องกับสมการเบลล์แมนของนโยบายคงที่ดีขึ้น คือ
 $$V^\pi(s) \leftarrow V^\pi(s) + \alpha \underbrace{(r + \gamma V^\pi(s') - V^\pi(s))}\_{\text{temporal difference error}}$$
@@ -736,7 +736,7 @@ class: middle
 
 .grid[
 .kol-1-4[]
-.kol-1-2.center[.width-25[![](figures/lec9/td-example1.png)] .width-25[![](figures/lec9/td-example2.png)]
+.kol-1-2.center[.width-25[![](../figures/lec9/td-example1.png)] .width-25[![](../figures/lec9/td-example2.png)]
 
 การเปลี่ยนผ่าน: $(B, -1, \text{east}, C)$
 ]
@@ -756,7 +756,7 @@ class: middle
 
 .grid[
 .kol-1-4[]
-.kol-1-2.center[.width-25[![](figures/lec9/td-example2.png)] .width-25[![](figures/lec9/td-example3.png)]
+.kol-1-2.center[.width-25[![](../figures/lec9/td-example2.png)] .width-25[![](../figures/lec9/td-example3.png)]
 
 การเปลี่ยนผ่าน: $(C, -1, \text{east}, D)$
 ]
@@ -789,7 +789,7 @@ class: middle
 
 # Active RL
 
-.center.width-70[![](figures/lec9/active-rl.png)]
+.center.width-70[![](../figures/lec9/active-rl.png)]
 
 ## เป้าหมาย: เรียนรู้นโยบายที่เหมาะที่สุด
 - นโยบายของเอเจนต์ไม่ถูกตรึงอีกต่อไป
@@ -812,7 +812,7 @@ $$\pi^*(s) = \arg \max\_a \sum\_{s'} \hat{P}(s'|s,a) V(s').$$
 
 class: middle, center
 
-.width-80[![](figures/lec9/active-model-based.png)]
+.width-80[![](../figures/lec9/active-model-based.png)]
 
 เอเจนต์ **ไม่ได้** เรียนรู้ค่าอรรถประโยชน์ที่แท้จริงหรือ policy ที่แท้จริงที่เหมาะที่สุด!
 
@@ -834,7 +834,7 @@ class: middle
 - แสวงหาผล: ทำตามการกระทำที่เพิ่มรางวัลสูงสุดภายใต้แบบจำลองปัจจุบัน
 - สำรวจ: เลือกการกระทำเพื่อสำรวจและเรียนรู้โลกจริง
 
-.center.width-60[![](figures/lec9/exploitation-exploration.png)]
+.center.width-60[![](../figures/lec9/exploitation-exploration.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -877,7 +877,7 @@ $$V^+\_{i+1}(s) = R(s) + \gamma \max\_a f(\sum_{s'} P(s'|s,a) V^+\_i(s'), N(s,a)
 แม้ TD learning จะให้วิธีประมาณ $V^\pi$ แบบไร้แบบจำลอง แต่ยังต้องเรียนรู้แบบจำลอง $P(s'|s,a)$ เพื่อเลือกการกระทำด้วย one-step look-ahead
 
 <br>
-.center.width-50[![](figures/lec9/cartoon-model-free.png)]
+.center.width-50[![](../figures/lec9/cartoon-model-free.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
@@ -890,7 +890,7 @@ $$V^+\_{i+1}(s) = R(s) + \gamma \max\_a f(\sum_{s'} P(s'|s,a) V^+\_i(s'), N(s,a)
 - ค่าของสถานะ $V(s)$ คืออรรถประโยชน์ที่คาดหวังเมื่อเริ่มที่ $s$ และกระทำอย่างเหมาะที่สุด
 - ค่าของคู่สถานะ-การกระทำ $Q(s,a)$ คืออรรถประโยชน์ที่คาดหวังเมื่อเริ่มจากทำการกระทำ $a$ ที่ $s$ แล้วหลังจากนั้นกระทำอย่างเหมาะที่สุด ดังนั้น $V(s) = \max\_a Q(s,a)$
 ]
-.kol-1-2.width-100[![](figures/lec9/optimal-quantities.png)]
+.kol-1-2.width-100[![](../figures/lec9/optimal-quantities.png)]
 ]
 
 ---
@@ -938,13 +938,13 @@ $$Q(s,a) \leftarrow Q(s,a) + \alpha (r + \gamma \max\_{a'} Q(s',a') - Q(s,a)).$$
 
 class: middle
 
-.width-100[![](figures/lec9/q-learning.png)]
+.width-100[![](../figures/lec9/q-learning.png)]
 
 ---
 
 class: middle
 
-.width-30.center[![](figures/lec9/q-learning-agent.png)]
+.width-30.center[![](../figures/lec9/q-learning-agent.png)]
 
 ## การบรรจบ (Convergence)
 
@@ -972,7 +972,7 @@ Q-Learning **บรรจบสู่นโยบายที่เหมาะ�
   - เผยแพร่ประสบการณ์ไปยังสถานการณ์ใหม่ที่คล้ายกัน
   - นี่กลับไปเป็นการเรียนรู้แบบมีผู้สอนอีกครั้ง!
 ]
-.kol-1-3.width-100[<br><br>![](figures/lec9/cartoon-generalization.png)]
+.kol-1-3.width-100[<br><br>![](../figures/lec9/cartoon-generalization.png)]
 ]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
@@ -986,13 +986,13 @@ class: middle
 .kol-1-8[]
 .kol-1-4[(a)
 
-.width-100[![](figures/lec9/pacman1.png)]]
+.width-100[![](../figures/lec9/pacman1.png)]]
 .kol-1-4[(b)
 
-.width-100[![](figures/lec9/pacman2.png)]]
+.width-100[![](../figures/lec9/pacman2.png)]]
 .kol-1-4[(c)
 
-.width-100[![](figures/lec9/pacman3.png)]]
+.width-100[![](../figures/lec9/pacman3.png)]]
 .kol-1-8[]
 ]
 
@@ -1017,7 +1017,7 @@ class: middle
   - ...
 - อธิบาย q-state $(s, a)$ ด้วยคุณลักษณะ $f\_k(s,a)$ ได้เช่นกัน
 ]
-.kol-1-4.width-100[![](figures/lec9/pacman1.png)]
+.kol-1-4.width-100[![](../figures/lec9/pacman1.png)]
 ]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
@@ -1026,7 +1026,7 @@ class: middle
 
 class: middle
 
-.center.width-30[![](figures/lec9/lr-cartoon.png)]
+.center.width-30[![](../figures/lec9/lr-cartoon.png)]
 
 ## Q-Learning แบบประมาณค่า (Approximate Q-Learning)
 
@@ -1068,7 +1068,7 @@ class: middle
 
 เช่นเดียวกัน ตาราง Q สามารถแทนด้วยโครงข่ายประสาทเทียมเป็นตัวประมาณฟังก์ชันได้ กลายเป็นอัลกอริทึม *DQN*
 
-.center.width-100[![](figures/lec9/dqn.png)]
+.center.width-100[![](../figures/lec9/dqn.png)]
 
 ---
 
@@ -1126,7 +1126,7 @@ class: middle, black-slide
 
 # สรุป (Summary)
 
-.width-80[![](figures/lec9/plan.png)]
+.width-80[![](../figures/lec9/plan.png)]
 
 .footnote[เครดิตภาพ: [CS188](https://inst.eecs.berkeley.edu/~cs188/), UC Berkeley.]
 
