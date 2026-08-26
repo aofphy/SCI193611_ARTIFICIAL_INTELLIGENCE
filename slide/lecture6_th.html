@@ -438,6 +438,29 @@ class: middle
 
 class: middle
 
+## เฉลย: วันนี้คุณจะพกร่มไปด้วยไหม?
+
+- ${\bf P}(\text{Umbrella}\_t | \text{Rain}\_t)$ คือ **แบบจำลองเซ็นเซอร์ (sensor model)**: ความสัมพันธ์ระหว่างหลักฐาน (ร่ม) กับสถานะ (ฝน) ณ เวลาเดียวกัน $t$
+- ${\bf P}(\text{Rain}\_t | \text{Umbrella}\_{0:t-1})$ คือ **การทำนาย (prediction)**: อนุมานสถานะปัจจุบัน $t$ จากหลักฐานในอดีตเท่านั้น ($0$ ถึง $t-1$) ยังไม่ใช่การกรอง เพราะหลักฐานล่าสุด ณ เวลา $t$ ยังไม่ถูกนำมาใช้
+- ${\bf P}(\text{Rain}\_{t+2} | \text{Rain}\_{t})$ คือ **ความน่าจะเป็นการเปลี่ยนสถานะสองขั้น (2-step transition)**: ไม่มีหลักฐาน $\mathbf{E}$ เข้ามาเกี่ยวข้องเลย คำนวณจากแบบจำลองการเปลี่ยนสถานะคูณกับตัวมันเอง
+
+---
+
+class: middle
+
+## เฉลย (ต่อ)
+
+จากแผนภาพการเปลี่ยนสถานะ (สไลด์ถัดไป): $P(\text{rain}|\text{rain})=0.7$, $P(\text{sun}|\text{rain})=0.3$, $P(\text{sun}|\text{sun})=0.9$, $P(\text{rain}|\text{sun})=0.1$
+
+รวมสองเส้นทางที่ไปถึง rain ใน 2 ขั้น (rain$\to$rain$\to$rain และ rain$\to$sun$\to$rain):
+$${\bf P}(\text{Rain}\_{t+2}=\text{rain} | \text{Rain}\_t=\text{rain}) = (0.7)(0.7) + (0.3)(0.1) = 0.52$$
+
+ดังนั้น ${\bf P}(\text{Rain}\_{t+2} | \text{Rain}\_{t}=\text{rain}) \approx \langle\, 0.52,\ 0.48\, \rangle$
+
+---
+
+class: middle
+
 .center.width-60[![](../figures/lec6/weather-transition.png)]
 
 แบบจำลองการเปลี่ยนสถานะ ${\bf P}(\text{Rain}\_t | \text{Rain}\_{t-1})$ สามารถแสดงแทนได้ด้วยแผนภาพการเปลี่ยนสถานะ (state transition diagram)
@@ -687,6 +710,34 @@ class: middle
 
 ---
 
+class: middle
+
+## เฉลย: การกรองสำหรับ $[U\_1, U\_2] = [\text{true}, \text{true}]$
+
+เริ่มจากค่าก่อน ${\bf P}(\text{Rain}\_0) = \langle 0.5,\ 0.5\rangle$
+
+**ขั้นทำนาย** ($R\_0 \to R\_1$):
+$${\bf P}(\text{Rain}\_1) = \langle 0.7 \times 0.5 + 0.3 \times 0.5,\ \ 0.3 \times 0.5 + 0.7 \times 0.5\rangle = \langle 0.5,\ 0.5\rangle$$
+
+**ขั้นอัปเดต** (สังเกต $U\_1=\text{true}$):
+$$\propto \langle 0.9 \times 0.5,\ \ 0.2 \times 0.5\rangle = \langle 0.45,\ 0.10\rangle \implies {\bf P}(\text{Rain}\_1 | u\_1) \approx \langle 0.818,\ 0.182\rangle$$
+
+---
+
+class: middle
+
+## เฉลย (ต่อ)
+
+**ขั้นทำนาย** ($R\_1 \to R\_2$):
+$${\bf P}(\text{Rain}\_2 | u\_1) = \langle 0.7 \times 0.818 + 0.3 \times 0.182,\ \ 0.3 \times 0.818 + 0.7 \times 0.182\rangle \approx \langle 0.627,\ 0.373\rangle$$
+
+**ขั้นอัปเดต** (สังเกต $U\_2=\text{true}$):
+$$\propto \langle 0.9 \times 0.627,\ \ 0.2 \times 0.373\rangle \approx \langle 0.564,\ 0.075\rangle \implies {\bf P}(\text{Rain}\_2 | u\_1,u\_2) \approx \langle 0.883,\ 0.117\rangle$$
+
+ผลลัพธ์ตรงกับตัวเลขในภาพประกอบพอดี ($0.818,0.182$ และ $0.883,0.117$)
+
+---
+
 class: middle, black-slide
 
 .center[
@@ -771,6 +822,22 @@ class: middle
 
 ---
 
+class: middle
+
+## เฉลย: การปรับให้เรียบสำหรับ ${\bf P}(\text{Rain}\_1 | u\_1, u\_2)$
+
+ต่อจากตัวอย่างการกรอง เรามีข้อความไปข้างหน้า $\mathbf{f}\_{1:1} = {\bf P}(\text{Rain}\_1|u\_1) = \langle 0.818,\ 0.182\rangle$
+
+**ข้อความย้อนกลับ** $\mathbf{b}\_{2:2}$ (เริ่มจาก $\mathbf{b}\_{3:2}=\langle 1,1\rangle$, สังเกต $U\_2=\text{true}$):
+$$\mathbf{b}\_{2:2} = T\, O\_2\, \langle 1,1\rangle = \langle 0.7\times 0.9 + 0.3\times 0.2,\ \ 0.3\times 0.9 + 0.7\times 0.2\rangle = \langle 0.69,\ 0.41\rangle$$
+
+**รวมไปข้างหน้ากับย้อนกลับ**:
+$${\bf P}(\text{Rain}\_1 | u\_1,u\_2) = \alpha\, \mathbf{f}\_{1:1} \times \mathbf{b}\_{2:2} = \alpha \langle 0.818\times 0.69,\ \ 0.182\times 0.41\rangle \approx \langle 0.883,\ 0.117\rangle$$
+
+ตรงกับค่าที่ปรับให้เรียบ (smoothed) ในภาพประกอบพอดี สังเกตว่า ณ เวลา $k=t=2$ ค่าที่ปรับให้เรียบเท่ากับค่าที่กรองได้เสมอ
+
+---
+
 # คำอธิบายที่น่าจะเป็นไปได้มากที่สุด (Most likely explanation)
 
 <br>
@@ -837,6 +904,19 @@ class: middle
 
 
 <span class="Q">[Q]</span> คุณจะดึงเส้นทางกลับมาได้อย่างไร นอกเหนือจากความน่าจะเป็นของมัน?
+
+---
+
+class: middle
+
+## เฉลย: ลำดับที่น่าจะเป็นไปได้มากที่สุด (Viterbi)
+
+มีวิธีที่มีประสิทธิภาพ: ใช้ **อัลกอริทึม Viterbi** (แทนที่ผลรวมด้วยค่าสูงสุดในข้อความไปข้างหน้า) ความซับซ้อนเป็นเชิงเส้นกับ $t$ เท่ากับการกรอง แทนที่จะลองทั้ง $2^5=32$ ลำดับ
+
+จากค่า $\mathbf{m}\_{1:t}$ ในภาพ และการตามลูกศรตัวหนา (backpointer) ย้อนกลับจากสถานะที่มีค่าสูงสุดใน $\mathbf{m}\_{1:5}$ (คือ $\text{true}=0.0210$):
+$$\text{Rain}\_{1:5} = [\text{true},\ \text{true},\ \text{false},\ \text{true},\ \text{true}]$$
+
+**[Q] การดึงเส้นทางกลับมา:** ระหว่างคำนวณไปข้างหน้า ให้เก็บ**ตัวชี้ย้อนกลับ (backpointer)** ไว้ที่แต่ละสถานะ คือสถานะก่อนหน้าที่ให้ค่า $\mathbf{m}\_{1:t}$ สูงสุด (ลูกศรตัวหนาในภาพ) จากนั้นเริ่มจากสถานะที่มีค่าสูงสุดใน $\mathbf{m}\_{1:t}$ แล้วตามตัวชี้ย้อนกลับไปเรื่อยๆ จนถึง $t=1$
 
 ---
 
