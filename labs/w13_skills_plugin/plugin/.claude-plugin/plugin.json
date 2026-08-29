@@ -1,0 +1,10 @@
+{
+  "name": "sci193611-course",
+  "version": "0.1.0",
+  "description": "เครื่องมือประจำวิชา SCI19 3611: ตรวจรายงานปฏิบัติการ, คำสั่งลัดตรวจงานก่อนส่ง และ hook จัดรูปแบบโค้ดอัตโนมัติ",
+  "author": {
+    "name": "Ittipon Fongkaew",
+    "email": "ittipon@g.sut.ac.th"
+  },
+  "keywords": ["education", "physics", "ai-course"]
+}

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>สัปดาห์ 8: LLM ทำงานอย่างไร</title>
+    
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="../assets/auto-render.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap');
+        
+        .remark-container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .remark-slide-content {
+            font-size: 1.3em;
+        }
+
+        .remark-slide-content h1 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            margin: 0 0 .5em 0;
+            color: #356aaf;
+        }
+
+        .remark-slide-content h2 {
+            font-family: 'Sarabun', Lato, sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.0em;
+            font-weight: normal;
+            margin: 0 0 .5em 0;
+        }
+
+        .remark-slide-number {
+            font-size: 0.5em;
+            bottom: 2em;
+        }
+
+        .remark-slide-scaler {
+            box-shadow: 0 0 20px #ccc; 
+        }
+
+        .footnote:before {
+            content: "\2015";
+            display: block;
+        }
+
+        a {
+            color: #5b82b5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .red {
+            color: #d11a01;
+        }
+
+        .Q, .green {
+            color: #009933;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        em {
+            color: #0288d1;
+            font-style: normal;
+        }
+
+        strong {
+            color: #d11a01;
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        .highlight{ 
+            background-color: #FFFF00; 
+        }
+
+        .smaller {
+            font-size: 1.4em;
+        }
+
+        .smaller-x {
+            font-size: 0.8em;
+        }
+
+        .smaller-xx {
+            font-size: 0.7em;
+        }
+
+        .smaller-xxx {
+            font-size: 0.4em;
+        }
+
+        .katex {
+            color: #356aaf;
+            font-size: 15pt;
+        }
+
+        .black-slide .katex, .black-slide h1 {
+            color: white;
+        }
+
+        .black-slide a, .black-slide .footnote a {
+            color: #89c2ce;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-size: 0.9em;
+        }
+
+        ul > li, ol > li {
+             margin: 0.6em 0;
+        }
+
+        ul > li > ul > li {
+            font-size: 0.8em;
+        }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .question, .success {
+            background-color: rgba(40,167,69,0.25);
+            border: 2px solid rgb(40,167,69);
+            border-radius: 5px;
+            width: 95%;
+            display: block;
+            padding: 1em;
+        }
+
+        .pull-left {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .pull-right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .width-100 * {
+            width: 100%;
+        }
+
+        .width-50 * {
+            width: 50%;
+        }
+
+        .width-30 * {
+            width: 30%;
+        }
+
+        .width-40 * {
+            width: 40%;
+        }
+
+        .width-60 * {
+            width: 60%;
+        }
+
+        .width-70 * {
+            width: 70%;
+        }
+
+        .title-slide:after {
+            content: '';
+            background: url("../assets/logo_ulg.png") no-repeat;
+            background-size: 75% 75%;
+            width: 150px;
+            height: 73px;
+            position: absolute;
+            bottom: -0.5em;
+            left: 0.5em;
+            display: inline-block;
+        }
+
+        .title-slide, .section {
+            vertical-align: middle;
+        }
+
+        .end-slide {
+            background-color: #356aaf;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .black-slide {
+            background-color: black;
+            color: white;
+            border-top: solid 0px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .footnote {
+          position: absolute;
+          bottom: 2em;
+          font-size: 0.5em;
+          opacity: 0.75;
+          margin-left: -5.5em;
+        }
+
+        .footnote a{
+            color: #0288d1;
+        }
+
+        /* Grid CSS */
+        [class*='grid'],
+        [class*='kol-'],
+        .grid:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*='kol-'] {
+            float: left;
+            min-height: 1px;
+            padding-right: 20px;
+        }
+
+        [class*='kol-']:last-child {
+            padding-right: 0px;
+        }
+
+        .grid {
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .kol-1-1 {
+            width: 100%;
+        }
+
+        .kol-1-2 {
+            width: 50%;
+        }
+
+        .kol-1-3 {
+            width: 33.33%;
+        }
+
+        .kol-2-3 {
+            width: 66.66%;
+        }
+
+        .kol-1-4 {
+            width: 25%;
+        }
+
+        .kol-3-4 {
+            width: 75%;
+        }
+
+    </style>
+</head>
+<body>
+    <textarea id="source">
+class: middle, center, title-slide
+
+# ปัญญาประดิษฐ์ยุคปัจจุบัน
+
+สัปดาห์ที่ 8: LLM ทำงานอย่างไร
+
+<br><br>
+ผศ. ดร. อิทธิพล ฟองแก้ว<br>
+[ittipon@g.sut.ac.th](mailto:ittipon@g.sut.ac.th)
+
+---
+
+# วันนี้
+
+ครึ่งแรกของวิชานี้เราสร้าง "ตัวแทนอัจฉริยะ" ด้วยการค้นหา ตรรกะ และความน่าจะเป็น
+ครึ่งหลังเราจะสร้างมันด้วย **โมเดลภาษาขนาดใหญ่ (Large Language Model)**
+
+.grid[
+.kol-1-2[
+- จากเซลล์ประสาทถึงโครงข่ายลึก
+- โทเคนและเวกเตอร์ฝังตัว
+- กลไกความสนใจ (Attention)
+- สถาปัตยกรรมทรานส์ฟอร์เมอร์
+]
+.kol-1-2[
+- การทำนายโทเคนถัดไป
+- การสุ่มและอุณหภูมิ
+- วงจรการฝึก: Pretrain, SFT, RLHF
+- ภูมิทัศน์ของโมเดลปี 2026
+]
+]
+
+.footnote[เป้าหมายของสัปดาห์นี้: เข้าใจ "กล่องดำ" ให้พอที่จะใช้มันอย่างมีวิจารณญาณในอีก 6 สัปดาห์ข้างหน้า]
+
+---
+
+class: middle, center, section
+
+# ส่วนที่ 1: จากเซลล์ประสาทถึงโครงข่ายลึก
+
+---
+
+# เพอร์เซปตรอน: หน่วยพื้นฐาน
+
+หน่วยประมวลผลหนึ่งตัวรับเวกเตอร์เข้า คูณน้ำหนัก บวกไบแอส แล้วผ่านฟังก์ชันกระตุ้น
+
+$$y = \sigma\left(\sum\_{i=1}^{n} w\_i x\_i + b\right) = \sigma(\mathbf{w}^\top \mathbf{x} + b)$$
+
+- $\mathbf{x}$ คือข้อมูลเข้า, $\mathbf{w}$ คือน้ำหนักที่เรียนรู้ได้, $b$ คือไบแอส
+- $\sigma$ คือฟังก์ชันไม่เชิงเส้น เช่น ReLU: $\sigma(z) = \max(0, z)$
+
+**ทำไมต้องไม่เชิงเส้น?** ถ้าซ้อนชั้นเชิงเส้นล้วน ๆ ผลลัพธ์ก็ยังเป็นเชิงเส้น
+การซ้อนชั้นจะไม่เพิ่มพลังการแทนค่าเลย
+
+---
+
+# โครงข่ายหลายชั้น (Multi-layer Perceptron)
+
+```text
+   x        ชั้นซ่อน 1      ชั้นซ่อน 2        y
+  [ ]  --->   [ ] [ ]  --->   [ ] [ ]  --->  [ ]
+  [ ]  --->   [ ] [ ]  --->   [ ] [ ]  --->  [ ]
+  [ ]  --->   [ ] [ ]  --->   [ ] [ ]
+       W1,b1          W2,b2          W3,b3
+```
+
+$$\mathbf{h}\_1 = \sigma(W\_1 \mathbf{x} + \mathbf{b}\_1), \quad
+\mathbf{h}\_2 = \sigma(W\_2 \mathbf{h}\_1 + \mathbf{b}\_2), \quad
+\mathbf{y} = W\_3 \mathbf{h}\_2 + \mathbf{b}\_3$$
+
+**ทฤษฎีบทการประมาณสากล:** โครงข่ายที่มีชั้นซ่อนเพียงชั้นเดียวและหน่วยมากพอ
+สามารถประมาณฟังก์ชันต่อเนื่องใด ๆ ได้ใกล้เคียงเท่าที่ต้องการ
+
+.alert[แต่ทฤษฎีบทไม่ได้บอกว่าต้องใช้กี่หน่วย และไม่ได้บอกว่าจะ**หา**น้ำหนักเหล่านั้นเจอได้อย่างไร]
+
+---
+
+# การเรียนรู้ = การหาค่าต่ำสุดของฟังก์ชันสูญเสีย
+
+1. **วัดความผิด** ด้วยฟังก์ชันสูญเสีย $\mathcal{L}(\theta)$
+2. **หาความชัน** $\nabla\_\theta \mathcal{L}$ ด้วยการแพร่กระจายย้อนกลับ (backpropagation)
+3. **ปรับพารามิเตอร์** ตามทิศทางที่ลดความผิด
+
+$$\theta \leftarrow \theta - \eta \nabla\_\theta \mathcal{L}(\theta)$$
+
+การแพร่กระจายย้อนกลับคือกฎลูกโซ่ของแคลคูลัสที่จัดระเบียบให้คำนวณซ้ำน้อยที่สุด
+
+$$\frac{\partial \mathcal{L}}{\partial W\_1} =
+\frac{\partial \mathcal{L}}{\partial \mathbf{h}\_2} \cdot
+\frac{\partial \mathbf{h}\_2}{\partial \mathbf{h}\_1} \cdot
+\frac{\partial \mathbf{h}\_1}{\partial W\_1}$$
+
+.footnote[GPT-class model มีพารามิเตอร์หลักแสนล้านตัว แต่ใช้สมการอัปเดตอันเดียวกันนี้]
+
+---
+
+# ตัวอย่าง: ทั้งหมดนี้เขียนได้ใน PyTorch ไม่กี่บรรทัด
+
+```python
+import torch, torch.nn as nn
+
+model = nn.Sequential(
+    nn.Linear(3, 64), nn.ReLU(),
+    nn.Linear(64, 64), nn.ReLU(),
+    nn.Linear(64, 1),
+)
+loss_fn = nn.MSELoss()
+opt = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+for x, y in dataloader:
+    pred = model(x)
+    loss = loss_fn(pred, y)
+    opt.zero_grad()      # ล้างความชันเก่า
+    loss.backward()      # แพร่กระจายย้อนกลับ (autograd ทำให้เอง)
+    opt.step()           # อัปเดตพารามิเตอร์
+```
+
+ทุกโมเดลภาษาที่เราจะใช้ในอีก 6 สัปดาห์ ฝึกด้วยลูปหน้าตาแบบนี้ แค่ใหญ่กว่ามาก
+
+---
+
+class: middle, center, section
+
+# ส่วนที่ 2: จากข้อความสู่ตัวเลข
+
+---
+
+# ปัญหาแรก: โมเดลไม่เข้าใจตัวอักษร
+
+โครงข่ายประสาทรับได้แต่ตัวเลข เราต้องแปลงข้อความเป็นเวกเตอร์
+
+**ขั้นที่ 1: การแบ่งโทเคน (Tokenization)** แบ่งข้อความเป็นหน่วยย่อย
+
+```text
+"ปัญญาประดิษฐ์ทำงานอย่างไร"
+   -->  ["ปัญ", "ญา", "ประ", "ดิษ", "ฐ์", "ทำงาน", "อย่าง", "ไร"]
+   -->  [15234, 8901, 4412, 77120, 3345, 2201, 990, 1187]
+```
+
+วิธีมาตรฐานคือ **Byte-Pair Encoding (BPE)**: เริ่มจากไบต์เดี่ยว
+แล้วรวมคู่ที่พบบ่อยที่สุดซ้ำ ๆ จนได้คลังศัพท์ตามขนาดที่กำหนด (มัก 32k ถึง 256k)
+
+.alert[ภาษาไทยไม่มีช่องว่างระหว่างคำ จึงมักใช้โทเคนต่อหนึ่งประโยคมากกว่าภาษาอังกฤษ 2 ถึง 4 เท่า แปลว่า **แพงกว่าและช้ากว่า** เมื่อเรียก API]
+
+---
+
+# ขั้นที่ 2: เวกเตอร์ฝังตัว (Embeddings)
+
+โทเคนแต่ละตัวถูกจับคู่กับเวกเตอร์ที่เรียนรู้ได้ในมิติ $d$ (เช่น 4096)
+
+$$E \in \mathbb{R}^{|V| \times d}, \qquad \mathbf{e}\_i = E[\text{token}\_i]$$
+
+ความหมายถูกเข้ารหัสเป็น **ทิศทางในปริภูมิ** โทเคนที่ความหมายใกล้กันจะอยู่ใกล้กัน
+
+$$\text{sim}(\mathbf{a}, \mathbf{b}) = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\|\,\|\mathbf{b}\|}$$
+
+.question[
+โคไซน์ซิมิลาริตีตัวนี้จะกลับมาอีกครั้งในสัปดาห์ที่ 10 เมื่อเราทำ RAG
+เพราะการค้นคืนเอกสารก็คือการหาเวกเตอร์ที่ใกล้กันนั่นเอง
+]
+
+---
+
+# ปัญหาที่สอง: ลำดับมีความหมาย
+
+"หมากัดคน" กับ "คนกัดหมา" มีโทเคนชุดเดียวกัน แต่ความหมายต่างกันสิ้นเชิง
+
+จึงต้องเพิ่ม **การเข้ารหัสตำแหน่ง (positional encoding)** เข้าไปในเวกเตอร์ฝังตัว
+
+- แบบดั้งเดิม: ฟังก์ชันไซน์และโคไซน์ที่ความถี่ต่างกัน
+- แบบที่นิยมในปัจจุบัน: **RoPE (Rotary Position Embedding)** หมุนเวกเตอร์
+ตามตำแหน่ง ทำให้โมเดลรับรู้ระยะห่างสัมพัทธ์ และขยายความยาวบริบทได้ง่ายกว่า
+
+.footnote[RoPE คือเหตุผลหนึ่งที่โมเดลสมัยใหม่ขยายหน้าต่างบริบทจาก 2k เป็นหลายแสนโทเคนได้]
+
+---
+
+class: middle, center, section
+
+# ส่วนที่ 3: กลไกความสนใจ
+
+---
+
+# แนวคิด: ให้แต่ละโทเคน "มอง" โทเคนอื่น
+
+เมื่ออ่านคำว่า **"มัน"** ในประโยค เราต้องรู้ว่ามันหมายถึงอะไร
+กลไกความสนใจให้โมเดลดึงข้อมูลจากโทเคนอื่นมาผสมเข้ากับตัวเอง
+
+แต่ละโทเคนสร้างเวกเตอร์สามชุดจากเวกเตอร์ฝังตัวของตัวเอง
+
+.grid[
+.kol-1-3[
+**Query** $\mathbf{q} = W\_Q\mathbf{x}$
+<br>"ฉันกำลังมองหาอะไร"
+]
+.kol-1-3[
+**Key** $\mathbf{k} = W\_K\mathbf{x}$
+<br>"ฉันมีอะไรให้"
+]
+.kol-1-3[
+**Value** $\mathbf{v} = W\_V\mathbf{x}$
+<br>"เนื้อหาที่ฉันจะส่งให้"
+]
+]
+
+เปรียบเทียบง่าย ๆ กับการค้นข้อมูล: query คือคำค้น key คือดัชนี value คือเนื้อหา
+ต่างกันตรงที่ที่นี่ "ค้นเจอ" ไม่ใช่ใช่หรือไม่ใช่ แต่เป็นน้ำหนักต่อเนื่อง
+
+---
+
+# สมการเดียวที่ต้องจำ
+
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d\_k}}\right) V$$
+
+อ่านจากในออกนอก:
+
+1. $QK^\top$ คือคะแนนความเข้ากันของทุกคู่โทเคน (เมทริกซ์ $n \times n$)
+2. หารด้วย $\sqrt{d\_k}$ กันไม่ให้คะแนนใหญ่จนซอฟต์แมกซ์อิ่มตัว
+3. ซอฟต์แมกซ์ทำให้แต่ละแถวรวมกันได้ 1 กลายเป็นการแจกแจงความน่าจะเป็น
+4. คูณด้วย $V$ คือเฉลี่ยถ่วงน้ำหนักของเนื้อหาจากทุกโทเคน
+
+.alert[ค่าใช้จ่ายเป็น $O(n^2)$ ตามความยาวบริบท $n$ นี่คือเหตุผลที่บริบทยาวแพงมาก และเป็นแรงจูงใจของ RAG ในสัปดาห์ที่ 10]
+
+---
+
+# ตัวอย่างเชิงตัวเลข
+
+สมมติมี 3 โทเคน และคำนวณ $QK^\top/\sqrt{d\_k}$ ได้เมทริกซ์คะแนน
+
+$$S = \begin{bmatrix} 2.0 & 0.0 & 1.0 \end{bmatrix} \quad \text{(แถวของโทเคนที่ 3)}$$
+
+ซอฟต์แมกซ์: $\frac{e^{2.0}}{e^{2.0}+e^{0.0}+e^{1.0}} = \frac{7.39}{7.39+1.00+2.72} = 0.665$
+
+$$\alpha = \langle 0.665,\ 0.090,\ 0.245 \rangle$$
+
+ผลลัพธ์ของโทเคนที่ 3 คือ $0.665\,\mathbf{v}\_1 + 0.090\,\mathbf{v}\_2 + 0.245\,\mathbf{v}\_3$
+
+**ตีความ:** โทเคนที่ 3 ดึงข้อมูลจากโทเคนที่ 1 เป็นหลัก แทบไม่สนใจโทเคนที่ 2
+
+---
+
+# หน้ากากเชิงสาเหตุ (Causal Mask)
+
+โมเดลภาษาต้องทำนายโทเคนถัดไป จึง **ห้ามมองอนาคต**
+
+```text
+        t1    t2    t3    t4
+ t1   [ ok  -inf  -inf  -inf ]
+ t2   [ ok    ok  -inf  -inf ]
+ t3   [ ok    ok    ok  -inf ]
+ t4   [ ok    ok    ok    ok ]
+```
+
+ใส่ $-\infty$ ในตำแหน่งอนาคตก่อนซอฟต์แมกซ์ ค่าเหล่านั้นจะกลายเป็น 0
+
+.question[
+นี่คือความแตกต่างหลักระหว่างสถาปัตยกรรมแบบ **decoder-only** (GPT, Claude, Llama, Qwen)
+กับ **encoder** (BERT) ที่มองได้ทั้งสองทางและเหมาะกับงานจำแนกประเภทมากกว่า
+]
+
+---
+
+# ความสนใจหลายหัว (Multi-Head Attention)
+
+แทนที่จะทำความสนใจครั้งเดียวด้วยมิติ $d$ เราแบ่งเป็น $h$ หัว หัวละ $d/h$ มิติ
+
+$$\text{MHA}(X) = \text{Concat}(\text{head}\_1, \dots, \text{head}\_h)\, W\_O$$
+
+แต่ละหัวเรียนรู้ความสัมพันธ์คนละแบบ จากการวิเคราะห์โมเดลจริงพบว่า
+
+- บางหัวตามหาคำสรรพนามอ้างถึง
+- บางหัวจับคู่วงเล็บเปิดปิด
+- บางหัวสนใจโทเคนก่อนหน้าทันที
+- หลายหัวยังตีความไม่ได้
+
+.footnote[งานสาขา mechanistic interpretability พยายามอธิบายว่าแต่ละหัวและแต่ละวงจรทำอะไร ซึ่งสำคัญต่อความปลอดภัยของ AI ที่เราจะคุยกันในสัปดาห์ที่ 14]
+
+---
+
+# บล็อกทรานส์ฟอร์เมอร์
+
+```text
+      เข้า
+       |
+   +---+------------------------+
+   |  LayerNorm                 |
+   |  Multi-Head Attention      |
+   +---+------------------------+
+       |  <-- residual (บวกกลับเข้าไป)
+   +---+------------------------+
+   |  LayerNorm                 |
+   |  Feed-Forward (MLP)        |
+   +---+------------------------+
+       |  <-- residual
+      ออก
+```
+
+- **Residual connection** ทำให้ความชันไหลผ่านชั้นลึกได้ ฝึกโมเดล 100 ชั้นได้จริง
+- **LayerNorm** ทำให้ค่าคงที่เชิงสถิติ ฝึกเสถียร
+- **Feed-Forward** คือ MLP สองชั้นที่กว้างกว่าเดิม 4 เท่า เก็บ "ความรู้" ส่วนใหญ่ของโมเดล
+
+โมเดลจริงคือบล็อกนี้ซ้อนกัน 32 ถึง 120 ชั้น
+
+---
+
+class: middle, center, section
+
+# ส่วนที่ 4: จากทรานส์ฟอร์เมอร์สู่ LLM
+
+---
+
+# LLM คือเครื่องทำนายโทเคนถัดไป
+
+หัวใจของโมเดลภาษาคือการประมาณการแจกแจงเงื่อนไข
+
+$$P(x\_t \mid x\_1, x\_2, \dots, x\_{t-1})$$
+
+และความน่าจะเป็นของทั้งลำดับคือกฎลูกโซ่ที่เราเรียนในสัปดาห์ที่ 6
+
+$$P(x\_1, \dots, x\_T) = \prod\_{t=1}^{T} P(x\_t \mid x\_{<t})$$
+
+.question[
+**สังเกต:** นี่คือแบบจำลองความน่าจะเป็นแบบเดียวกับที่เราศึกษาในบทเบย์
+ต่างกันแค่เราใช้โครงข่ายประสาทประมาณการแจกแจงแทนตารางความน่าจะเป็น
+]
+
+การสร้างข้อความคือการสุ่มจากการแจกแจงนี้ทีละโทเคน แล้วป้อนกลับเข้าไปใหม่ (autoregressive)
+
+---
+
+# การสุ่มโทเคน: อุณหภูมิ
+
+โมเดลให้ค่า logit $z\_i$ สำหรับทุกโทเคนในคลังศัพท์ แล้วเราแปลงเป็นความน่าจะเป็น
+
+$$P(i) = \frac{\exp(z\_i / T)}{\sum\_j \exp(z\_j / T)}$$
+
+| $T$ | ผลลัพธ์ | เหมาะกับ |
+| --- | --- | --- |
+| $T \to 0$ | เลือกโทเคนที่น่าจะเป็นสูงสุดเสมอ (greedy) | สกัดข้อมูล, เขียนโค้ด, ตอบข้อเท็จจริง |
+| $T = 0.7$ | สมดุล | สนทนาทั่วไป |
+| $T = 1.2$ | หลากหลาย เสี่ยงเพี้ยน | งานสร้างสรรค์, ระดมความคิด |
+
+**top-p (nucleus sampling):** ตัดให้เหลือเฉพาะโทเคนที่ความน่าจะเป็นสะสมถึง $p$ แล้วค่อยสุ่ม
+เป็นการกันหางยาวที่ไร้สาระออกไป
+
+.footnote[สัปดาห์หน้าเราจะตั้งค่าพารามิเตอร์เหล่านี้ผ่าน API จริง]
+
+---
+
+# วงจรการสร้างโมเดลสมัยใหม่
+
+```text
+  1. Pre-training          ข้อความหลายล้านล้านโทเคนจากอินเทอร์เน็ต
+     (self-supervised)     เป้าหมาย: ทำนายโทเคนถัดไป
+            |              ผลลัพธ์: base model รู้ภาษาแต่ไม่รู้จักทำตามคำสั่ง
+            v
+  2. Supervised            ตัวอย่างคู่ (คำสั่ง, คำตอบที่ดี) หลักหมื่นถึงหลักแสน
+     Fine-Tuning (SFT)     ผลลัพธ์: instruct model ทำตามคำสั่งได้
+            |
+            v
+  3. Preference Learning   มนุษย์เลือกว่าคำตอบ A หรือ B ดีกว่า
+     (RLHF / DPO)          ผลลัพธ์: chat model มีประโยชน์ ปลอดภัย ตรงใจคน
+```
+
+**ต้นทุน:** ขั้นที่ 1 คิดเป็นกว่า 99% ของการคำนวณ แต่ขั้นที่ 2 และ 3
+คือสิ่งที่ทำให้โมเดล "ใช้งานได้" จริง
+
+---
+
+# กฎการปรับขนาด (Scaling Laws)
+
+ประสิทธิภาพดีขึ้นอย่างคาดเดาได้ตามกฎกำลัง เมื่อเพิ่ม
+**พารามิเตอร์ $N$**, **ข้อมูล $D$**, และ **การคำนวณ $C$**
+
+$$\mathcal{L}(N) \approx \left(\frac{N\_c}{N}\right)^{\alpha}, \qquad \alpha \approx 0.076$$
+
+- Chinchilla (2022) แสดงว่าโมเดลยุคแรกใหญ่เกินไปเมื่อเทียบกับข้อมูล
+สัดส่วนที่เหมาะสมคือประมาณ 20 โทเคนต่อ 1 พารามิเตอร์
+- ยุคปัจจุบันเพิ่มมิติที่สี่: **การคำนวณตอนอนุมาน** (inference-time compute)
+โมเดลแบบให้เหตุผลใช้โทเคนคิดในใจก่อนตอบ แลกเวลากับความแม่นยำ
+
+.alert[**ความสามารถที่ผุดขึ้น (emergent):** งานบางอย่างเช่นการคำนวณหลายขั้น แทบทำไม่ได้เลยจนกว่าโมเดลจะถึงขนาดหนึ่ง แล้วจึงทำได้ทันที นี่ทำให้ทำนายความสามารถของรุ่นถัดไปได้ยาก]
+
+---
+
+# หน้าต่างบริบทและ KV cache
+
+**หน้าต่างบริบท (context window)** คือจำนวนโทเคนสูงสุดที่โมเดลมองเห็นได้ในครั้งเดียว
+รวมทั้งคำสั่งระบบ ประวัติสนทนา เอกสารที่แนบ และคำตอบที่กำลังสร้าง
+
+**KV cache:** ระหว่างสร้างข้อความ เราเก็บ key และ value ของโทเคนเดิมไว้
+จึงไม่ต้องคำนวณซ้ำ ทำให้สร้างโทเคนถัดไปเร็วขึ้นมาก แต่กินหน่วยความจำ GPU เพิ่มตามความยาว
+
+.question[
+**ผลที่ตามมาที่ต้องจำไว้ทั้งเทอม:** บริบทเป็นทรัพยากรจำกัดและมีราคา
+การจัดการว่าอะไรควรอยู่ในหน้าต่างบริบทเรียกว่า **context engineering**
+ซึ่งเป็นหัวข้อหลักของสัปดาห์หน้า
+]
+
+---
+
+# ข้อจำกัดที่ต้องเข้าใจ
+
+- **การหลอน (hallucination):** โมเดลถูกฝึกให้สร้างข้อความที่ *น่าจะเป็น*
+ไม่ใช่ข้อความที่ *เป็นจริง* มันไม่มีกลไกแยกแยะสองอย่างนี้โดยกำเนิด
+- **วันตัดความรู้ (knowledge cutoff):** ไม่รู้เหตุการณ์หลังวันที่ฝึก
+- **ไม่มีความจำถาวร:** จบการสนทนาแล้วลืมหมด
+- **คณิตศาสตร์และตรรกะหลายขั้น:** ยังผิดพลาดได้ง่าย
+- **ความอ่อนไหวต่อการใช้คำ:** เปลี่ยนถ้อยคำเล็กน้อยอาจได้คำตอบต่างกันมาก
+
+.alert[
+ข้อจำกัดสามข้อแรกคือ**เหตุผลที่มี RAG (สัปดาห์ 10), เครื่องมือ (สัปดาห์ 11 และ 12), และหน่วยความจำภายนอก**
+ทุกหัวข้อที่เหลือของวิชานี้คือการแก้ข้อจำกัดเหล่านี้ด้วยวิศวกรรมรอบตัวโมเดล
+]
+
+---
+
+class: middle, center, section
+
+# ส่วนที่ 5: ภูมิทัศน์ของโมเดล
+
+---
+
+# โมเดลที่ควรรู้จัก (พ.ศ. 2569)
+
+.grid[
+.kol-1-2[
+**แบบเรียกผ่าน API (closed weights)**
+- Claude (Anthropic)
+- Gemini (Google)
+- GPT (OpenAI)
+
+ข้อดี: ความสามารถสูงสุด ไม่ต้องมี GPU
+ข้อเสีย: ข้อมูลออกนอกองค์กร มีค่าใช้จ่ายต่อโทเคน ถูกเลิกให้บริการได้
+]
+.kol-1-2[
+**แบบเปิดน้ำหนัก (open weights)**
+- Qwen (Alibaba)
+- GLM (Zhipu)
+- Kimi (Moonshot)
+- Llama, Mistral, Gemma, DeepSeek
+
+ข้อดี: รันเองได้ ข้อมูลไม่ออกจากเครื่อง ปรับแต่งได้ ฟรี
+ข้อเสีย: ต้องมี GPU และดูแลเอง
+]
+]
+
+.footnote[คำว่า "open weights" ไม่เท่ากับ "open source": ส่วนใหญ่เปิดน้ำหนักแต่ไม่เปิดข้อมูลฝึกและมีเงื่อนไขการใช้]
+
+---
+
+# ข่าวดี: อินเทอร์เฟซแทบจะเหมือนกันหมด
+
+ผู้ให้บริการเกือบทั้งหมดรองรับรูปแบบ chat completions ที่เข้ากันได้กับ OpenAI
+
+```python
+from openai import OpenAI
+
+# เปลี่ยนแค่ base_url กับ model ก็ย้ายผู้ให้บริการได้
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+
+resp = client.chat.completions.create(
+    model="qwen3:8b",
+    messages=[
+        {"role": "system", "content": "คุณเป็นผู้ช่วยสอนวิชา AI"},
+        {"role": "user", "content": "อธิบาย attention ใน 2 ประโยค"},
+    ],
+    temperature=0.3,
+)
+print(resp.choices[0].message.content)
+```
+
+.question[**หลักการของวิชานี้:** เราจะเขียนโค้ดให้ไม่ผูกกับผู้ให้บริการรายใดรายหนึ่ง สิ่งที่คุณเรียนต้องใช้ได้กับทุกโมเดล]
+
+---
+
+# สรุป
+
+- LLM คือทรานส์ฟอร์เมอร์แบบ decoder-only ที่ฝึกให้ทำนายโทเคนถัดไป
+- **Attention** $\text{softmax}(QK^\top/\sqrt{d\_k})V$ ให้แต่ละโทเคนดึงข้อมูลจากโทเคนอื่น
+ด้วยต้นทุน $O(n^2)$ ตามความยาวบริบท
+- ความสามารถมาจาก **การปรับขนาด** ส่วนความมีประโยชน์มาจาก **SFT และ RLHF**
+- **อุณหภูมิและ top-p** ควบคุมความสุ่มของผลลัพธ์ ปรับตามงาน
+- ข้อจำกัดหลักคือการหลอน วันตัดความรู้ และการไม่มีความจำ
+
+.question[
+**สัปดาห์หน้า:** เราจะเลิกมองมันเป็นทฤษฎี แล้วเริ่มเรียกใช้จริงผ่าน API
+พร้อมเรียนรู้ว่าจะจัดการหน้าต่างบริบทอย่างไรให้ได้ผลลัพธ์ที่เชื่อถือได้
+]
+
+---
+
+# ปฏิบัติการสัปดาห์ที่ 8
+
+`labs/w08_llm_internals.ipynb`
+
+1. เล่นกับ tokenizer จริง เปรียบเทียบจำนวนโทเคนภาษาไทยกับภาษาอังกฤษ
+2. เขียน scaled dot-product attention จากศูนย์ด้วย NumPy แล้วตรวจกับ PyTorch
+3. ดูค่าน้ำหนักความสนใจจริงจากโมเดลขนาดเล็ก
+4. รันโมเดลเปิดน้ำหนักบนเครื่องตัวเองด้วย Ollama แล้วทดลองปรับอุณหภูมิ
+
+.footnote[ส่งงาน: notebook ที่รันครบทุกเซลล์ พร้อมคำตอบข้อ 4 ว่าอุณหภูมิเปลี่ยนผลลัพธ์อย่างไร]
+
+---
+
+class: end-slide, center
+count: false
+
+จบสัปดาห์ที่ 8
+
+    </textarea>
+    
+    <script src="../assets/remark.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightStyle: 'github',
+            highlightLines: true,
+            countIncrementalSlides: false,
+            ratio: '16:9'
+        });
+
+        // KaTeX auto-render
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false}
+                ]
+            });
+        });
+    </script>
+</body>

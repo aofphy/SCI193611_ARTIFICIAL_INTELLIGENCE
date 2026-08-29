@@ -1,0 +1,76 @@
+# ตัวอย่างตัวกระตุ้นแบบ CI สำหรับแล็บสัปดาห์ที่ 14
+#
+# ไฟล์นี้ตั้งใจ **ไม่** วางไว้ใน .github/workflows/ เพื่อไม่ให้ทำงานเอง
+# เมื่อคุณพร้อม ให้คัดลอกไปที่ .github/workflows/lab-review.yml
+#
+# สิ่งที่ต้องดูในไฟล์นี้: งบประมาณ, สิทธิ์ที่จำกัด, การเก็บบันทึก
+# และการที่ผลลัพธ์ออกมาเป็น "ความเห็น" ไม่ใช่ "การแก้โค้ดอัตโนมัติ"
+
+name: AI lab review
+
+on:
+  pull_request:
+    paths:
+      - "**/report.md"
+
+# สิทธิ์น้อยที่สุดที่งานต้องการ ค่าเริ่มต้นของ GitHub กว้างเกินความจำเป็น
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ai-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10          # เพดานเวลา: เงื่อนไขหยุดที่ขาดไม่ได้
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ตรวจโครงสร้างด้วยกฎก่อน (ถูกและเร็วกว่าเรียกโมเดล)
+        run: |
+          python labs/w13_skills_plugin/plugin/skills/lab-report/scripts/check_report.py \
+            "${{ github.workspace }}/report.md"
+        continue-on-error: true
+
+      - name: ตรวจเนื้อหาด้วยเวิร์กโฟลว์ AI
+        env:
+          # ความลับมาจาก GitHub Secrets เท่านั้น ไม่มีวันอยู่ในโค้ด
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python labs/w14_workflow_ethics/workflow.py report.md --yes \
+            2>&1 | tee review-output.txt
+
+      - name: เก็บบันทึกไว้ตรวจย้อนหลัง
+        if: always()             # เก็บแม้ขั้นก่อนหน้าจะล้มเหลว
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-review-logs
+          path: |
+            review-output.txt
+            labs/w14_workflow_ethics/runs.jsonl
+          retention-days: 30
+
+      # หมายเหตุ: ขั้นนี้โพสต์ "ความเห็น" ไม่ใช่การแก้ไฟล์
+      # การกระทำที่ย้อนกลับไม่ได้ต้องผ่านการอนุมัติของมนุษย์เสมอ
+      - name: โพสต์ผลเป็นคอมเมนต์ใน PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('report.review.md', 'utf8');
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "## ผลตรวจอัตโนมัติ (AI)\n\n" + body +
+                    "\n\n> ความเห็นนี้สร้างโดย AI ให้ผู้สอนตรวจสอบก่อนใช้ตัดสิน",
+            });

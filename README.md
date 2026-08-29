@@ -1,6 +1,7 @@
 # SCI19 3611 ARTIFICIAL INTELLIGENCE and SCI19 3631 Workshop AI
 
-> **ฉบับปรับปรุงให้ทันสมัย พ.ศ. 2569 (Modernized Syllabus)** — อ้างอิงตำรา AIMA ฉบับที่ 4 (2020) และเพิ่มเนื้อหา Deep Learning, Transformers, LLMs, RAG, LLM Agents, Generative AI และ AI Ethics & Safety.
+> **ฉบับปรับปรุงให้ทันสมัย พ.ศ. 2569 (Modernized Syllabus):** อ้างอิงตำรา AIMA ฉบับที่ 4 (2020) สำหรับ Classical AI ในสัปดาห์ที่ 1 ถึง 7
+> และปรับสัปดาห์ที่ 8 ถึง 14 เป็นแทร็ก **การใช้ AI ในยุคปัจจุบัน**: LLM, Prompting & Context Engineering, RAG, MCP, AI Agents, Harness/Skills/Plugins และ AI Automated Workflow พร้อม AI Ethics & Safety.
 > รายละเอียดฉบับเต็มอยู่ใน [`TQF3_AI_Modernized.docx`](./TQF3_AI_Modernized.docx) (มคอ.3). เวอร์ชันเดิมเก็บไว้ที่ [`README_OLD_AIMA3.md`](./README_OLD_AIMA3.md).
 
 **Instructor:** Asst. Prof. Dr. Ittipon Fongkaew  
@@ -16,9 +17,14 @@
 
 ## 📘 Course Overview
 
-This course introduces fundamental concepts and techniques in Artificial Intelligence, combining theoretical foundations with practical applications in Python. Content spans **Classical AI** — Search, Logic & Planning, and Probabilistic Reasoning — through to **Modern AI** — Deep Learning, the Transformer architecture, Large Language Models (LLMs), RAG, LLM Agents, and Generative AI — along with **AI Ethics & Safety**.
+This course introduces fundamental concepts and techniques in Artificial Intelligence, combining theoretical foundations with practical applications in Python. It runs in two halves:
 
-The course is designed to complement the parallel Machine Learning course, deliberately avoiding overlapping Classical ML content (regression, classification, decision trees) and reinvesting that time into Classical AI (Logic & Planning) and the modern LLM/Agent/Generative AI track.
+- **Weeks 1–7, Classical AI:** rational agents, Search & Adversarial Search, Logic & Automated Planning, Probabilistic Reasoning and Reasoning over Time.
+- **Weeks 8–14, Building with AI today:** how LLMs work, prompting & context engineering, RAG, the Model Context Protocol (MCP), AI agents & tool use, agent harnesses with Skills and Plugins, and automated AI workflows, closing with ethics, safety and responsible use.
+
+The second half is deliberately **vendor-neutral**. Everything is built against interfaces that work across Claude, Gemini, GPT, Qwen, GLM, Kimi and open-weight models you can run locally, so the skills outlive any single provider. Every lab runs offline (local model, stub model, or dependency-free fallback) and swaps to a real API in a few lines.
+
+The course is designed to complement the parallel Machine Learning course, deliberately avoiding overlapping Classical ML content (regression, classification, decision trees) and reinvesting that time into Classical AI (Logic & Planning) and the applied LLM/Agent/Workflow track.
 
 **Textbook:**  
 Stuart Russell, Peter Norvig – *Artificial Intelligence: A Modern Approach* (**4th Edition, 2020**)
@@ -32,12 +38,15 @@ By the end of this course, you will be able to:
 1. Understand **Agent-Based AI** and design **Rational Agents**.
 2. Apply **Search & Adversarial Search** techniques, including **MCTS**.
 3. Use **Logic & Automated Planning** for knowledge representation and problem solving.
-4. Analyze **Probabilistic & Bayesian models**.
-5. Build and train **Neural Networks & Deep Learning** models with **PyTorch**.
-6. Explain the **Transformer architecture** and how **Large Language Models** work.
-7. Develop **RAG** applications and **LLM Agents** using tools / function calling.
-8. Apply **Generative AI** (Diffusion, Multimodal) and understand **RLHF**.
-9. Evaluate AI capabilities, limitations, and **ethics/safety** issues, including **AGI**.
+4. Analyze **Probabilistic & Bayesian models**, including HMMs and filtering.
+5. Explain how **LLMs** work: tokenization, attention, the Transformer, and the pretrain → SFT → RLHF pipeline, together with their concrete limitations.
+6. Call LLM APIs across providers, apply **prompting patterns**, practise **context engineering**, and, critically, **measure** whether a change helped, using an eval set.
+7. Build **RAG** systems with chunking, embeddings, hybrid search and reranking, and evaluate retrieval separately from generation.
+8. Write and deploy a **Model Context Protocol (MCP)** server that works across multiple AI clients unchanged.
+9. Build an **AI agent** from scratch: tool schemas, the agent loop, memory, guardrails, step/budget limits, and programmatic evaluation.
+10. Extend an **agent harness** with **Skills**, slash commands, hooks and **plugins**, and measure whether they actually get invoked.
+11. Design **automated AI workflows** (chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer) with logging, budgets and human-in-the-loop approval.
+12. Evaluate AI capabilities, limitations, and **ethics/safety/privacy** issues, including prompt injection, PDPA, bias, hallucination and academic integrity.
 
 ---
 
@@ -53,13 +62,13 @@ By the end of this course, you will be able to:
 | 6 | Quantifying Uncertainty & Probabilistic Reasoning – Bayes Rule, Bayesian Networks | Exercise 2 |
 | 7 | Reasoning Over Time – Markov Models, HMMs | Exercise 3 |
 | — | **Midterm Examination** (covers Weeks 1–7) | — |
-| 8 | Neural Networks – Perceptron, Backpropagation, training (PyTorch) | Lab: PyTorch basics |
-| 9 | Deep Learning – CNNs, Computer Vision, Transfer Learning | Lab: Image Classifier |
-| 10 | Sequence Models & The Transformer Architecture – Attention | Exercise 4 |
-| 11 | Large Language Models – Pre-training, Fine-tuning, Prompting | Lab: Fine-tune & Prompt |
-| 12 | Retrieval-Augmented Generation (RAG) & LLM Agents – Tool Use, Function Calling | Lab: Build an LLM Agent |
-| 13 | Generative AI – Diffusion, Multimodal, Image/Audio Generation + RLHF | Exercise 5 |
-| 14 | AI Ethics, Safety & Alignment – Bias, Governance, AGI | Discussion / Debate |
+| 8 | **How LLMs work** – tokenization, attention & the Transformer, sampling, pretrain → SFT → RLHF, scaling & limits | Lab: attention from scratch, run a local model |
+| 9 | **Prompting, LLM APIs & Context Engineering** – roles, parameters, prompt patterns, structured output, eval sets | Lab: multi-provider client + eval harness |
+| 10 | **RAG & Vector Databases** – chunking, embeddings, hybrid search, reranking, retrieval evaluation | Lab: RAG over the course documents |
+| 11 | **Model Context Protocol (MCP)** – hosts/clients/servers, tools/resources/prompts, JSON-RPC, tool design & security | Lab: write an MCP server, connect 2 clients |
+| 12 | **AI Agents & Tool Use** – the agent loop, ReAct, memory, failure modes, guardrails, agent evaluation | Lab: build an agent from scratch |
+| 13 | **Harness, AI Skills & Plugins** – anatomy of a harness, progressive disclosure, SKILL.md, hooks, plugins | Lab: write a Skill + plugin, run on 2 harnesses |
+| 14 | **AI Automated Workflows + Ethics & Safety** – workflow patterns, triggers, observability, prompt injection, PDPA, bias, academic integrity | Lab: automated workflow + threat model |
 | 15 | Project Presentations & the Future of AI | Final Project Presentation |
 | — | **Final Examination** (covers Weeks 8–15) | — |
 
@@ -67,18 +76,20 @@ By the end of this course, you will be able to:
 
 ## 💻 Projects & Assignments
 
-- **Project 0 — Search Algorithms:** implement BFS, DFS, UCS, and A* on maze/game problems.
-- **Project 1 — Search & Planning:** solve problems with automated planning and logical knowledge representation.
-- **Lab — LLM Agent:** build an agent using RAG and tool/function calling with Hugging Face / an LLM API.
-- **Final Project:** build a real AI application (RAG Chatbot, LLM Agent, Image Classifier, or Generative AI app) and present it.
-- **Weekly Exercises:** aligned with each week's topic.
+- **Project 0, Search Algorithms:** implement BFS, DFS, UCS, and A* on maze/game problems.
+- **Project 1, Search & Planning:** solve problems with automated planning and logical knowledge representation.
+- **Project 2, Bayes Filter:** state estimation over time (HMM / particle filtering).
+- **Final Project:** build and present a real AI system from the modern track: a RAG assistant over a domain corpus, an MCP server plus agent for a real workflow, or an automated AI workflow with a real trigger. Requirements: a written **threat model**, an **evaluation set with measured results**, and an **AI use statement**.
+- **Weekly Labs:** [`labs/`](./labs). Every lab runs offline and swaps to a real model in a few lines.
+
+**Responsible use policy:** you must be able to **explain every line you submit**, and every submission must include an **AI use statement** (which tools, for what, and how you verified the output). Templates are in [`labs/w14_workflow_ethics/`](./labs/w14_workflow_ethics).
 
 **Grading:**
 
 | Assessment Component | Weight |
 | --- | --- |
 | Homework & Exercises | 20% |
-| Projects (Search, Planning, LLM Agent Lab) | 30% |
+| Projects (Search, Planning, Bayes Filter) + Modern AI Labs | 30% |
 | Midterm Examination | 20% |
 | Final Project + Presentation | 20% |
 | Attendance & Participation | 10% |
@@ -102,16 +113,23 @@ By the end of this course, you will be able to:
 | 5 | Logic & Automated Planning | **Project 1:** Search & Planning | [`labs/w05_logic_planning.ipynb`](./labs/w05_logic_planning.ipynb) *(runnable)* | [`slide_workshop/10-Knowledge-Base.pdf`](./aima/slide_workshop/10-Knowledge-Base.pdf) + [`logic.ipynb`](./aima/logic.ipynb), [`slide_workshop/CSP_proposition.pdf`](./aima/slide_workshop/CSP_proposition.pdf) + [`csp.ipynb`](./aima/csp.ipynb) (CSP + Prop. Logic), [`slide_workshop/12-Basic-Planning.pdf`](./aima/slide_workshop/12-Basic-Planning.pdf) + [`planning.ipynb`](./aima/planning.ipynb) | — |
 | 6 | Probabilistic Reasoning – Bayes Nets | **Exercise 2** | [`code/lecture5-cherries.ipynb`](./code/lecture5-cherries.ipynb) · [`slide/lecture5_th.pdf`](./slide/lecture5_th.pdf) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/lecture5_th.html)) | — | [<img src="./figures/lec5/bn-cartoon.png" width="100" alt="Week 6 preview">](./slide/lecture5_th.pdf) |
 | 7 | Reasoning Over Time – Markov, HMM | **Exercise 3** + Bayes Filter | [`exercises/e3_nosol.pdf`](./exercises/e3_nosol.pdf), [`code/lecture6-forward-backward.ipynb`](./code/lecture6-forward-backward.ipynb), [`code/particle-filtering/`](./code/particle-filtering), [`code/exercises-4-kalman.ipynb`](./code/exercises-4-kalman.ipynb), [`projects/project2/`](./projects/project2) (Bayes Filter) · [`slide/lecture6_th.pdf`](./slide/lecture6_th.pdf) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/lecture6_th.html)) | — | [<img src="./figures/lec6/markov-process.png" width="100" alt="Week 7 preview">](./slide/lecture6_th.pdf) |
-| 8 | Neural Networks (PyTorch) | **Lab:** PyTorch basics | [`code/lecture7-spiral.ipynb`](./code/lecture7-spiral.ipynb) · [`slide/lecture7_thai.pdf`](./slide/lecture7_thai.pdf) | — | [<img src="./figures/lec7/classif-cartoon.png" width="100" alt="Week 8 preview">](./slide/lecture7_thai.pdf) |
-| 9 | Deep Learning – CNNs | **Lab:** Image Classifier | [`code/lecture7-convnet.ipynb`](./code/lecture7-convnet.ipynb) · [`slide/lecture8_thai.pdf`](./slide/lecture8_thai.pdf) | — | [<img src="./figures/lec7/convnet-pattern.png" width="100" alt="Week 9 preview">](./slide/lecture8_thai.pdf) |
-| 10 | Transformer Architecture | **Exercise 4** | [`labs/w10_transformer.ipynb`](./labs/w10_transformer.ipynb) *(runnable)* | — | — |
-| 11 | Large Language Models | **Lab:** Fine-tune & Prompt | [`labs/w11_llm_finetune_prompt.ipynb`](./labs/w11_llm_finetune_prompt.ipynb) *(Colab GPU)* | — | — |
-| 12 | RAG & LLM Agents | **Lab:** Build an LLM Agent | [`labs/w12_rag_agent.ipynb`](./labs/w12_rag_agent.ipynb) *(runnable)* | — | — |
-| 13 | Generative AI + RLHF | **Exercise 5** | [`labs/w13_generative_ai.ipynb`](./labs/w13_generative_ai.ipynb) *(Colab GPU)* | — | — |
-| 14 | AI Ethics, Safety & Alignment | **Discussion / Debate** | — *(ต้องจัดทำใหม่: หัวข้ออภิปราย)* | — | — |
+| 8 | How LLMs work | **Lab:** attention from scratch | [`labs/w08_llm_internals.ipynb`](./labs/w08_llm_internals.ipynb) *(runnable)* · [`slide/w08_llm_th.html`](./slide/w08_llm_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w08_llm_th.html)) | — | — |
+| 9 | Prompting & Context Engineering | **Lab:** multi-provider client + evals | [`labs/w09_prompting_context.ipynb`](./labs/w09_prompting_context.ipynb) *(runnable)* · [`slide/w09_prompting_th.html`](./slide/w09_prompting_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w09_prompting_th.html)) | — | — |
+| 10 | RAG & Vector DB | **Lab:** RAG over course documents | [`labs/w10_rag.ipynb`](./labs/w10_rag.ipynb) *(runnable)* · [`slide/w10_rag_th.html`](./slide/w10_rag_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w10_rag_th.html)) | — | — |
+| 11 | Model Context Protocol (MCP) | **Lab:** write an MCP server | [`labs/w11_mcp_server.ipynb`](./labs/w11_mcp_server.ipynb) + [`labs/w11_server/`](./labs/w11_server) *(runnable)* · [`slide/w11_mcp_th.html`](./slide/w11_mcp_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w11_mcp_th.html)) | — | — |
+| 12 | AI Agents & Tool Use | **Lab:** agent from scratch | [`labs/w12_agent.ipynb`](./labs/w12_agent.ipynb) *(runnable)* · [`slide/w12_agents_th.html`](./slide/w12_agents_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w12_agents_th.html)) | — | — |
+| 13 | Harness, Skills & Plugins | **Lab:** Skill + plugin | [`labs/w13_skills_plugin/`](./labs/w13_skills_plugin) *(runnable)* · [`slide/w13_harness_skills_th.html`](./slide/w13_harness_skills_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w13_harness_skills_th.html)) | — | — |
+| 14 | AI Workflows + Ethics & Safety | **Lab:** automated workflow + threat model | [`labs/w14_workflow_ethics/`](./labs/w14_workflow_ethics) *(runnable)* · [`slide/w14_workflow_ethics_th.html`](./slide/w14_workflow_ethics_th.html) ([live HTML](https://raw.githack.com/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/main/slide/w14_workflow_ethics_th.html)) | — | — |
 | 15 | Project Presentations | **Final Project** | [`projects/`](./projects) (ต่อยอดเป็น final project) | — | — |
 
-**สื่อเสริม / legacy (นอกแกนหลัก 15 สัปดาห์):** [`code/lecture8-mdp.ipynb`](./code/lecture8-mdp.ipynb) และ [`code/q-learning-demo/`](./code/q-learning-demo) (MDP & Reinforcement Learning) — ใช้ประกอบหัวข้อ Decision/RLHF ได้ตามความเหมาะสม.
+**สื่อเสริม / legacy (นอกแกนหลัก 15 สัปดาห์)** ใช้ประกอบหรือเป็นงานต่อยอดได้ตามความเหมาะสม:
+
+| หัวข้อ | สื่อ |
+| --- | --- |
+| Neural Networks & Deep Learning (PyTorch, CNN) | [`code/lecture7-spiral.ipynb`](./code/lecture7-spiral.ipynb), [`code/lecture7-convnet.ipynb`](./code/lecture7-convnet.ipynb), [`slide/lecture7_thai.pdf`](./slide/lecture7_thai.pdf), [`slide/lecture8_thai.pdf`](./slide/lecture8_thai.pdf) |
+| Transformer ฉบับเต็มด้วย NumPy | [`labs/legacy/transformer_numpy.ipynb`](./labs/legacy/transformer_numpy.ipynb) |
+| Fine-tuning ด้วย LoRA, Diffusion | [`labs/legacy/llm_finetune_lora.ipynb`](./labs/legacy/llm_finetune_lora.ipynb), [`labs/legacy/generative_ai_diffusion.ipynb`](./labs/legacy/generative_ai_diffusion.ipynb) |
+| MDP & Reinforcement Learning | [`code/lecture8-mdp.ipynb`](./code/lecture8-mdp.ipynb), [`code/q-learning-demo/`](./code/q-learning-demo), [`slide/lecture9_thai.pdf`](./slide/lecture9_thai.pdf) |
 
 ---
 
@@ -122,12 +140,24 @@ By the end of this course, you will be able to:
 - Basic math: Linear Algebra, Calculus, and Probability
 
 **Tools & Software:**
-- **Anaconda Platform** – [Download](https://www.anaconda.com/)
-- **Visual Studio Code** – [Download](https://code.visualstudio.com/)
-- **Google Colab** (for GPU work: Deep Learning and LLMs)
-- Core libraries: **PyTorch**, **Hugging Face Transformers**, TensorFlow/Keras
-- LLM tooling: **LangChain** or **LlamaIndex**, Vector DB (FAISS / Chroma) for RAG
-- Support libraries: NumPy, pandas, matplotlib, seaborn
+
+- **Anaconda Platform** – [Download](https://www.anaconda.com/) · **Visual Studio Code** – [Download](https://code.visualstudio.com/)
+- **Google Colab** (optional, for GPU work)
+- Core libraries: NumPy, pandas, matplotlib · **PyTorch** and **Hugging Face Transformers** for the legacy deep-learning material
+
+**Modern AI track (weeks 8–14).** Everything below is optional: each lab has an offline path that runs with the standard library plus NumPy. Install what you need as you go.
+
+| Purpose | Tool |
+| --- | --- |
+| Run open-weight models locally (free, data never leaves your machine) | **[Ollama](https://ollama.com)**, `ollama pull qwen3:8b` |
+| Call any provider through one OpenAI-compatible interface | `pip install openai`, works with Qwen, GLM, Kimi, Gemini, GPT and Ollama by changing `base_url` |
+| Real tokenizers and embeddings | `pip install transformers sentence-transformers` |
+| Vector store for RAG | `pip install chromadb` (or FAISS / pgvector) |
+| Build MCP servers | `pip install "mcp[cli]"` + `npx @modelcontextprotocol/inspector` |
+| Agent harness to experiment with | Claude Code, Gemini CLI, Qwen Code, Codex CLI, Cline, Aider. Pick at least one open-source one |
+
+> **API keys** live in environment variables or a `.env` file that is in `.gitignore`. **Never commit a key.**
+> The course deliberately teaches provider-neutral interfaces so your work is not locked to one vendor.
 
 ### 🪟 A Unix-like terminal on Windows (Git-Bash / MSYS2)
 
@@ -162,12 +192,22 @@ alias python='winpty python.exe'
 
 ### Recommended Resources
 
-- Russell & Norvig — *Artificial Intelligence: A Modern Approach* (4th Ed., 2020) — *primary textbook*
-- Goodfellow, Bengio & Courville — *Deep Learning* (MIT Press)
-- Hugging Face — NLP/LLM Course and Transformers documentation (online)
-- Jurafsky & Martin — *Speech and Language Processing* (3rd Ed. draft, online)
-- Official docs for [PyTorch](https://pytorch.org/), [Hugging Face Transformers](https://huggingface.co/docs/transformers), and LangChain/LlamaIndex
+**Weeks 1–7 (Classical AI)**
+
+- Russell & Norvig, *Artificial Intelligence: A Modern Approach* (4th Ed., 2020), *primary textbook*
 - [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook), [scikit-learn](https://scikit-learn.org/stable/)
+
+**Weeks 8–14 (Building with AI)**
+
+- Jurafsky & Martin, *Speech and Language Processing* (3rd Ed. draft, online), chapters on Transformers and LLMs
+- [Model Context Protocol specification and SDKs](https://modelcontextprotocol.io): the open standard used in week 11
+- Hugging Face: NLP/LLM Course and [Transformers documentation](https://huggingface.co/docs/transformers)
+- Documentation for whichever harness you use (Claude Code, Gemini CLI, Cline, Aider). Read its docs on instruction files, skills/rules, hooks and MCP configuration
+- Provider docs for prompting, structured output and tool use: Anthropic, Google, OpenAI, Alibaba (Qwen), Zhipu (GLM), Moonshot (Kimi)
+
+**Legacy / enrichment**
+
+- Goodfellow, Bengio & Courville, *Deep Learning* (MIT Press) · [PyTorch docs](https://pytorch.org/)
 
 ---
 

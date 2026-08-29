@@ -1,0 +1,4 @@
+# ร่องรอยการทำงานที่สร้างขึ้นตอนรัน ไม่ต้องเก็บใน git
+runs.jsonl
+*.review.md
+_sample_report.md

@@ -1,16 +1,72 @@
-# Labs — Modern AI Track (starters)
+# Labs: Modern AI Track
 
-Reference notebooks สำหรับหัวข้อสมัยใหม่ในหลักสูตรปรับปรุง (พ.ศ. 2569). แต่ละไฟล์มีโค้ดอ้างอิงที่สมบูรณ์ + ส่วน TODO ให้ต่อยอด.
+ปฏิบัติการประจำสัปดาห์ของหลักสูตรปรับปรุง พ.ศ. 2569
+สัปดาห์ที่ 8 ถึง 14 เป็นแทร็ก **การใช้ AI ในยุคปัจจุบัน** (LLM, RAG, MCP, Agent, Harness, Workflow)
 
-- **runnable** = รันได้ทันทีด้วย Python มาตรฐาน/NumPy (ตรวจสอบแล้วว่ารันผ่าน)
-- **Colab GPU** = โค้ดอ้างอิงที่ต้องดาวน์โหลดโมเดล/ใช้ GPU — รันบน Google Colab (ยังไม่ได้รันในรีโพนี้)
+**หลักการออกแบบแล็บชุดนี้**
 
-เปิดตรงใน Google Colab ได้จากปุ่ม **Open in Colab** ที่หัวโน้ตบุ๊กแต่ละไฟล์ (สำหรับ **Colab GPU** ให้เลือก *Runtime → Change runtime type → GPU* ก่อนรัน).
+- **ไม่ผูกกับผู้ให้บริการรายใด** โค้ดใช้ได้กับ Claude, Gemini, GPT, Qwen, GLM, Kimi และโมเดลเปิดน้ำหนักบนเครื่อง
+- **รันได้โดยไม่ต้องมี API key** ทุกแล็บมีเส้นทางออฟไลน์ (โมเดลจำลอง, Ollama บนเครื่อง, หรือ fallback ที่ไม่ต้องใช้โมเดล)
+  แล้วสลับไปโมเดลจริงได้ด้วยการแก้ไม่กี่บรรทัด
+- **ทุกแล็บมี self-check** ที่ล้มเหลวถ้าตรรกะพัง ไม่ใช่แค่ตัวอย่างที่พิมพ์ผลออกมาสวย ๆ
 
-| Notebook | Week | Topic | Status | Colab |
+| ที่อยู่ | สัปดาห์ | หัวข้อ | รันทันที | Colab |
 | --- | --- | --- | --- | --- |
-| [`w05_logic_planning.ipynb`](./w05_logic_planning.ipynb) | 5 | Logic & Automated Planning (DPLL + STRIPS/BFS) | runnable | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w05_logic_planning.ipynb) |
-| [`w10_transformer.ipynb`](./w10_transformer.ipynb) | 10 | Transformer / Self-Attention (NumPy) | runnable | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w10_transformer.ipynb) |
-| [`w11_llm_finetune_prompt.ipynb`](./w11_llm_finetune_prompt.ipynb) | 11 | LLM Fine-tuning & Prompting (HF + LoRA) | Colab GPU | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w11_llm_finetune_prompt.ipynb) |
-| [`w12_rag_agent.ipynb`](./w12_rag_agent.ipynb) | 12 | RAG & tool-using Agent (TF-IDF retriever) | runnable | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w12_rag_agent.ipynb) |
-| [`w13_generative_ai.ipynb`](./w13_generative_ai.ipynb) | 13 | Generative AI (Diffusion) + RLHF | Colab GPU | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w13_generative_ai.ipynb) |
+| [`w05_logic_planning.ipynb`](./w05_logic_planning.ipynb) | 5 | Logic & Automated Planning (DPLL + STRIPS/BFS) | ใช่ | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w05_logic_planning.ipynb) |
+| [`w08_llm_internals.ipynb`](./w08_llm_internals.ipynb) | 8 | Tokenizer, attention จากศูนย์, การสุ่มโทเคน | ใช่ (NumPy) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w08_llm_internals.ipynb) |
+| [`w09_prompting_context.ipynb`](./w09_prompting_context.ipynb) | 9 | Client หลายผู้ให้บริการ, ชุดประเมิน, การจัดการบริบท | ใช่ (โมเดลจำลอง) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w09_prompting_context.ipynb) |
+| [`w10_rag.ipynb`](./w10_rag.ipynb) | 10 | RAG บนเอกสารจริงของรายวิชา + BM25 + RRF + Recall@k | ใช่ | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w10_rag.ipynb) |
+| [`w11_mcp_server.ipynb`](./w11_mcp_server.ipynb) + [`w11_server/`](./w11_server) | 11 | เซิร์ฟเวอร์ MCP จริง + JSON-RPC handshake ด้วยมือ | ใช่ (stdlib) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w11_mcp_server.ipynb) |
+| [`w12_agent.ipynb`](./w12_agent.ipynb) | 12 | ลูปเอเจนต์จากศูนย์ + ชั้นควบคุม + ชุดทดสอบ | ใช่ (โมเดลจำลอง) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w12_agent.ipynb) |
+| [`w13_skills_plugin/`](./w13_skills_plugin) | 13 | Skill + plugin + hook + การวัดว่า description ใช้ได้จริง | ใช่ | — |
+| [`w14_workflow_ethics/`](./w14_workflow_ethics) | 14 | เวิร์กโฟลว์อัตโนมัติ + threat model + แถลงการณ์การใช้ AI | ใช่ | — |
+
+## ตรวจว่าแล็บทั้งหมดยังทำงาน
+
+```bash
+python labs/w11_server/tools.py
+python labs/w13_skills_plugin/plugin/skills/lab-report/scripts/check_report.py
+python labs/w13_skills_plugin/plugin/hooks/block_secrets.py --self-check
+python labs/w13_skills_plugin/eval_skill.py --self-check
+python labs/w14_workflow_ethics/workflow.py --self-check
+```
+
+## การตั้งค่าที่ใช้ร่วมกัน
+
+**โมเดลบนเครื่อง (แนะนำ ไม่มีค่าใช้จ่าย ข้อมูลไม่ออกจากเครื่อง)**
+
+```bash
+# ติดตั้งจาก https://ollama.com
+ollama pull qwen3:8b
+```
+
+**โมเดลผ่าน API** ตั้งค่าเป็นตัวแปรสภาพแวดล้อม **ห้าม commit ขึ้น git เด็ดขาด**
+
+```bash
+export DASHSCOPE_API_KEY=...   # Qwen
+export ZHIPU_API_KEY=...       # GLM
+export MOONSHOT_API_KEY=...    # Kimi
+export OPENAI_API_KEY=...      # GPT
+export GEMINI_API_KEY=...      # Gemini
+export ANTHROPIC_API_KEY=...   # Claude
+```
+
+**ไลบรารีที่เป็นทางเลือก** (แล็บทำงานได้โดยไม่มีก็ได้ แต่จะดีขึ้นถ้ามี)
+
+```bash
+pip install openai                 # เรียก API แบบเข้ากันได้กับ OpenAI
+pip install transformers           # tokenizer จริง (สัปดาห์ 8)
+pip install sentence-transformers  # embedding จริง (สัปดาห์ 10)
+pip install "mcp[cli]"             # เซิร์ฟเวอร์ MCP จริง (สัปดาห์ 11)
+```
+
+## สื่อเสริม (นอกแกนหลัก 15 สัปดาห์)
+
+[`legacy/`](./legacy) เก็บโน้ตบุ๊กจากหลักสูตรฉบับก่อน ใช้ประกอบได้ตามความเหมาะสม
+
+| ไฟล์ | หัวข้อ |
+| --- | --- |
+| [`legacy/transformer_numpy.ipynb`](./legacy/transformer_numpy.ipynb) | Multi-head attention ฉบับเต็มด้วย NumPy (ต่อยอดจากสัปดาห์ที่ 8) |
+| [`legacy/llm_finetune_lora.ipynb`](./legacy/llm_finetune_lora.ipynb) | Fine-tuning ด้วย LoRA (ต้องใช้ GPU) |
+| [`legacy/rag_agent_tfidf.ipynb`](./legacy/rag_agent_tfidf.ipynb) | RAG + เอเจนต์ฉบับย่อ (แทนที่ด้วยสัปดาห์ที่ 10 และ 12) |
+| [`legacy/generative_ai_diffusion.ipynb`](./legacy/generative_ai_diffusion.ipynb) | Diffusion และ generative AI (ต้องใช้ GPU) |
