@@ -192,18 +192,6 @@
             width: 70%;
         }
 
-        .title-slide:after {
-            content: '';
-            background: url("../assets/logo_ulg.png") no-repeat;
-            background-size: 75% 75%;
-            width: 150px;
-            height: 73px;
-            position: absolute;
-            bottom: -0.5em;
-            left: 0.5em;
-            display: inline-block;
-        }
-
         .title-slide, .section {
             vertical-align: middle;
         }
@@ -289,6 +277,48 @@
 
         .kol-3-4 {
             width: 75%;
+        }
+
+        /* พิมพ์เป็น PDF: 1 สไลด์ต่อ 1 หน้า เต็มหน้าพอดี ไม่มีขอบขาว
+           1210x681 px คือขนาดตรรกะของสไลด์ 16:9 ที่ remark ใช้ */
+        @page { size: 1210px 681px; margin: 0; }
+
+        @media print {
+            .remark-slide-container {
+                width: 1210px !important;
+                height: 681px !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                overflow: hidden;
+            }
+            .remark-slide-container:last-child { page-break-after: avoid; }
+
+            .remark-slide-scaler, .remark-slide {
+                width: 1210px !important;
+                height: 681px !important;
+                transform: none !important;
+                left: 0 !important;
+                top: 0 !important;
+                box-shadow: none !important;
+            }
+
+            /* border-box กันไม่ให้ padding ด้านข้างดันเนื้อหาล้นขอบขวา */
+            .remark-slide-content {
+                box-sizing: border-box !important;
+                width: 1210px !important;
+                height: 681px !important;
+            }
+
+            /* รูปกำหนดความกว้างเป็น % บนจอ ซึ่งอาจสูงเกินหน้ากระดาษ
+               จึงจำกัดความสูงแล้วให้ความกว้างปรับตาม เพื่อคงสัดส่วนเดิม */
+            .remark-slide-content img {
+                max-width: 100% !important;
+                max-height: 611px !important;
+                width: auto !important;
+                height: auto !important;
+            }
+
+            .remark-notes-area, .remark-toolbar { display: none !important; }
         }
 
     </style>
