@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ความลับ ห้าม commit เด็ดขาด
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ผลลัพธ์ที่แล็บสร้างขึ้นตอนรัน
+labs/**/runs.jsonl
+labs/**/*.review.md
