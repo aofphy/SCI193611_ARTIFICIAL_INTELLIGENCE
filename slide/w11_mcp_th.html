@@ -23,6 +23,13 @@
             font-size: 1.3em;
         }
 
+        /* ธีมเดิมไม่มีระยะห่างในเซลล์ ตัวอักษรของคอลัมน์ติดกันจนอ่านยากตอนฉาย
+           ใส่เฉพาะระยะขวา เพื่อไม่ให้ขอบซ้ายของตารางเยื้องจากข้อความอื่น */
+        .remark-slide-content th,
+        .remark-slide-content td {
+            padding: 0.08em 0.7em 0.08em 0;
+        }
+
         .remark-slide-content h1 {
             font-family: 'Sarabun', Lato, sans-serif;
             font-weight: bold;

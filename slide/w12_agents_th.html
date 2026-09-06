@@ -23,6 +23,13 @@
             font-size: 1.3em;
         }
 
+        /* ธีมเดิมไม่มีระยะห่างในเซลล์ ตัวอักษรของคอลัมน์ติดกันจนอ่านยากตอนฉาย
+           ใส่เฉพาะระยะขวา เพื่อไม่ให้ขอบซ้ายของตารางเยื้องจากข้อความอื่น */
+        .remark-slide-content th,
+        .remark-slide-content td {
+            padding: 0.08em 0.7em 0.08em 0;
+        }
+
         .remark-slide-content h1 {
             font-family: 'Sarabun', Lato, sans-serif;
             font-weight: bold;
@@ -939,7 +946,8 @@ class: middle
 **1. ชั้นควบคุม 5 ชั้น**
 ```python
 assert "ไม่มีเครื่องมือ" in execute("send_email", {...})
-assert "อาร์กิวเมนต์ผิด" in execute("calculate", {"expr": "1+1"})
+bad = execute("calculate", {"expr": "1+1"})
+assert "อาร์กิวเมนต์ผิด" in bad
 ```
 สังเกตว่า `execute` **คืนสตริงเสมอ ไม่เคยโยน exception**
 
@@ -950,7 +958,8 @@ assert "อาร์กิวเมนต์ผิด" in execute("calculate", {
 .kol-1-2[
 **3. เงื่อนไขหยุดทำงานจริง**
 ```python
-out, spent, steps = run_agent("วนไปเรื่อย ๆ", Looper(), budget=0.50)
+out, spent, steps = run_agent(
+    "วนไปเรื่อย ๆ", Looper(), budget=0.50)
 assert "งบประมาณ" in out and steps < 8
 ```
 เทียบกับที่เราคำนวณด้วยมือในแบบฝึกหัด 1.1
