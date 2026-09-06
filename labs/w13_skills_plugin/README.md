@@ -42,10 +42,17 @@ python eval_skill.py --self-check
 
 ## รันกับโมเดลจริง
 
+ใช้โมเดลอะไรก็ได้ที่ [`../llm.py`](../llm.py) รองรับ
+
 ```bash
-ollama pull qwen3:8b
-python eval_skill.py --model qwen3:8b
+python ../llm.py --free                        # โมเดลฟรีที่มีตอนนี้
+python eval_skill.py --provider openrouter --model z-ai/glm-5.2:free
+python eval_skill.py --provider local --model qwen3:8b
 ```
+
+การประเมินนี้ยิงโมเดล 10 ครั้งติดกัน จึงชนเพดานคำขอของรุ่นฟรีได้
+`llm.py` จะรอแล้วลองใหม่ให้เอง และ **ให้ตรึงชื่อโมเดลไว้ตัวเดียวตลอดการทดลอง**
+ไม่อย่างนั้นตัวเลข accuracy ที่ได้จะเทียบกันไม่ได้
 
 ถ้า accuracy ต่ำ ให้ดูว่าผิดทางไหน
 

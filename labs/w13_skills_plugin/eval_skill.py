@@ -7,19 +7,23 @@
 
 ใช้:
     python eval_skill.py --self-check        # ทดสอบตรรกะ ไม่ต้องมีโมเดล
-    python eval_skill.py                     # ใช้ Ollama บนเครื่อง
-    python eval_skill.py --model qwen3:8b --host http://localhost:11434
+    python eval_skill.py                     # เลือกโมเดลให้เองตาม labs/llm.py
+    python eval_skill.py --provider openrouter --model z-ai/glm-5.2:free
+    python eval_skill.py --provider local --model qwen3:8b
+
+โมเดลไหนก็ได้ที่ labs/llm.py รองรับ รวมถึงรุ่น :free ของ OpenRouter
+ที่เรียกได้โดยไม่เสียเงิน ดูรายชื่อด้วย  python ../llm.py --free
 """
 from __future__ import annotations
 
 import argparse
-import json
 import pathlib
 import re
 import sys
-import urllib.request
 
 HERE = pathlib.Path(__file__).parent
+sys.path.insert(0, str(HERE.parent))          # ให้หา labs/llm.py เจอ
+import llm as api                             # noqa: E402
 SKILL = HERE / "plugin" / "skills" / "lab-report" / "SKILL.md"
 
 # คำขอทดสอบ: (ข้อความของผู้ใช้, ควรเรียก skill นี้หรือไม่)
@@ -62,16 +66,10 @@ def read_description(path=SKILL):
     return " ".join(line.strip() for line in d.group(1).splitlines()).strip()
 
 
-def ollama_judge(host, model):
-    """คืนฟังก์ชัน judge(prompt) -> str ที่เรียกโมเดลบนเครื่อง"""
-    def judge(prompt):
-        body = json.dumps({"model": model, "prompt": prompt, "stream": False,
-                           "options": {"temperature": 0}}).encode()
-        req = urllib.request.Request(f"{host}/api/generate", body,
-                                     {"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=120) as r:
-            return json.load(r)["response"]
-    return judge
+def api_judge(provider=None, model=None):
+    """คืนฟังก์ชัน judge(prompt) -> str ที่ยิงผู้ให้บริการซึ่ง llm.py เลือกให้"""
+    call = api.text_llm(provider, model, temperature=0)
+    return lambda prompt: call(prompt)[0]
 
 
 def keyword_judge(prompt):
@@ -109,8 +107,8 @@ def report(acc, rows):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="qwen3:8b")
-    ap.add_argument("--host", default="http://localhost:11434")
+    ap.add_argument("--provider", choices=list(api.PROVIDERS))
+    ap.add_argument("--model")
     ap.add_argument("--self-check", action="store_true")
     args = ap.parse_args()
 
@@ -124,12 +122,13 @@ def main():
         print("\nOK: eval_skill self-check ผ่าน")
         return
 
+    print(api.describe(api.resolve(args.provider, args.model)))
     try:
-        acc, rows = evaluate(ollama_judge(args.host, args.model), desc)
+        acc, rows = evaluate(api_judge(args.provider, args.model), desc)
     except Exception as e:
         print(f"เรียกโมเดลไม่สำเร็จ ({type(e).__name__}: {e})")
-        print("ติดตั้ง Ollama แล้วรัน `ollama pull qwen3:8b` "
-              "หรือใช้ --self-check เพื่อทดสอบตรรกะ")
+        print("ทางเลือก: ตั้ง OPENROUTER_API_KEY แล้วใช้โมเดล :free, "
+              "ติดตั้ง Ollama, หรือใช้ --self-check เพื่อทดสอบเฉพาะตรรกะ")
         return 1
     report(acc, rows)
 

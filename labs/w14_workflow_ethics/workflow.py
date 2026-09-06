@@ -10,8 +10,12 @@
 
 ใช้:
     python workflow.py --self-check              # ทดสอบด้วยโมเดลจำลอง
-    python workflow.py report.md                 # ใช้ Ollama บนเครื่อง
+    python workflow.py report.md                 # เลือกโมเดลให้เองตาม labs/llm.py
+    python workflow.py report.md --provider openrouter --model z-ai/glm-5.2:free
     python workflow.py report.md --yes           # ข้ามการอนุมัติ (ใช้ใน CI เท่านั้น)
+
+โมเดลไหนก็ได้ที่ labs/llm.py รองรับ รวมถึงรุ่น :free ของ OpenRouter
+ที่เรียกได้โดยไม่เสียเงิน ดูรายชื่อด้วย  python ../llm.py --free
 """
 from __future__ import annotations
 
@@ -20,9 +24,10 @@ import json
 import pathlib
 import sys
 import time
-import urllib.request
 
 HERE = pathlib.Path(__file__).parent
+sys.path.insert(0, str(HERE.parent))          # ให้หา labs/llm.py เจอ
+import llm as api                             # noqa: E402
 LOG = HERE / "runs.jsonl"
 
 MAX_ROUNDS = 3
@@ -61,18 +66,8 @@ class BudgetExceeded(RuntimeError):
     pass
 
 
-def ollama_llm(host="http://localhost:11434", model="qwen3:8b"):
-    def llm(prompt):
-        body = json.dumps({"model": model, "prompt": prompt, "stream": False,
-                           "options": {"temperature": 0.2}}).encode()
-        req = urllib.request.Request(f"{host}/api/generate", body,
-                                     {"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=180) as r:
-            data = json.load(r)
-        # โมเดลบนเครื่องไม่มีค่าใช้จ่ายจริง แต่ยังนับเป็น proxy ของงบประมาณ
-        cost = data.get("eval_count", 200) * 2e-6
-        return data["response"], cost
-    return llm
+# โมเดลบนเครื่องและรุ่น :free ไม่มีค่าใช้จ่ายจริง แต่ `text_llm` ยังคิดราคาสมมติ
+# ต่อโทเคนให้ เพื่อให้กลไกงบประมาณข้างล่างได้ทำงานจริงไม่ว่าจะใช้โมเดลอะไร
 
 
 class ScriptedLLM:
@@ -230,7 +225,8 @@ def main():
     ap.add_argument("report", nargs="?", help="ไฟล์รายงานที่จะตรวจ")
     ap.add_argument("--self-check", action="store_true")
     ap.add_argument("--yes", action="store_true", help="อนุมัติอัตโนมัติ (CI เท่านั้น)")
-    ap.add_argument("--model", default="qwen3:8b")
+    ap.add_argument("--provider", choices=list(api.PROVIDERS))
+    ap.add_argument("--model")
     args = ap.parse_args()
 
     if args.self_check:
@@ -238,7 +234,9 @@ def main():
         return 0
     if not args.report:
         ap.error("ต้องระบุไฟล์รายงาน หรือใช้ --self-check")
-    return run(args.report, ollama_llm(model=args.model), auto=args.yes)
+    print(api.describe(api.resolve(args.provider, args.model)))
+    return run(args.report, api.text_llm(args.provider, args.model),
+               auto=args.yes)
 
 
 if __name__ == "__main__":

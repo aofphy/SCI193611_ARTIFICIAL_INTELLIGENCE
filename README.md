@@ -150,13 +150,15 @@ By the end of this course, you will be able to:
 | Purpose | Tool |
 | --- | --- |
 | Run open-weight models locally (free, data never leaves your machine) | **[Ollama](https://ollama.com)**, `ollama pull qwen3:8b` |
-| Call any provider through one OpenAI-compatible interface | `pip install openai`, works with Qwen, GLM, Kimi, Gemini, GPT and Ollama by changing `base_url` |
+| Call any provider through one OpenAI-compatible interface | [`labs/llm.py`](./labs/llm.py), standard library only. Works with OpenRouter, Qwen, GLM, Kimi, Gemini, GPT and Ollama by changing `base_url` |
+| Use a hosted model without paying | **[OpenRouter](https://openrouter.ai/)** free tier: set `OPENROUTER_API_KEY`, pick a `:free` model. List what is available right now with `python labs/llm.py --free` |
 | Real tokenizers and embeddings | `pip install transformers sentence-transformers` |
 | Vector store for RAG | `pip install chromadb` (or FAISS / pgvector) |
 | Build MCP servers | `pip install "mcp[cli]"` + `npx @modelcontextprotocol/inspector` |
 | Agent harness to experiment with | Claude Code, Gemini CLI, Qwen Code, Codex CLI, Cline, Aider. Pick at least one open-source one |
 
 > **API keys** live in environment variables or a `.env` file that is in `.gitignore`. **Never commit a key.**
+> If you have no budget, the OpenRouter free tier covers every lab in weeks 8 to 14. Free requests are rate-limited, and OpenRouter has a separate account setting controlling whether free requests may be routed to providers that train on your data, so never send personal or unpublished material through it.
 > The course deliberately teaches provider-neutral interfaces so your work is not locked to one vendor.
 
 ### 🪟 A Unix-like terminal on Windows (Git-Bash / MSYS2)
