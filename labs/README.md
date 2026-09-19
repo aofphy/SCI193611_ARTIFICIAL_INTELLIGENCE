@@ -20,6 +20,7 @@
 | [`w09_prompting_context.ipynb`](./w09_prompting_context.ipynb) | 9 | Client หลายผู้ให้บริการ, ชุดประเมิน, การจัดการบริบท | ใช่ (โมเดลจำลอง) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w09_prompting_context.ipynb) |
 | [`w10_rag.ipynb`](./w10_rag.ipynb) | 10 | RAG บนเอกสารจริงของรายวิชา + BM25 + RRF + Recall@k | ใช่ | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w10_rag.ipynb) |
 | [`w11_mcp_server.ipynb`](./w11_mcp_server.ipynb) + [`w11_server/`](./w11_server) | 11 | เซิร์ฟเวอร์ MCP จริง + JSON-RPC handshake ด้วยมือ | ใช่ (stdlib) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w11_mcp_server.ipynb) |
+| [`w11_2_web_search/`](./w11_2_web_search) | 11.2 | ต่อ Ollama เข้ากับเซิร์ฟเวอร์ MCP ค้นเว็บ + ทดลอง prompt injection | ใช่ | ไม่มี |
 | [`w12_agent.ipynb`](./w12_agent.ipynb) | 12 | ลูปเอเจนต์จากศูนย์ + ชั้นควบคุม + ชุดทดสอบ | ใช่ (โมเดลจำลอง) | [open](https://colab.research.google.com/github/aofphy/SCI193611_ARTIFICIAL_INTELLIGENCE/blob/main/labs/w12_agent.ipynb) |
 | [`w13_skills_plugin/`](./w13_skills_plugin) | 13 | Skill + plugin + hook + การวัดว่า description ใช้ได้จริง | ใช่ | ไม่มี |
 | [`w14_workflow_ethics/`](./w14_workflow_ethics) | 14 | เวิร์กโฟลว์อัตโนมัติ + threat model + แถลงการณ์การใช้ AI | ใช่ | ไม่มี |
@@ -28,11 +29,15 @@
 
 ```bash
 python labs/w11_server/tools.py
+python labs/w11_2_web_search/search_tools.py
 python labs/w13_skills_plugin/plugin/skills/lab-report/scripts/check_report.py
 python labs/w13_skills_plugin/plugin/hooks/block_secrets.py --self-check
 python labs/w13_skills_plugin/eval_skill.py --self-check
 python labs/w14_workflow_ethics/workflow.py --self-check
 python labs/llm.py --self-check
+
+# ต้องรันในไดเรกทอรีของตัวเอง เพราะเปิดเซิร์ฟเวอร์เป็นโปรเซสลูก
+(cd labs/w11_2_web_search && python agent.py --self-check)
 ```
 
 ## การตั้งค่าที่ใช้ร่วมกัน
@@ -60,9 +65,34 @@ python labs/llm.py --self-check     # ทดสอบตรรกะการเ
 
 ```bash
 # ติดตั้งจาก https://ollama.com
-ollama pull qwen3:8b
-export LLM_PROVIDER=local
+ollama pull qwen3:8b          # ~5 GB ครั้งเดียว เครื่อง 16 GB ขึ้นไปสบาย
+ollama serve                  # macOS ที่ลงแอปแล้วข้ามได้ มันรันให้อยู่แล้ว
+
+export LLM_PROVIDER=local     # บังคับให้ทุกแล็บยิงไปที่ localhost:11434
+export LLM_MODEL=qwen3:8b     # ถ้าไม่ตั้ง llm.py ใช้ qwen3:8b เป็นค่าตั้งต้นอยู่แล้ว
+
+python labs/llm.py            # provider=local  model=qwen3:8b  key=ไม่ได้ตั้ง
+python labs/llm.py --ask "อธิบาย attention ใน 2 บรรทัด"
 ```
+
+เครื่องแรมน้อยลดขนาดโมเดลลงได้ เช่น `ollama pull qwen3:4b` แล้วตั้ง
+`export LLM_MODEL=qwen3:4b` ส่วนสัปดาห์ที่ 12 ต้องใช้โมเดลที่เรียกเครื่องมือได้
+`qwen3` และ `llama3.1` ทำได้ แต่ `gemma3` ทำไม่ได้
+
+ในสมุดบันทึก สลับได้ทั้งแบบตั้งค่าครั้งเดียวทั้งไฟล์ และแบบระบุเฉพาะการเรียกนั้น
+
+```python
+import os, llm
+os.environ["LLM_PROVIDER"] = "local"        # ทั้งไฟล์ยิงไป ollama ตั้งแต่บรรทัดนี้
+print(llm.describe(llm.resolve()))
+
+llm.chat("สวัสดี", provider="local", model="qwen3:4b")   # เฉพาะครั้งนี้
+```
+
+ถ้า Ollama อยู่คนละเครื่องหรือเปลี่ยนพอร์ต แก้บรรทัด `"local"` ใน `PROVIDERS`
+ของ [`llm.py`](./llm.py) ให้ชี้ไป base_url ตัวใหม่ ที่เหลือไม่ต้องแก้
+เจอ `Connection refused` แปลว่า `ollama serve` ยังไม่ทำงาน
+เจอ HTTP 404 แปลว่ายังไม่ได้ `ollama pull` โมเดลชื่อนั้น (`ollama list` ดูของที่มี)
 
 **3. API ฟรีจาก OpenRouter** เหมาะกับเครื่องที่แรมไม่พอจะรันโมเดลเอง
 สมัครที่ [openrouter.ai](https://openrouter.ai/) แล้วสร้าง key
@@ -108,7 +138,7 @@ export ANTHROPIC_API_KEY=...   # Claude
 ```bash
 pip install transformers           # tokenizer จริง (สัปดาห์ 8)
 pip install sentence-transformers  # embedding จริง (สัปดาห์ 10)
-pip install "mcp[cli]"             # เซิร์ฟเวอร์ MCP จริง (สัปดาห์ 11)
+pip install "mcp[cli]<2"             # เซิร์ฟเวอร์ MCP จริง (สัปดาห์ 11)
 ```
 
 ## สื่อเสริม (นอกแกนหลัก 15 สัปดาห์)
