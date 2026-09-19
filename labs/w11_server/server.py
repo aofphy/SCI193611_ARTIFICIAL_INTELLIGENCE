@@ -7,13 +7,18 @@
 รัน:       python server.py
 ตรวจสอบ:  npx @modelcontextprotocol/inspector python server.py
 """
-from mcp.server.fastmcp import FastMCP
+# แพ็กเกจ mcp เปลี่ยนชื่อคลาสนี้ตอนขึ้นเวอร์ชัน 2 หน้าตาการใช้งานเหมือนเดิมทุกอย่าง
+# รองรับทั้งสองเวอร์ชันไว้ เพราะแต่ละเครื่องติดตั้งมาไม่เท่ากัน
+try:
+    from mcp.server.mcpserver import MCPServer as Server      # mcp 2.x
+except ImportError:                                            # pragma: no cover
+    from mcp.server.fastmcp import FastMCP as Server          # mcp 1.x
 
 import tools
 
-mcp = FastMCP("course-tools")
+mcp = Server("course-tools")
 
-# FastMCP สร้าง JSON Schema จาก type hint และ docstring ของแต่ละฟังก์ชันให้เอง
+# ตัวเซิร์ฟเวอร์สร้าง JSON Schema จาก type hint และ docstring ของแต่ละฟังก์ชันให้เอง
 # นี่คือเหตุผลที่ docstring ใน tools.py เขียนละเอียดพร้อมประโยค "ใช้เมื่อ ..."
 for fn in tools.TOOLS:
     mcp.tool()(fn)
